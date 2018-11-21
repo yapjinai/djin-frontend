@@ -3,7 +3,7 @@ import React from 'react';
 const BrowserSong = (props) => {
   const handleClick = (e) => {
     console.log(`${props.song.title} for side ${e.target.name}`);
-    props.addToQueue(e.target.name, props.song)
+    props.pushToQueue(e.target.name, props.song)
   }
 
   return (

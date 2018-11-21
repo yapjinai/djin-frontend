@@ -18,7 +18,7 @@ class Master extends Component {
         />
         <Browser
           allSongs={this.props.allSongs}
-          addToQueue={this.props.addToQueue}
+          pushToQueue={this.props.pushToQueue}
         />
       </div>
     );

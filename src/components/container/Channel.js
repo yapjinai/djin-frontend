@@ -14,28 +14,20 @@ class Channel extends Component {
       playing: false,
       volume: 1
     }
-    if (this.state.currentSong) {
-      this.state.audio.src = this.state.currentSong.url
-    }
-    else {
-      this.state.audio.src = 'http://localhost:3001/Smile.mp3'
-    }
+
   }
 
   render() {
-    console.log('rendering');
-
-            if (this.state.playing) {
-              this.state.audio.play()
-            }
-            else {
-              this.state.audio.pause()
-            }
+    if (this.state.currentSong && this.state.audio.src !== this.state.currentSong.url) {
+      this.state.audio.src = this.state.currentSong.url
+    }
+    // popFromQueue={this.props.popFromQueue}
 
     return (
       <div className={`Channel ${this.props.side}`}>
         {this.props.side === 'left' ? this.displayQueue() : null}
         <div className='controls'>
+          {this.state.currentSong ? this.state.currentSong.title : 'No song playing'}
           <Waveform
             currentSong = {this.state.currentSong}
           />
@@ -55,6 +47,23 @@ class Channel extends Component {
 
   //////////////////////
 
+  playAudio = () => {
+    if (this.state.playing) {
+      if (this.state.currentSong) {
+        this.state.audio.play()
+      }
+      else {
+        const currentSong = this.props.popFromQueue(this.props.side)
+        this.setState({
+          currentSong: currentSong
+        })
+      }
+    }
+    else {
+      this.state.audio.pause()
+    }
+  }
+
   displayQueue = () => {
     return (
       <Queue
@@ -73,8 +82,9 @@ class Channel extends Component {
   changePlaying = () => {
     this.setState({
       playing: !this.state.playing
+    }, () => {
+      this.playAudio()
     })
-
   }
 }
 

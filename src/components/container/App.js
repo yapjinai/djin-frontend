@@ -27,6 +27,7 @@ class App extends Component {
       App
         <Channels
           queues={this.state.queues}
+          popFromQueue={this.popFromQueue}
         />
         <Master
           allSongs={this.state.allSongs}
@@ -34,7 +35,7 @@ class App extends Component {
           bpm={this.state.bpm}
 
           changeState={this.changeState}
-          addToQueue={this.addToQueue}
+          pushToQueue={this.pushToQueue}
         />
       </div>
     );
@@ -51,7 +52,7 @@ class App extends Component {
     this.setState(newStateObject)
   }
 
-  addToQueue = (side, song) => {
+  pushToQueue = (side, song) => {
     const newQueue = [...this.state.queues[side]]
     newQueue.push(song)
 
@@ -65,9 +66,9 @@ class App extends Component {
     })
   }
 
-  playNextFromQueue = (side, song) => {
+  popFromQueue = (side) => {
     const newQueue = [...this.state.queues[side]]
-    const currentSong = newQueue.pop
+    const currentSong = newQueue.pop()
 
     const newQueues = {
       ...this.state.queues
@@ -77,6 +78,8 @@ class App extends Component {
     this.setState({
       queues: newQueues
     })
+
+    return currentSong
   }
 
   ///////////////////////////

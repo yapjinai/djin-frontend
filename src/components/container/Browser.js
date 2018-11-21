@@ -23,7 +23,7 @@ class Browser extends Component {
         <BrowserSong
           song={s}
           key={uuid()}
-          addToQueue={this.props.addToQueue}
+          pushToQueue={this.props.pushToQueue}
         />
       )
     })
