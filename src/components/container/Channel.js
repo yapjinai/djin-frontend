@@ -20,8 +20,9 @@ class Channel extends Component {
     if (this.state.currentSong && this.state.audio.src !== this.state.currentSong.url) {
       this.state.audio.src = this.state.currentSong.url
     }
-    // popFromQueue={this.props.popFromQueue}
 
+    this.setAudioVolume()
+    
     return (
       <div className={`Channel ${this.props.side}`}>
         {this.props.side === 'left' ? this.displayQueue() : null}
@@ -98,12 +99,22 @@ class Channel extends Component {
     }
   }
 
+  //////////////////////
+  // AUDIO CONTROLS
+  //////////////////////
+
   toggleAudio = () => {
     if (this.state.playing) {
       this.state.audio.play()
     }
     else {
       this.state.audio.pause()
+    }
+  }
+
+  setAudioVolume = () => {
+    if (this.state.audio.volume !== this.state.volume) {
+      this.state.audio.volume = this.state.volume
     }
   }
 
