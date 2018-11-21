@@ -22,12 +22,12 @@ class Channel extends Component {
     }
 
     this.setAudioVolume()
-    
+
     return (
       <div className={`Channel ${this.props.side}`}>
         {this.props.side === 'left' ? this.displayQueue() : null}
         <div className='controls'>
-          {this.state.currentSong ? this.state.currentSong.title : 'No song playing'}
+          <h2>{this.state.currentSong ? this.state.currentSong.title : 'No song playing'}</h2>
           <Waveform
             currentSong = {this.state.currentSong}
           />
@@ -113,8 +113,23 @@ class Channel extends Component {
   }
 
   setAudioVolume = () => {
-    if (this.state.audio.volume !== this.state.volume) {
-      this.state.audio.volume = this.state.volume
+    const volume = this.state.volume
+    const crossFade = parseFloat(this.props.crossFade)
+    const side = this.props.side
+    let newVolume
+
+    if (crossFade > 0 && side === 'left') {
+      newVolume = volume * (1 - crossFade)
+    }
+    else if (crossFade < 0 && side === 'right') {
+      newVolume = volume * (1 + crossFade)
+    }
+    else {
+      newVolume = volume
+    }
+
+    if (this.state.audio.volume !== newVolume) {
+      this.state.audio.volume = newVolume
     }
   }
 

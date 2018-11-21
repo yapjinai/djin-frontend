@@ -27,6 +27,8 @@ class App extends Component {
       App
         <Channels
           queues={this.state.queues}
+          crossFade={this.state.crossFade}
+
           popFromQueue={this.popFromQueue}
           removeFromQueue={this.removeFromQueue}
         />

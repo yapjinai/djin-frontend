@@ -8,21 +8,26 @@ class Channels extends Component {
       <div className="Channels">
       Channels
         <div className="Channels">
-          <Channel
-            side='left'
-            queue={this.props.queues.left}
-            popFromQueue={this.props.popFromQueue}
-            removeFromQueue={this.props.removeFromQueue}
-          />
-          <Channel
-            side='right'
-            queue={this.props.queues.right}
-            popFromQueue={this.props.popFromQueue}
-            removeFromQueue={this.props.removeFromQueue}
-          />
+          {this.displayChannel('left')}
+          {this.displayChannel('right')}
         </div>
       </div>
     );
+  }
+
+  //////////////////////
+
+  displayChannel = (side) => {
+    return (
+      <Channel
+        side={side}
+        queue={this.props.queues[side]}
+        crossFade={this.props.crossFade}
+
+        popFromQueue={this.props.popFromQueue}
+        removeFromQueue={this.props.removeFromQueue}
+      />
+    )
   }
 }
 
