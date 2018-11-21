@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import '../../css/Browser.css';
-import Queue from '../presentational/Queue';
-import AllSongs from '../presentational/AllSongs';
+import BrowserSong from '../presentational/BrowserSong';
+
+const uuid = require('uuid/v4');
 
 class Browser extends Component {
   render() {
     return (
       <div className="Browser">
-        <Queue
-          channel='left'
-        />
-        <AllSongs />
-        <Queue
-          channel='right'
-        />
+      Browser
+        <ul>
+          {this.renderAllSongs()}
+        </ul>
       </div>
     );
+  }
+
+  //////////////////////
+
+  handleClick = (e) => {
+    console.log('choosing song');
+  }
+
+  renderAllSongs = () => {
+    return this.props.allSongs.map(s => {
+      return (
+        <BrowserSong
+          song={s}
+          key={uuid()}
+        />
+      )
+    })
   }
 }
 

@@ -1,7 +1,17 @@
 div {
+  border: 2px solid rgba(225, 0, 225, 0.5);
   margin: 10px;
-  text-align: center;
   align-items: center;
+}
+
+input[type=range][orient=vertical] {
+  writing-mode: bt-lr;
+  /* IE */
+  -webkit-appearance: slider-vertical;
+  /* WebKit */
+  width: 8px;
+  height: 175px;
+  padding: 0 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

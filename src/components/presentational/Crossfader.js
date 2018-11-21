@@ -1,17 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Crossfader extends Component {
-  render() {
-    return (
-      <div className="Crossfader">
-        <label>
-          Crossfader
-        </label>
-        <br />
-        <input id="crossfader" type="range" min="-1" max="1" value="0" step=".01" />
-      </div>
-    );
+const Crossfader = (props) => {
+  const handleChange = (e) => {
+    props.changeState({
+      crossFade: e.target.value
+    })
   }
+
+  return (
+    <div className="Crossfader">
+      <label>
+        Crossfader
+      </label>
+      <br />
+      <input
+        id="crossfader"
+        type="range"
+        min="-1"
+        max="1"
+        step=".01"
+        value={props.crossFade}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 
 export default Crossfader;

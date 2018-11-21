@@ -1,13 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+import '../../css/Queue.css';
+const uuid = require('uuid/v4');
 
-class Queue extends Component {
-  render() {
-    return (
-      <div className="Queue">
-        Queue for channel {this.props.channel}
-      </div>
-    );
+const Queue = (props) => {
+  const renderQueue = () => {
+    return props.queue.map(s => {
+      return (
+        <li
+          key={uuid()}
+        >
+          {s.title}
+        </li>
+      )
+    })
   }
+
+  return (
+    <div className="Queue">
+      Queue for {props.channel} channel
+      <ul>
+        {renderQueue()}
+      </ul>
+    </div>
+  );
 }
 
 export default Queue;

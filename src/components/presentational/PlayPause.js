@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class PlayPause extends Component {
-  render() {
-    return (
-      <div className="PlayPause">
-        <button>
-          Play/pause
-        </button>
-      </div>
-    );
+const PlayPause = (props) => {
+  const playPause = () => {
+    if (props.playing) {
+      return 'Pause'
+    }
+    else {
+      return 'Play'
+    }
   }
+
+  return (
+    <div className="PlayPause">
+      <button
+        onClick={props.changePlaying}
+      >
+        {playPause()}
+      </button>
+    </div>
+  );
 }
 
 export default PlayPause;

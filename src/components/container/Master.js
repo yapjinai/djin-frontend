@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Crossfader from '../presentational/Crossfader';
+import Bpm from '../presentational/Bpm';
 import Browser from './Browser';
 
 class Master extends Component {
@@ -7,9 +8,17 @@ class Master extends Component {
     return (
       <div className="Master">
         Master control
-
-        <Crossfader />
-        <Browser />
+        <Crossfader
+          crossFade={this.props.crossFade}
+          changeState={this.props.changeState}
+        />
+        <Bpm
+          bpm={this.props.bpm}
+          changeState={this.props.changeState}
+        />
+        <Browser
+          allSongs={this.props.allSongs}
+        />
       </div>
     );
   }

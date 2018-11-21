@@ -1,15 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Volume extends Component {
-  render() {
-    return (
-      <div className="Volume">
-        <label>Volume</label>
-        <br />
-        <input id="leftVolumeSlider" type="range" min="0" max="1" value="1" step=".01" />
-      </div>
-    );
+const Volume = (props) => {
+  const handleChange = (e) => {
+    props.changeVolume(e.target.value)
   }
+
+  ////////////////////////////////////
+
+  return (
+    <div className="Volume">
+      <label>Volume</label>
+      <br />
+      <input
+        id="leftVolumeSlider"
+        type="range"
+        orient="vertical"
+        min="0"
+        max="1"
+        step=".01"
+        value={props.volume}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 
 export default Volume;

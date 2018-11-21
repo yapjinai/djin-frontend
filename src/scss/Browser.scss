@@ -1,5 +1,10 @@
 .Browser {
-  // border: 2px solid rgba(0,0,225,.5);
+  ul {
+    padding: 0;
+  }
 
-  display: flex;
+  li {
+    display: flex;
+    justify-content: space-between;
+  }
 }

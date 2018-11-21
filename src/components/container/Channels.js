@@ -6,12 +6,15 @@ class Channels extends Component {
   render() {
     return (
       <div className="Channels">
-        <Channel
-          channel='left'
-        />
-        <Channel
-          channel='right'
-        />
+      Channels
+        <div className="Channels">
+          <Channel
+            channel='left'
+          />
+          <Channel
+            channel='right'
+          />
+        </div>
       </div>
     );
   }
