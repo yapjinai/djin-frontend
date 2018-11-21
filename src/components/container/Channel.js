@@ -3,7 +3,7 @@ import '../../css/Channel.css';
 import Waveform from '../presentational/Waveform';
 import PlayPause from '../presentational/PlayPause';
 import Volume from '../presentational/Volume';
-import Queue from '../presentational/Queue';
+import Queue from './Queue';
 
 class Channel extends Component {
   constructor() {
@@ -14,7 +14,6 @@ class Channel extends Component {
       playing: false,
       volume: 1
     }
-
   }
 
   render() {
@@ -33,7 +32,7 @@ class Channel extends Component {
           />
           <PlayPause
             playing={this.state.playing}
-            changePlaying={this.changePlaying}
+            togglePlaying={this.togglePlaying}
           />
           <Volume
             volume={this.state.volume}
@@ -47,28 +46,13 @@ class Channel extends Component {
 
   //////////////////////
 
-  playAudio = () => {
-    if (this.state.playing) {
-      if (this.state.currentSong) {
-        this.state.audio.play()
-      }
-      else {
-        const currentSong = this.props.popFromQueue(this.props.side)
-        this.setState({
-          currentSong: currentSong
-        })
-      }
-    }
-    else {
-      this.state.audio.pause()
-    }
-  }
-
   displayQueue = () => {
     return (
       <Queue
         side={this.props.side}
         queue={this.props.queue}
+        removeFromQueue={this.props.removeFromQueue}
+        changeCurrentSong={this.changeCurrentSong}
       />
     )
   }
@@ -79,13 +63,51 @@ class Channel extends Component {
     })
   }
 
-  changePlaying = () => {
+  changeCurrentSong = (newSong) => {
     this.setState({
-      playing: !this.state.playing
+      currentSong: newSong,
+      playing: true
     }, () => {
-      this.playAudio()
+      this.playCurrentOrQueue()
     })
   }
+
+  ///////////////////////
+
+  togglePlaying = () => {
+    if (this.state.currentSong || this.props.queue[0]) {
+      this.setState({
+        playing: !this.state.playing
+      }, () => {
+        this.playCurrentOrQueue()
+      })
+    }
+  }
+
+  playCurrentOrQueue = () => {
+    if (this.state.currentSong) {
+      this.toggleAudio()
+    }
+    else {
+      const currentSong = this.props.popFromQueue(this.props.side)
+      this.setState({
+        currentSong: currentSong
+      }, () => {
+        this.toggleAudio()
+      })
+    }
+  }
+
+  toggleAudio = () => {
+    if (this.state.playing) {
+      this.state.audio.play()
+    }
+    else {
+      this.state.audio.pause()
+    }
+  }
+
+  ///////////////////////
 }
 
 export default Channel;

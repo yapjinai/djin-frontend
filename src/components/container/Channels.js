@@ -12,11 +12,13 @@ class Channels extends Component {
             side='left'
             queue={this.props.queues.left}
             popFromQueue={this.props.popFromQueue}
+            removeFromQueue={this.props.removeFromQueue}
           />
           <Channel
             side='right'
             queue={this.props.queues.right}
             popFromQueue={this.props.popFromQueue}
+            removeFromQueue={this.props.removeFromQueue}
           />
         </div>
       </div>

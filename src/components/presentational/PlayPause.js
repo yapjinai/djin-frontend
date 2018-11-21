@@ -13,7 +13,7 @@ const PlayPause = (props) => {
   return (
     <div className="PlayPause">
       <button
-        onClick={props.changePlaying}
+        onClick={props.togglePlaying}
       >
         {playPause()}
       </button>

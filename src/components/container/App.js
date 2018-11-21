@@ -28,6 +28,7 @@ class App extends Component {
         <Channels
           queues={this.state.queues}
           popFromQueue={this.popFromQueue}
+          removeFromQueue={this.removeFromQueue}
         />
         <Master
           allSongs={this.state.allSongs}
@@ -52,10 +53,7 @@ class App extends Component {
     this.setState(newStateObject)
   }
 
-  pushToQueue = (side, song) => {
-    const newQueue = [...this.state.queues[side]]
-    newQueue.push(song)
-
+  setNewQueues = (side, newQueue) => {
     const newQueues = {
       ...this.state.queues
     }
@@ -66,20 +64,29 @@ class App extends Component {
     })
   }
 
+  pushToQueue = (side, song) => {
+    const newQueue = [...this.state.queues[side]]
+    if (!newQueue.includes(song)) {
+      newQueue.push(song)
+
+      this.setNewQueues(side, newQueue)
+    }
+  }
+
   popFromQueue = (side) => {
     const newQueue = [...this.state.queues[side]]
     const currentSong = newQueue.pop()
 
-    const newQueues = {
-      ...this.state.queues
-    }
-    newQueues[side] = newQueue
-
-    this.setState({
-      queues: newQueues
-    })
+    this.setNewQueues(side, newQueue)
 
     return currentSong
+  }
+
+  removeFromQueue = (side, song) => {
+    const oldQueue = [...this.state.queues[side]]
+    const newQueue = oldQueue.filter(s => s !== song)
+
+    this.setNewQueues(side, newQueue)
   }
 
   ///////////////////////////
