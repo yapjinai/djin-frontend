@@ -12,7 +12,12 @@ class App extends Component {
       allSongs: [],
       crossFade: 0,
       bpm: 0.01,
-      volume: 1
+      volume: 1,
+
+      queues: {
+        left: [],
+        right: []
+      }
     }
   }
 
@@ -20,12 +25,16 @@ class App extends Component {
     return (
       <div className="App">
       App
-        <Channels />
+        <Channels
+          queues={this.state.queues}
+        />
         <Master
           allSongs={this.state.allSongs}
           crossFade={this.state.crossFade}
           bpm={this.state.bpm}
+
           changeState={this.changeState}
+          addToQueue={this.addToQueue}
         />
       </div>
     );
@@ -40,6 +49,34 @@ class App extends Component {
 
   changeState = (newStateObject) => {
     this.setState(newStateObject)
+  }
+
+  addToQueue = (side, song) => {
+    const newQueue = [...this.state.queues[side]]
+    newQueue.push(song)
+
+    const newQueues = {
+      ...this.state.queues
+    }
+    newQueues[side] = newQueue
+
+    this.setState({
+      queues: newQueues
+    })
+  }
+
+  playNextFromQueue = (side, song) => {
+    const newQueue = [...this.state.queues[side]]
+    const currentSong = newQueue.pop
+
+    const newQueues = {
+      ...this.state.queues
+    }
+    newQueues[side] = newQueue
+
+    this.setState({
+      queues: newQueues
+    })
   }
 
   ///////////////////////////

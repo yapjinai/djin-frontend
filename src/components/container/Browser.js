@@ -17,17 +17,13 @@ class Browser extends Component {
   }
 
   //////////////////////
-
-  handleClick = (e) => {
-    console.log('choosing song');
-  }
-
   renderAllSongs = () => {
     return this.props.allSongs.map(s => {
       return (
         <BrowserSong
           song={s}
           key={uuid()}
+          addToQueue={this.props.addToQueue}
         />
       )
     })

@@ -1,7 +1,11 @@
 div {
   border: 2px solid rgba(225, 0, 225, 0.5);
   margin: 10px;
-  align-items: center;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 input[type=range][orient=vertical] {

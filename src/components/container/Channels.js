@@ -9,10 +9,12 @@ class Channels extends Component {
       Channels
         <div className="Channels">
           <Channel
-            channel='left'
+            side='left'
+            queue={this.props.queues.left}
           />
           <Channel
-            channel='right'
+            side='right'
+            queue={this.props.queues.right}
           />
         </div>
       </div>

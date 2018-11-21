@@ -1,6 +1,3 @@
-.Browser ul {
-  padding: 0;
-}
 .Browser li {
   display: flex;
   justify-content: space-between;

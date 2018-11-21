@@ -4,7 +4,12 @@ div {
   margin: 10px;
 
   // text-align: center;
-  align-items: center;
+  // align-items: center;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 input[type=range][orient=vertical]

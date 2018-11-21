@@ -10,36 +10,59 @@ class Channel extends Component {
     super()
     this.state = {
       currentSong: null,
+      audio: new Audio(),
       playing: false,
-      queue: [],
       volume: 1
+    }
+    if (this.state.currentSong) {
+      this.state.audio.src = this.state.currentSong.url
+    }
+    else {
+      this.state.audio.src = 'http://localhost:3001/Smile.mp3'
     }
   }
 
   render() {
+    console.log('rendering');
+
+            if (this.state.playing) {
+              this.state.audio.play()
+            }
+            else {
+              this.state.audio.pause()
+            }
+
     return (
-      <div className="Channel">
-        Channel for {this.props.channel}
-        <Waveform
-          currentSong = {this.state.currentSong}
-        />
-        <PlayPause
-          playing={this.state.playing}
-          changePlaying={this.changePlaying}
-        />
-        <Volume
-          volume={this.state.volume}
-          changeVolume={this.changeVolume}
-        />
-        <Queue
-          channel={this.props.channel}
-          queue={this.state.queue}
-        />
+      <div className={`Channel ${this.props.side}`}>
+        {this.props.side === 'left' ? this.displayQueue() : null}
+        <div className='controls'>
+          <Waveform
+            currentSong = {this.state.currentSong}
+          />
+          <PlayPause
+            playing={this.state.playing}
+            changePlaying={this.changePlaying}
+          />
+          <Volume
+            volume={this.state.volume}
+            changeVolume={this.changeVolume}
+          />
+        </div>
+        {this.props.side === 'right' ? this.displayQueue() : null}
       </div>
     );
   }
 
   //////////////////////
+
+  displayQueue = () => {
+    return (
+      <Queue
+        side={this.props.side}
+        queue={this.props.queue}
+      />
+    )
+  }
 
   changeVolume = (newVolume) => {
     this.setState({
@@ -51,6 +74,7 @@ class Channel extends Component {
     this.setState({
       playing: !this.state.playing
     })
+
   }
 }
 

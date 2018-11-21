@@ -17,7 +17,7 @@ const Queue = (props) => {
 
   return (
     <div className="Queue">
-      Queue for {props.channel} channel
+      Queue for {props.side} side
       <ul>
         {renderQueue()}
       </ul>

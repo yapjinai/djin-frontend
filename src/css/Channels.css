@@ -1,5 +1,11 @@
 .Channels {
   display: flex;
 }
+.Channels .left {
+  text-align: left;
+}
+.Channels .right {
+  text-align: right;
+}
 
 /*# sourceMappingURL=Channels.css.map */
