@@ -9,14 +9,14 @@ const Bpm = (props) => {
 
   return (
     <div className="Bpm">
-      <label>BPM</label>
+      <label>BPM: {props.bpm}</label>
       <br />
       <input
         id="bpmValue"
         type="number"
-        min="0.01"
-        max="2"
-        step=".01"
+        min="1"
+        max="300"
+        step="1"
         value={props.bpm}
         onChange={handleChange}
       />
@@ -24,9 +24,9 @@ const Bpm = (props) => {
       <input
         id="bpmSlider"
         type="range"
-        min="0.01"
-        max="2"
-        step=".01"
+        min="1"
+        max="300"
+        step="1"
         value={props.bpm}
         onChange={handleChange}
       />

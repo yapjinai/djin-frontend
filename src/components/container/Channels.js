@@ -23,7 +23,9 @@ class Channels extends Component {
         side={side}
         queue={this.props.queues[side]}
         crossFade={this.props.crossFade}
+        bpm={this.props.bpm}
 
+        changeState={this.props.changeState}
         popFromQueue={this.props.popFromQueue}
         removeFromQueue={this.props.removeFromQueue}
       />

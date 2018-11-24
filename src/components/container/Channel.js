@@ -22,6 +22,7 @@ class Channel extends Component {
     }
 
     this.setAudioVolume()
+    this.setBpm()
 
     return (
       <div className={`Channel ${this.props.side}`}>
@@ -45,6 +46,8 @@ class Channel extends Component {
     );
   }
 
+  //////////////////////
+  // CHANNEL CONTROLS
   //////////////////////
 
   displayQueue = () => {
@@ -130,6 +133,20 @@ class Channel extends Component {
 
     if (this.state.audio.volume !== newVolume) {
       this.state.audio.volume = newVolume
+    }
+  }
+
+  //////////////////////
+  // GLOBAL CONTROLS
+  //////////////////////
+
+
+//////////////TODO THIS IS HACKY FIX IT!!!!!!!!
+  setBpm = () => {
+    if (!this.props.bpm && this.state.currentSong) {
+      this.props.changeState({
+        bpm: this.state.currentSong.bpm
+      })
     }
   }
 

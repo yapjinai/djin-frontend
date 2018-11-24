@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       allSongs: [],
       crossFade: 0,
-      bpm: 0.01,
+      bpm: null,
       volume: 1,
 
       queues: {
@@ -28,7 +28,9 @@ class App extends Component {
         <Channels
           queues={this.state.queues}
           crossFade={this.state.crossFade}
+          bpm={this.state.bpm}
 
+          changeState={this.changeState}
           popFromQueue={this.popFromQueue}
           removeFromQueue={this.removeFromQueue}
         />
