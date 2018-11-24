@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../../css/Channel.css';
 import Waveform from '../presentational/Waveform';
-import PlayPause from '../presentational/PlayPause';
-import Volume from '../presentational/Volume';
+import Controls from './Controls';
+// import PlayPause from '../presentational/PlayPause';
+// import Volume from '../presentational/Volume';
 import Queue from './Queue';
 
 class Channel extends Component {
@@ -13,6 +14,7 @@ class Channel extends Component {
       // audio: new Audio(),
       playing: false,
       volume: .5,
+      pitchShift: false,
       calculatedVolume: .5,
       calculatedAudioRate: 1
     }
@@ -41,21 +43,31 @@ class Channel extends Component {
             playing={this.state.playing}
             volume={this.state.calculatedVolume}
             audioRate={this.state.calculatedAudioRate}
+            pitchShift={this.state.pitchShift}
           />
-          <PlayPause
+
+          <Controls
             playing={this.state.playing}
             togglePlaying={this.togglePlaying}
-          />
-          <Volume
             volume={this.state.volume}
             changeVolume={this.changeVolume}
+            pitchShift={this.state.pitchShift}
+            togglePitchShift={this.togglePitchShift}
           />
+
         </div>
         {this.props.side === 'right' ? this.displayQueue() : null}
       </div>
     );
   }
-
+  // <PlayPause
+  //   playing={this.state.playing}
+  //   togglePlaying={this.togglePlaying}
+  // />
+  // <Volume
+  //   volume={this.state.volume}
+  //   changeVolume={this.changeVolume}
+  // />
   //////////////////////
   // CHANNEL CONTROLS
   //////////////////////
@@ -74,6 +86,12 @@ class Channel extends Component {
   changeVolume = (newVolume) => {
     this.setState({
       volume: newVolume
+    })
+  }
+
+  togglePitchShift = () => {
+    this.setState({
+      pitchShift: !this.state.pitchShift
     })
   }
 
