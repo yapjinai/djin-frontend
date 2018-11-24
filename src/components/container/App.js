@@ -13,7 +13,7 @@ class App extends Component {
 
       masterPlaying: false,
       crossFade: 0,
-      masterBpm: null,
+      masterBpm: 0,
       masterVolume: 1,
 
       queues: {

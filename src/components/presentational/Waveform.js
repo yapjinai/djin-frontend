@@ -29,7 +29,6 @@ class Waveform extends Component {
   renderWaveform = () => {
     if (this.props.currentSong) {
 
-
       const waveformOptions = {
         audioRate: this.props.audioRate,
         backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
@@ -39,8 +38,6 @@ class Waveform extends Component {
         scrollParent: true,
       }
 
-      // console.table(waveformOptions)
-      console.log(typeof this.props.volume, this.props.volume)
       return (
         <Wavesurfer
           audioFile={this.props.currentSong.url}
