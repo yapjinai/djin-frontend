@@ -3,13 +3,13 @@ import React from 'react';
 const Bpm = (props) => {
   const handleChange = (e) => {
     props.changeState({
-      bpm: e.target.value
+      masterBpm: parseInt(e.target.value)
     })
   }
 
   return (
     <div className="Bpm">
-      <label>BPM: {props.bpm}</label>
+      <label>BPM: {props.masterBpm}</label>
       <br />
       <input
         id="bpmValue"
@@ -17,7 +17,7 @@ const Bpm = (props) => {
         min="1"
         max="300"
         step="1"
-        value={props.bpm}
+        value={props.masterBpm}
         onChange={handleChange}
       />
       <br />
@@ -27,7 +27,7 @@ const Bpm = (props) => {
         min="1"
         max="300"
         step="1"
-        value={props.bpm}
+        value={props.masterBpm}
         onChange={handleChange}
       />
     </div>

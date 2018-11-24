@@ -1,5 +1,8 @@
 .Channel {
   display: flex;
 }
+.Channel .controls {
+  min-width: 20vw;
+}
 
 /*# sourceMappingURL=Channel.css.map */

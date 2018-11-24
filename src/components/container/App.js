@@ -10,9 +10,11 @@ class App extends Component {
     super()
     this.state = {
       allSongs: [],
+
+      masterPlaying: false,
       crossFade: 0,
-      bpm: null,
-      volume: 1,
+      masterBpm: null,
+      masterVolume: 1,
 
       queues: {
         left: [],
@@ -26,19 +28,27 @@ class App extends Component {
       <div className="App">
       App
         <Channels
+          // songs
           queues={this.state.queues}
-          crossFade={this.state.crossFade}
-          bpm={this.state.bpm}
 
+          // App state
+          masterPlaying={this.state.masterPlaying}
+          crossFade={this.state.crossFade}
+          masterBpm={this.state.masterBpm}
+
+          // methods to change App state
           changeState={this.changeState}
           popFromQueue={this.popFromQueue}
           removeFromQueue={this.removeFromQueue}
         />
         <Master
+          // App state
+          masterPlaying={this.state.masterPlaying}
           allSongs={this.state.allSongs}
           crossFade={this.state.crossFade}
-          bpm={this.state.bpm}
+          masterBpm={this.state.masterBpm}
 
+          // methods to change App state
           changeState={this.changeState}
           pushToQueue={this.pushToQueue}
         />

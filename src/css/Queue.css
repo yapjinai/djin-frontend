@@ -1,3 +1,6 @@
+.Queue {
+  min-width: 20vw;
+}
 .Queue ul {
   padding: 0;
 }

@@ -21,9 +21,10 @@ class Channels extends Component {
     return (
       <Channel
         side={side}
+        masterPlaying={this.props.masterPlaying}
         queue={this.props.queues[side]}
         crossFade={this.props.crossFade}
-        bpm={this.props.bpm}
+        masterBpm={this.props.masterBpm}
 
         changeState={this.props.changeState}
         popFromQueue={this.props.popFromQueue}

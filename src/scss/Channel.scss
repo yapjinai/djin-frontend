@@ -1,4 +1,8 @@
 .Channel {
   display: flex;
+
+  .controls {
+    min-width: 20vw;
+  }
   // border: 2px solid rgba(0,225,0,.5);
 }

@@ -12,7 +12,7 @@ class Channel extends Component {
       currentSong: null,
       audio: new Audio(),
       playing: false,
-      volume: 1
+      volume: .5
     }
   }
 
@@ -21,14 +21,17 @@ class Channel extends Component {
       this.state.audio.src = this.state.currentSong.url
     }
 
-    this.setAudioVolume()
-    this.setBpm()
+    if (this.state.currentSong) {
+      this.setBpm()
+      this.setAudioVolume()
+      this.setAudioBpm()
+    }
 
     return (
       <div className={`Channel ${this.props.side}`}>
         {this.props.side === 'left' ? this.displayQueue() : null}
         <div className='controls'>
-          <h2>{this.state.currentSong ? this.state.currentSong.title : 'No song playing'}</h2>
+          <h2>{this.state.currentSong ? `${this.state.currentSong.title} (${this.state.currentSong.bpm} bpm)` : 'No song playing'}</h2>
           <Waveform
             currentSong = {this.state.currentSong}
           />
@@ -78,6 +81,8 @@ class Channel extends Component {
 
   ///////////////////////
 
+  // TODO: hacky
+
   togglePlaying = () => {
     if (this.state.currentSong || this.props.queue[0]) {
       this.setState({
@@ -109,6 +114,7 @@ class Channel extends Component {
   toggleAudio = () => {
     if (this.state.playing) {
       this.state.audio.play()
+      this.props.changeState({masterPlaying: true})
     }
     else {
       this.state.audio.pause()
@@ -136,16 +142,26 @@ class Channel extends Component {
     }
   }
 
+  setAudioBpm = () => {
+    const globalBpm = this.props.masterBpm
+    const songBpm = this.state.currentSong.bpm
+    const songPlaybackRate = globalBpm / songBpm
+
+    if (songPlaybackRate > 0.1) {
+      this.state.audio.playbackRate = songPlaybackRate
+    }
+  }
+
   //////////////////////
   // GLOBAL CONTROLS
   //////////////////////
 
 
 //////////////TODO THIS IS HACKY FIX IT!!!!!!!!
-  setBpm = () => {
-    if (!this.props.bpm && this.state.currentSong) {
+  setBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
+    if (!this.props.masterBpm) {
       this.props.changeState({
-        bpm: this.state.currentSong.bpm
+        masterBpm: this.state.currentSong.bpm
       })
     }
   }
