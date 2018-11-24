@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Wavesurfer from 'react-wavesurfer';
+import '../../css/Waveform.css';
 
 class Waveform extends Component {
   constructor(props) {
