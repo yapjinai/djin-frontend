@@ -6,7 +6,6 @@ class Waveform extends Component {
     super(props);
 
     this.state = {
-      playing: true,
       pos: 0
     };
   }
@@ -21,11 +20,6 @@ class Waveform extends Component {
 
   ////////////////////
 
-  handleTogglePlay = () => {
-    this.setState({
-      playing: !this.state.playing
-    });
-  }
   handlePosChange = (e) => {
     this.setState({
       pos: e.originalArgs[0]
@@ -35,20 +29,24 @@ class Waveform extends Component {
   renderWaveform = () => {
     if (this.props.currentSong) {
       const waveformOptions = {
-        // interact: false,
+        audioRate: this.props.audioRate,
+
         height: 64,
         fillParent: false,
         scrollParent: true,
-        // minPxPerSec: 100
       }
 
+      // console.table(waveformOptions)
+      console.log(typeof this.props.volume, this.props.volume)
       return (
         <Wavesurfer
           audioFile={this.props.currentSong.url}
+          playing={this.props.playing}
+          volume={this.props.volume}
+          options={waveformOptions}
+
           pos={this.state.pos}
           onPosChange={this.handlePosChange}
-          playing={this.state.playing}
-          options={waveformOptions}
         />
       )
     }

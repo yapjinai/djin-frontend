@@ -2,7 +2,7 @@ import React from 'react';
 
 const Volume = (props) => {
   const handleChange = (e) => {
-    props.changeVolume(e.target.value)
+    props.changeVolume(parseFloat(e.target.value))
   }
 
   ////////////////////////////////////

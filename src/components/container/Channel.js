@@ -10,16 +10,18 @@ class Channel extends Component {
     super()
     this.state = {
       currentSong: null,
-      audio: new Audio(),
+      // audio: new Audio(),
       playing: false,
-      volume: .5
+      volume: .5,
+      calculatedVolume: .5,
+      calculatedAudioRate: 1
     }
   }
 
   render() {
-    if (this.state.currentSong && this.state.audio.src !== this.state.currentSong.url) {
-      this.state.audio.src = this.state.currentSong.url
-    }
+    // if (this.state.currentSong && this.state.audio.src !== this.state.currentSong.url) {
+    //   this.state.audio.src = this.state.currentSong.url
+    // }
 
     if (this.state.currentSong) {
       this.setBpm()
@@ -32,8 +34,13 @@ class Channel extends Component {
         {this.props.side === 'left' ? this.displayQueue() : null}
         <div className='controls'>
           <h2>{this.state.currentSong ? `${this.state.currentSong.title} (${this.state.currentSong.bpm} bpm)` : 'No song playing'}</h2>
+
           <Waveform
             currentSong = {this.state.currentSong}
+
+            playing={this.state.playing}
+            volume={this.state.calculatedVolume}
+            audioRate={this.state.calculatedAudioRate}
           />
           <PlayPause
             playing={this.state.playing}
@@ -113,11 +120,11 @@ class Channel extends Component {
 
   toggleAudio = () => {
     if (this.state.playing) {
-      this.state.audio.play()
+      // this.state.audio.play()
       this.props.changeState({masterPlaying: true})
     }
     else {
-      this.state.audio.pause()
+      // this.state.audio.pause()
     }
   }
 
@@ -137,8 +144,10 @@ class Channel extends Component {
       newVolume = volume
     }
 
-    if (this.state.audio.volume !== newVolume) {
-      this.state.audio.volume = newVolume
+    if (this.state.calculatedVolume !== newVolume) {
+      this.setState({
+        calculatedVolume: newVolume
+      }, () => {console.log(this.state.calculatedVolume, typeof this.state.calculatedVolume)})
     }
   }
 
@@ -147,8 +156,11 @@ class Channel extends Component {
     const songBpm = this.state.currentSong.bpm
     const songPlaybackRate = globalBpm / songBpm
 
-    if (songPlaybackRate > 0.1) {
-      this.state.audio.playbackRate = songPlaybackRate
+    if (songPlaybackRate > 0.1 && this.state.calculatedAudioRate !== songPlaybackRate) {
+      // this.state.audio.playbackRate = songPlaybackRate
+      this.setState({
+        calculatedAudioRate: songPlaybackRate
+      })
     }
   }
 
