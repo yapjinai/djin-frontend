@@ -133,12 +133,20 @@ class Channel extends Component {
   }
 
   playNextFromQueue = () => {
-    const currentSong = this.props.popFromQueue(this.props.side)
-    this.setState({
-      currentSong: currentSong
-    }, () => {
-      this.toggleAudio()
-    })
+    if (this.props.queue[0]) {
+      const currentSong = this.props.popFromQueue(this.props.side)
+      this.setState({
+        currentSong: currentSong
+      }, () => {
+        this.toggleAudio()
+      })
+    }
+    else {
+      this.setState({
+        currentSong: null,
+        playing: false
+      })
+    }
   }
 
   //////////////////////
