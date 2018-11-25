@@ -1,15 +1,13 @@
 .Browser {
   table {
-    // width: 50vw;
-    thead {
-      font-weight: bold;
-      background: lightblue;
+    th {
+      background: #ff9;
     }
-    td {
-      padding: 0 10px;
+    #title, #artist {
+      width: 10vw;
     }
-    #titleHead, #artistHead {
-      width: 12vw;
+    .sortBy {
+      background: #9ff;
     }
   }
 }

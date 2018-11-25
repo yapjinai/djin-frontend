@@ -12,6 +12,8 @@ class App extends Component {
       allSongs: [],
       filteredSongs: [],
       browserFilterQuery: '',
+      sortBy: 'title',
+      reverseSort: false,
 
       masterPlaying: false,
       crossFade: 0,
@@ -27,6 +29,7 @@ class App extends Component {
 
   render() {
     this.filterSongs()
+    this.sortSongs()
 
     return (
       <div className="App">
@@ -52,6 +55,8 @@ class App extends Component {
           crossFade={this.state.crossFade}
           masterBpm={this.state.masterBpm}
           browserFilter={this.state.browserFilter}
+          sortBy={this.state.sortBy}
+          reverseSort={this.state.reverseSort}
 
           // methods to change App state
           changeState={this.changeState}
@@ -133,6 +138,39 @@ class App extends Component {
     })
 
     if (this.state.filteredSongs.length !== newSongs.length) {
+      this.setState({
+        filteredSongs: newSongs
+      })
+    }
+  }
+
+  sortSongs = () => {
+    const sortBy = this.state.sortBy
+    const sortedSongs = this.state.filteredSongs.sort((a, b) => {
+      const paramA = a[sortBy]
+      const paramB = b[sortBy]
+      if (sortBy === 'bpm') { // sort numerically
+        return paramA - paramB
+      }
+      else { // sort alphabetically
+        return paramA.toLowerCase().localeCompare(paramB.toLowerCase())
+      }
+    })
+
+    let newSongs = sortedSongs
+    if (this.state.reverseSort) {
+      newSongs = sortedSongs.reverse()
+    }
+
+    // check whether old state is same as new state
+    let changed = false
+    this.state.filteredSongs.forEach((s, i) => {
+      if (s !== newSongs[i]) {
+        changed = true
+      }
+    })
+
+    if (changed) {
       this.setState({
         filteredSongs: newSongs
       })

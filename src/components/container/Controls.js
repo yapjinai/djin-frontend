@@ -55,19 +55,19 @@ const BpmSync = (props) => {
     </div>
   );
 }
-const PitchShift = (props) => {
-  return (
-    <div className="PitchShift">
-      <label>Shift pitch with tempo</label>
-      <br />
-      <input
-        type="checkbox"
-        value={props.pitchShift}
-        onChange={props.togglePitchShift}
-      />
-    </div>
-  );
-}
+// const PitchShift = (props) => {
+//   return (
+//     <div className="PitchShift">
+//       <label>Shift pitch with tempo</label>
+//       <br />
+//       <input
+//         type="checkbox"
+//         value={props.pitchShift}
+//         onChange={props.togglePitchShift}
+//       />
+//     </div>
+//   );
+// }
 
 class Controls extends Component {
   render() {

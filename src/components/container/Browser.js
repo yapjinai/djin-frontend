@@ -16,18 +16,32 @@ class Browser extends Component {
       </input>
         <table>
           <thead>
-            <td id='titleHead'>
-              Title
-            </td>
-            <td id='artistHead'>
-              Artist
-            </td>
-            <td>
-              BPM
-            </td>
-            <td>
-              Queue
-            </td>
+            <tr>
+              <th
+                id='title'
+                className={this.sortByClass('title')}
+                onClick={this.handleClick}
+              >
+                Title
+              </th>
+              <th
+                id='artist'
+                className={this.sortByClass('artist')}
+                onClick={this.handleClick}
+              >
+                Artist
+              </th>
+              <th
+                id='bpm'
+                className={this.sortByClass('bpm')}
+                onClick={this.handleClick}
+              >
+                BPM
+              </th>
+              <th>
+                Queue
+              </th>
+            </tr>
           </thead>
           {this.renderAllSongs()}
         </table>
@@ -52,6 +66,29 @@ class Browser extends Component {
     this.props.changeState({
       browserFilterQuery: e.target.value
     })
+  }
+
+  sortByClass = (param) => {
+    if (this.props.sortBy === param) {
+      return 'sortBy'
+    }
+    else {
+      return null
+    }
+  }
+
+  handleClick = (e) => {
+    if (this.props.sortBy !== e.target.id) { // if filtering by different param
+      this.props.changeState({
+        sortBy: e.target.id,
+        reverseSort: false
+      })
+    }
+    else { // toggle between high-low and low-high
+      this.props.changeState({
+        reverseSort: !this.props.reverseSort
+      })
+    }
   }
 }
 

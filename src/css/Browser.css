@@ -1,12 +1,11 @@
-.Browser table thead {
-  font-weight: bold;
-  background: lightblue;
+.Browser table th {
+  background: #ff9;
 }
-.Browser table td {
-  padding: 0 10px;
+.Browser table #title, .Browser table #artist {
+  width: 10vw;
 }
-.Browser table #titleHead, .Browser table #artistHead {
-  width: 12vw;
+.Browser table .sortBy {
+  background: #9ff;
 }
 
 /*# sourceMappingURL=Browser.css.map */
