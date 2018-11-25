@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Wavesurfer from 'react-wavesurfer';
+import Regions from 'react-wavesurfer/src/plugins/regions';
 import '../../css/Waveform.css';
 
 class Waveform extends Component {
@@ -38,8 +39,13 @@ class Waveform extends Component {
         scrollParent: true
       }
 
-      const regionsObject = {
-
+      const regionsObjects = {
+        loop: {
+          id: 'loop',
+          start: 0,
+          end: 1,
+          loop: true
+        }
       }
 
       return (
@@ -54,8 +60,11 @@ class Waveform extends Component {
           onFinish={this.props.playNextFromQueue}
 
           // LOOPS
-          regions={regionsObject}
-        />
+        >
+          <Regions
+            regions={regionsObjects}
+          />
+        </Wavesurfer>
       )
     }
   }
