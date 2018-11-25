@@ -18,6 +18,11 @@ class Browser extends Component {
           <thead>
             <tr>
               <th
+                id='queue'
+              >
+                Queue
+              </th>
+              <th
                 id='title'
                 className={this.sortByClass('title')}
                 onClick={this.handleClick}
@@ -37,9 +42,6 @@ class Browser extends Component {
                 onClick={this.handleClick}
               >
                 BPM
-              </th>
-              <th>
-                Queue
               </th>
             </tr>
           </thead>

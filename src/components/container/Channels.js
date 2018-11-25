@@ -27,7 +27,7 @@ class Channels extends Component {
         masterBpm={this.props.masterBpm}
 
         changeState={this.props.changeState}
-        popFromQueue={this.props.popFromQueue}
+        shiftFromQueue={this.props.shiftFromQueue}
         removeFromQueue={this.props.removeFromQueue}
       />
     )

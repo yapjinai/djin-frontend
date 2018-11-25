@@ -45,7 +45,7 @@ class App extends Component {
 
           // methods to change App state
           changeState={this.changeState}
-          popFromQueue={this.popFromQueue}
+          shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
         />
         <Master
@@ -98,9 +98,9 @@ class App extends Component {
     }
   }
 
-  popFromQueue = (side) => { // combine this method with removeFromQueue ?
+  shiftFromQueue = (side) => { // combine this method with removeFromQueue ?
     const newQueue = [...this.state.queues[side]]
-    const currentSong = newQueue.pop()
+    const currentSong = newQueue.shift()
 
     this.setNewQueues(side, newQueue)
 

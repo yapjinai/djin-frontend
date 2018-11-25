@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Master = (props) => {
+const MasterPlayPause = (props) => {
   const masterPlayPause = () => {
     if (props.masterPlaying) {
       return 'Pause'
@@ -15,7 +15,7 @@ const Master = (props) => {
   }
 
   return (
-    <div className="Master">
+    <div className="MasterPlayPause">
       <button
         onClick={handleClick}
       >
@@ -25,4 +25,4 @@ const Master = (props) => {
   );
 }
 
-export default Master;
+export default MasterPlayPause;

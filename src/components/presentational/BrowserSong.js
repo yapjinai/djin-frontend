@@ -10,6 +10,20 @@ const BrowserSong = (props) => {
       className="BrowserSong"
     >
       <td>
+        <button
+        name='left'
+        onClick={handleClick}
+        >
+        L
+        </button>
+        <button
+        name='right'
+        onClick={handleClick}
+        >
+        R
+        </button>
+      </td>
+      <td>
         {props.song.title}
       </td>
       <td>
@@ -17,20 +31,6 @@ const BrowserSong = (props) => {
       </td>
       <td>
         {props.song.bpm}
-      </td>
-      <td>
-        <button
-          name='left'
-          onClick={handleClick}
-        >
-          L
-        </button>
-        <button
-          name='right'
-          onClick={handleClick}
-        >
-          R
-        </button>
       </td>
     </tr>
   );
