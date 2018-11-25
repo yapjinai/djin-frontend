@@ -44,8 +44,12 @@ class Channel extends Component {
           <Controls
             playing={this.state.playing}
             togglePlaying={this.togglePlaying}
+
             volume={this.state.volume}
             changeVolume={this.changeVolume}
+
+            syncBpm={this.syncBpm}
+
             pitchShift={this.state.pitchShift}
             togglePitchShift={this.togglePitchShift}
           />
@@ -75,6 +79,18 @@ class Channel extends Component {
       volume: newVolume
     })
   }
+
+  ////
+
+  syncBpm = () => {
+    if (this.state.currentSong) {
+      this.props.changeState({
+        masterBpm: this.state.currentSong.bpm
+      })
+    }
+  }
+
+  ////
 
   togglePitchShift = () => {
     this.setState({
@@ -177,9 +193,7 @@ class Channel extends Component {
 //////////////TODO THIS IS HACKY FIX IT!!!!!!!!
   setBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
     if (!this.props.masterBpm) {
-      this.props.changeState({
-        masterBpm: this.state.currentSong.bpm
-      })
+      this.syncBpm()
     }
   }
 

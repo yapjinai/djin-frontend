@@ -36,8 +36,7 @@ class Waveform extends Component {
 
         height: 64,
         fillParent: false,
-        scrollParent: true,
-        hideScrollbar: true
+        scrollParent: true
       }
 
       return (

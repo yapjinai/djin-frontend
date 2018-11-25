@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../css/Controls.css';
 
 const PlayPause = (props) => {
   const playPause = () => {
@@ -20,7 +21,6 @@ const PlayPause = (props) => {
     </div>
   );
 }
-
 const Volume = (props) => {
   const handleChange = (e) => {
     props.changeVolume(parseFloat(e.target.value))
@@ -42,7 +42,19 @@ const Volume = (props) => {
     </div>
   );
 }
-
+const BpmSync = (props) => {
+  return (
+    <div className="BpmSync">
+      <label>Sync to this BPM</label>
+      <br />
+      <button
+        onClick={props.syncBpm}
+      >
+        Sync
+      </button>
+    </div>
+  );
+}
 const PitchShift = (props) => {
   return (
     <div className="PitchShift">
@@ -69,12 +81,16 @@ class Controls extends Component {
           volume={this.props.volume}
           changeVolume={this.props.changeVolume}
         />
-        <PitchShift
-          pitchShift={this.props.pitchShift}
-          togglePitchShift={this.props.togglePitchShift}
+        <BpmSync
+          syncBpm={this.props.syncBpm}
         />
       </div>
     )
   }
 }
 export default Controls;
+
+// <PitchShift
+// pitchShift={this.props.pitchShift}
+// togglePitchShift={this.props.togglePitchShift}
+// />
