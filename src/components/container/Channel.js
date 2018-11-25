@@ -11,7 +11,6 @@ class Channel extends Component {
     super()
     this.state = {
       currentSong: null,
-      // audio: new Audio(),
       playing: false,
       volume: .5,
       pitchShift: false,
@@ -21,10 +20,6 @@ class Channel extends Component {
   }
 
   render() {
-    // if (this.state.currentSong && this.state.audio.src !== this.state.currentSong.url) {
-    //   this.state.audio.src = this.state.currentSong.url
-    // }
-
     if (this.state.currentSong) {
       this.setBpm()
       this.setAudioVolume()
@@ -60,14 +55,6 @@ class Channel extends Component {
       </div>
     );
   }
-  // <PlayPause
-  //   playing={this.state.playing}
-  //   togglePlaying={this.togglePlaying}
-  // />
-  // <Volume
-  //   volume={this.state.volume}
-  //   changeVolume={this.changeVolume}
-  // />
   //////////////////////
   // CHANNEL CONTROLS
   //////////////////////
