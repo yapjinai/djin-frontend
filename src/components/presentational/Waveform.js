@@ -29,7 +29,6 @@ class Waveform extends Component {
 
   renderWaveform = () => {
     if (this.props.currentSong) {
-
       const waveformOptions = {
         audioRate: this.props.audioRate,
         backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
@@ -37,6 +36,10 @@ class Waveform extends Component {
         height: 64,
         fillParent: false,
         scrollParent: true
+      }
+
+      const regionsObject = {
+
       }
 
       return (
@@ -49,6 +52,9 @@ class Waveform extends Component {
           pos={this.state.pos}
           onPosChange={this.handlePosChange}
           onFinish={this.props.playNextFromQueue}
+
+          // LOOPS
+          regions={regionsObject}
         />
       )
     }
