@@ -33,12 +33,14 @@ class Channel extends Component {
           <h2>{this.state.currentSong ? `${this.state.currentSong.title} (${this.state.currentSong.bpm} bpm)` : 'No song playing'}</h2>
 
           <Waveform
-            currentSong = {this.state.currentSong}
+            currentSong={this.state.currentSong}
 
             playing={this.state.playing}
             volume={this.state.calculatedVolume}
             audioRate={this.state.calculatedAudioRate}
             pitchShift={this.state.pitchShift}
+
+            playNextFromQueue={this.playNextFromQueue}
           />
 
           <Controls
@@ -126,13 +128,17 @@ class Channel extends Component {
       this.toggleAudio()
     }
     else {
-      const currentSong = this.props.popFromQueue(this.props.side)
-      this.setState({
-        currentSong: currentSong
-      }, () => {
-        this.toggleAudio()
-      })
+      this.playNextFromQueue()
     }
+  }
+
+  playNextFromQueue = () => {
+    const currentSong = this.props.popFromQueue(this.props.side)
+    this.setState({
+      currentSong: currentSong
+    }, () => {
+      this.toggleAudio()
+    })
   }
 
   //////////////////////

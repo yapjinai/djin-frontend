@@ -48,6 +48,7 @@ class Waveform extends Component {
 
           pos={this.state.pos}
           onPosChange={this.handlePosChange}
+          onFinish={this.props.playNextFromQueue}
         />
       )
     }

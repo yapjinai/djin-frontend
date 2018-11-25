@@ -12,7 +12,7 @@ class App extends Component {
       allSongs: [],
       filteredSongs: [],
       browserFilterQuery: '',
-      sortBy: 'title',
+      sortBy: 'bpm',
       reverseSort: false,
 
       masterPlaying: false,
