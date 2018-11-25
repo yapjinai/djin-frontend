@@ -4,4 +4,11 @@
   div {
     border: none;
   }
+
+  .DoubleHalf {
+    text-align: center;
+    .buttons {
+      display: flex;
+    }
+  }
 }

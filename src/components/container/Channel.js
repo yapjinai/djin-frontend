@@ -15,6 +15,7 @@ class Channel extends Component {
       volume: .5,
       pitchShift: false,
       calculatedVolume: .5,
+      bpmFactor: 1,
       calculatedAudioRate: 1
     }
   }
@@ -52,6 +53,9 @@ class Channel extends Component {
 
             syncBpm={this.syncBpm}
 
+            bpmFactor={this.state.bpmFactor}
+            changeBpmFactor={this.changeBpmFactor}
+
             pitchShift={this.state.pitchShift}
             togglePitchShift={this.togglePitchShift}
           />
@@ -80,6 +84,26 @@ class Channel extends Component {
     this.setState({
       volume: newVolume
     })
+  }
+
+  changeBpmFactor = (type) => {
+    let newBpmFactor = this.state.bpmFactor
+    switch (type) {
+      case 'double':
+        newBpmFactor *= 2
+        break;
+      case 'half':
+        newBpmFactor /= 2
+        break;
+      default:
+        newBpmFactor = 1
+        break;
+    }
+    if (newBpmFactor >= 0.125 && newBpmFactor <= 8) {
+      this.setState({
+        bpmFactor: newBpmFactor
+      })
+    }
   }
 
   ////
@@ -182,7 +206,7 @@ class Channel extends Component {
     if (this.state.calculatedVolume !== newVolume) {
       this.setState({
         calculatedVolume: newVolume
-      }, () => {console.log(this.state.calculatedVolume, typeof this.state.calculatedVolume)})
+      })
     }
   }
 
@@ -190,11 +214,12 @@ class Channel extends Component {
     const globalBpm = this.props.masterBpm
     const songBpm = this.state.currentSong.bpm
     const songPlaybackRate = globalBpm / songBpm
+    const bpmFactor = this.state.bpmFactor
 
-    if (songPlaybackRate > 0.1 && this.state.calculatedAudioRate !== songPlaybackRate) {
+    if (songPlaybackRate > 0.1 && this.state.calculatedAudioRate !== songPlaybackRate * bpmFactor) {
       // this.state.audio.playbackRate = songPlaybackRate
       this.setState({
-        calculatedAudioRate: songPlaybackRate
+        calculatedAudioRate: songPlaybackRate * bpmFactor
       })
     }
   }

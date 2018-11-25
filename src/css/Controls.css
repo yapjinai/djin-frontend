@@ -4,5 +4,11 @@
 .Controls div {
   border: none;
 }
+.Controls .DoubleHalf {
+  text-align: center;
+}
+.Controls .DoubleHalf .buttons {
+  display: flex;
+}
 
 /*# sourceMappingURL=Controls.css.map */

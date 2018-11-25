@@ -43,7 +43,9 @@ class Browser extends Component {
               </th>
             </tr>
           </thead>
-          {this.renderAllSongs()}
+          <tbody>
+            {this.renderAllSongs()}
+          </tbody>
         </table>
       </div>
     );
