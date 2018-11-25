@@ -8,10 +8,29 @@ class Browser extends Component {
   render() {
     return (
       <div className="Browser">
-      Browser
-        <ul>
+      <input
+        placeholder='Filter'
+        value={this.props.browserFilterQuery}
+        onChange={this.handleChange}
+      >
+      </input>
+        <table>
+          <thead>
+            <td id='titleHead'>
+              Title
+            </td>
+            <td id='artistHead'>
+              Artist
+            </td>
+            <td>
+              BPM
+            </td>
+            <td>
+              Queue
+            </td>
+          </thead>
           {this.renderAllSongs()}
-        </ul>
+        </table>
       </div>
     );
   }
@@ -26,6 +45,12 @@ class Browser extends Component {
           pushToQueue={this.props.pushToQueue}
         />
       )
+    })
+  }
+
+  handleChange = (e) => {
+    this.props.changeState({
+      browserFilterQuery: e.target.value
     })
   }
 }

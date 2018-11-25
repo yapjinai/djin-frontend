@@ -1,6 +1,15 @@
 .Browser {
-  li {
-    display: flex;
-    justify-content: space-between;
+  table {
+    // width: 50vw;
+    thead {
+      font-weight: bold;
+      background: lightblue;
+    }
+    td {
+      padding: 0 10px;
+    }
+    #titleHead, #artistHead {
+      width: 12vw;
+    }
   }
 }

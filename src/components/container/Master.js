@@ -27,7 +27,10 @@ class Master extends Component {
         </div>
         <Browser
           allSongs={this.props.allSongs}
+          browserFilterQuery={this.props.browserFilterQuery}
+
           pushToQueue={this.props.pushToQueue}
+          changeState={this.props.changeState}
         />
       </div>
     );

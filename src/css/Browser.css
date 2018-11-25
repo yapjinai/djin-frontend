@@ -1,6 +1,12 @@
-.Browser li {
-  display: flex;
-  justify-content: space-between;
+.Browser table thead {
+  font-weight: bold;
+  background: lightblue;
+}
+.Browser table td {
+  padding: 0 10px;
+}
+.Browser table #titleHead, .Browser table #artistHead {
+  width: 12vw;
 }
 
 /*# sourceMappingURL=Browser.css.map */

@@ -10,6 +10,8 @@ class App extends Component {
     super()
     this.state = {
       allSongs: [],
+      filteredSongs: [],
+      browserFilterQuery: '',
 
       masterPlaying: false,
       crossFade: 0,
@@ -24,6 +26,8 @@ class App extends Component {
   }
 
   render() {
+    this.filterSongs()
+
     return (
       <div className="App">
       App
@@ -44,13 +48,15 @@ class App extends Component {
         <Master
           // App state
           masterPlaying={this.state.masterPlaying}
-          allSongs={this.state.allSongs}
+          allSongs={this.state.filteredSongs}
           crossFade={this.state.crossFade}
           masterBpm={this.state.masterBpm}
+          browserFilter={this.state.browserFilter}
 
           // methods to change App state
           changeState={this.changeState}
           pushToQueue={this.pushToQueue}
+          browserFilterQuery={this.browserFilterQuery}
         />
       </div>
     );
@@ -87,7 +93,7 @@ class App extends Component {
     }
   }
 
-  popFromQueue = (side) => {
+  popFromQueue = (side) => { // combine this method with removeFromQueue ?
     const newQueue = [...this.state.queues[side]]
     const currentSong = newQueue.pop()
 
@@ -105,6 +111,8 @@ class App extends Component {
 
   ///////////////////////////
 
+  // ALL SONGS methods
+
   fetchAllSongs = () => {
     fetch(`${apiUrl}/songs`)
     .then(r => r.json())
@@ -114,7 +122,23 @@ class App extends Component {
       })
     })
   }
-  //
+
+  filterSongs = () => {
+    const newSongs = this.state.allSongs.filter(s => {
+      const query = this.state.browserFilterQuery.toLowerCase().split(' ').join('')
+      const title = s.title.toLowerCase().split(' ').join('')
+      const artist = s.artist.toLowerCase().split(' ').join('')
+
+      return title.includes(query) || artist.includes(query)
+    })
+
+    if (this.state.filteredSongs.length !== newSongs.length) {
+      this.setState({
+        filteredSongs: newSongs
+      })
+    }
+  }
+
   // addKeyboardShortcuts = () => {
   //   window.addEventListener('keydown', (e) => {
   //     let newStateValue
