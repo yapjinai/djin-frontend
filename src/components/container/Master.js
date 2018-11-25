@@ -7,20 +7,24 @@ import Browser from './Browser';
 class Master extends Component {
   render() {
     return (
-      <div className="Master">
+      <div className="Master"
+       style={{display: 'flex'}}
+      >
         Master control
-        <MasterPlayPause
-          masterPlaying={this.props.masterPlaying}
-          changeState={this.props.changeState}
-        />
-        <Crossfader
-          crossFade={this.props.crossFade}
-          changeState={this.props.changeState}
-        />
-        <Bpm
-          masterBpm={this.props.masterBpm}
-          changeState={this.props.changeState}
-        />
+        <div>
+          <MasterPlayPause
+            masterPlaying={this.props.masterPlaying}
+            changeState={this.props.changeState}
+          />
+          <Crossfader
+            crossFade={this.props.crossFade}
+            changeState={this.props.changeState}
+          />
+          <Bpm
+            masterBpm={this.props.masterBpm}
+            changeState={this.props.changeState}
+          />
+        </div>
         <Browser
           allSongs={this.props.allSongs}
           pushToQueue={this.props.pushToQueue}
