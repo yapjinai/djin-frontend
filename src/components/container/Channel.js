@@ -179,7 +179,6 @@ class Channel extends Component {
   // toggleAudio = () => {
   //   if (this.state.playing) {
   //     // this.state.audio.play()
-  //     // this.props.changeState({masterPlaying: true})
   //   }
   //   else {
   //     // this.state.audio.pause()

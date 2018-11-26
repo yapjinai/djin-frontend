@@ -5,22 +5,20 @@ import Channel from './Channel';
 import Master from './Master';
 // import Channels from './Channels';
 
-const apiUrl = 'http://localhost:3000'
+// const apiUrl = 'http://localhost:3000'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      allSongs: [],
-      filteredSongs: [],
+      // allSongs: [],
+      // filteredSongs: [],
       browserFilterQuery: '',
       sortBy: 'bpm',
       reverseSort: false,
 
-      masterPlaying: false,
       // crossfade: 0,
       // masterBpm: 1,
-      masterVolume: 1,
 
       queues: {
         left: [],
@@ -30,14 +28,12 @@ class App extends Component {
   }
 
   render() {
-    this.filterSongs()
-    this.sortSongs()
+    // this.sortSongs()
 
     return (
       <div className="App">
         <Channel
           side='left'
-          masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.left}
           // crossfade={this.state.crossfade}
           // masterBpm={this.state.masterBpm}
@@ -47,13 +43,12 @@ class App extends Component {
           removeFromQueue={this.removeFromQueue}
         />
         <Master
-          masterPlaying={this.state.masterPlaying}
           // crossfade={this.state.crossfade}
           // masterBpm={this.state.masterBpm}
           // changeState={this.changeState}
 
           // for browser
-          allSongs={this.state.filteredSongs}
+          // allSongs={this.state.filteredSongs}
           browserFilterQuery={this.browserFilterQuery}
           sortBy={this.state.sortBy}
           reverseSort={this.state.reverseSort}
@@ -63,7 +58,6 @@ class App extends Component {
         />
         <Channel
           side='right'
-          masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.right}
           // crossfade={this.state.crossfade}
           // masterBpm={this.state.masterBpm}
@@ -74,11 +68,6 @@ class App extends Component {
         />
       </div>
     );
-  }
-
-  componentDidMount() {
-    this.fetchAllSongs()
-    // this.addKeyboardShortcuts()
   }
 
   ///////////////////////////
@@ -127,15 +116,15 @@ class App extends Component {
 
   // ALL SONGS methods
 
-  fetchAllSongs = () => {
-    fetch(`${apiUrl}/songs`)
-    .then(r => r.json())
-    .then(r => {
-      this.setState({
-        allSongs: r
-      })
-    })
-  }
+  // fetchAllSongs = () => {
+  //   fetch(`${apiUrl}/songs`)
+  //   .then(r => r.json())
+  //   .then(r => {
+  //     this.setState({
+  //       allSongs: r
+  //     })
+  //   })
+  // }
 
   filterSongs = () => {
     const newSongs = this.state.allSongs.filter(s => {
@@ -185,31 +174,6 @@ class App extends Component {
       })
     }
   }
-
-  // addKeyboardShortcuts = () => {
-  //   window.addEventListener('keydown', (e) => {
-  //     let newStateValue
-  //     switch (e.key) {
-  //       case 'v':
-  //         newStateValue = this.state.crossfade - .1
-  //         if (newStateValue >= -1) {
-  //           this.setState({
-  //             crossfade: newStateValue
-  //           })
-  //         }
-  //         break;
-  //       case 'n':
-  //         let newStateValue = this.state.crossfade + .1
-  //         if (newStateValue <= 1) {
-  //           this.setState({
-  //             crossfade: newStateValue
-  //           })
-  //         }
-  //         break;
-  //       default:
-  //     }
-  //   })
-  // }
 }
 
 export default App;

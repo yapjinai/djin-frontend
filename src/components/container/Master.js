@@ -12,14 +12,12 @@ class Master extends Component {
        style={{display: 'flex'}}
       >
         <MasterControls
-          masterPlaying={this.props.masterPlaying}
-
-          // changeState={this.props.changeState}
         />
 
         <Browser
           // App state
-          allSongs={this.props.allSongs}
+          // allSongs={this.props.allSongs}
+
           browserFilterQuery={this.props.browserFilterQuery}
           sortBy={this.props.sortBy}
           reverseSort={this.props.reverseSort}

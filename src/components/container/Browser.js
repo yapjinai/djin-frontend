@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux'
+import { setAllSongs, setBrowserFilterQuery, setFilteredSongs } from '../../actions'
+
 import '../../css/Browser.css';
 import BrowserSong from '../presentational/BrowserSong';
 
 const uuid = require('uuid/v4');
+const apiUrl = 'http://localhost:3000'
 
 class Browser extends Component {
   render() {
+    this.filterSongs()
+
     return (
       <div className="Browser">
       <input
@@ -53,9 +60,22 @@ class Browser extends Component {
     );
   }
 
-  //////////////////////
+  componentDidMount() {
+    this.fetchAllSongs()
+  }
+
+/////////////////////////
+
+  fetchAllSongs = () => {
+    fetch(`${apiUrl}/songs`)
+    .then(r => r.json())
+    .then(r => {
+      this.props.setAllSongs(r)
+    })
+  }
+
   renderAllSongs = () => {
-    return this.props.allSongs.map(s => {
+    return this.props.filteredSongs.map(s => {
       return (
         <BrowserSong
           song={s}
@@ -66,11 +86,29 @@ class Browser extends Component {
     })
   }
 
+  //////////////////////
+  // FILTER
+
   handleChange = (e) => {
-    this.props.changeState({
-      browserFilterQuery: e.target.value
-    })
+    this.props.setBrowserFilterQuery(e.target.value)
   }
+
+  filterSongs = () => {
+    const newSongs = this.props.allSongs.filter(s => {
+      const query = this.props.browserFilterQuery.toLowerCase().split(' ').join('')
+      const title = s.title.toLowerCase().split(' ').join('')
+      const artist = s.artist.toLowerCase().split(' ').join('')
+
+      return title.includes(query) || artist.includes(query)
+    })
+
+    if (this.props.filteredSongs.length !== newSongs.length) {
+      this.props.setFilteredSongs(newSongs)
+    }
+  }
+
+  //////////////
+  // SORT
 
   sortByClass = (param) => {
     if (this.props.sortBy === param) {
@@ -96,4 +134,23 @@ class Browser extends Component {
   }
 }
 
-export default Browser;
+
+const mapStateToProps = (state, ownProps) => ({
+  allSongs: state.allSongs,
+  filteredSongs: state.filteredSongs,
+  browserFilterQuery: state.browserFilterQuery,
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  setAllSongs: (allSongs) => dispatch(setAllSongs(allSongs)),
+  setFilteredSongs: (filteredSongs) => dispatch(setFilteredSongs(filteredSongs)),
+  setBrowserFilterQuery: (browserFilterQuery) => dispatch(setBrowserFilterQuery(browserFilterQuery)),
+})
+
+const connectedBrowser = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Browser)
+
+
+export default connectedBrowser;

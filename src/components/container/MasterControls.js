@@ -17,8 +17,6 @@ class MasterControls extends Component {
        style={{display: 'flex'}}
       >
         <MasterPlayPause
-          masterPlaying={this.props.masterPlaying}
-          changeState={this.props.changeState}
         />
         <Crossfader
           crossfade={this.props.crossfade}
