@@ -1,7 +1,7 @@
 import React from 'react';
 
 const QueueSong = (props) => {
-  const handleClickPlay = (e) => {
+  const handleClickLoad = (e) => {
     props.removeFromQueue(props.side, props.song)
     props.changeCurrentSong(props.song)
   }
@@ -16,9 +16,9 @@ const QueueSong = (props) => {
     >
       <span>
         <button
-          onClick={handleClickPlay}
+          onClick={handleClickLoad}
         >
-          Play
+          Load
         </button>
         <button
           onClick={handleClickRemove}

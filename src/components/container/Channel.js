@@ -127,7 +127,7 @@ class Channel extends Component {
   changeCurrentSong = (newSong) => {
     this.setState({
       currentSong: newSong,
-      playing: true
+      // playing: true
     }, () => {
       this.playCurrentOrQueue()
     })
