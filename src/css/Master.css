@@ -1,0 +1,8 @@
+.Master {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=Master.css.map */
