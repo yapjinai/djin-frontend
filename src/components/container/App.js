@@ -11,15 +11,6 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      // allSongs: [],
-      // filteredSongs: [],
-      // browserFilterQuery: '',
-      // sortBy: 'bpm',
-      // reverseSort: false,
-
-      // crossfade: 0,
-      // masterBpm: 1,
-
       queues: {
         left: [],
         right: []
@@ -35,34 +26,17 @@ class App extends Component {
         <Channel
           side='left'
           queue={this.state.queues.left}
-          // crossfade={this.state.crossfade}
-          // masterBpm={this.state.masterBpm}
 
-          // changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
         />
         <Master
-          // crossfade={this.state.crossfade}
-          // masterBpm={this.state.masterBpm}
-          // changeState={this.changeState}
-
-          // for browser
-          // allSongs={this.state.filteredSongs}
-          // browserFilterQuery={this.browserFilterQuery}
-          // sortBy={this.state.sortBy}
-          // reverseSort={this.state.reverseSort}
-
-          // methods to change App state
           pushToQueue={this.pushToQueue}
         />
         <Channel
           side='right'
           queue={this.state.queues.right}
-          // crossfade={this.state.crossfade}
-          // masterBpm={this.state.masterBpm}
 
-          // changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
         />
@@ -111,69 +85,6 @@ class App extends Component {
 
     this.setNewQueues(side, newQueue)
   }
-
-  ///////////////////////////
-
-  // ALL SONGS methods
-
-  // fetchAllSongs = () => {
-  //   fetch(`${apiUrl}/songs`)
-  //   .then(r => r.json())
-  //   .then(r => {
-  //     this.setState({
-  //       allSongs: r
-  //     })
-  //   })
-  // }
-  //
-  // filterSongs = () => {
-  //   const newSongs = this.state.allSongs.filter(s => {
-  //     const query = this.state.browserFilterQuery.toLowerCase().split(' ').join('')
-  //     const title = s.title.toLowerCase().split(' ').join('')
-  //     const artist = s.artist.toLowerCase().split(' ').join('')
-  //
-  //     return title.includes(query) || artist.includes(query)
-  //   })
-  //
-  //   if (this.state.filteredSongs.length !== newSongs.length) {
-  //     this.setState({
-  //       filteredSongs: newSongs
-  //     })
-  //   }
-  // }
-
-  // sortSongs = () => {
-  //   const sortBy = this.state.sortBy
-  //   const sortedSongs = this.state.filteredSongs.sort((a, b) => {
-  //     const paramA = a[sortBy]
-  //     const paramB = b[sortBy]
-  //     if (sortBy === 'bpm') { // sort numerically
-  //       return paramA - paramB
-  //     }
-  //     else { // sort alphabetically
-  //       return paramA.toLowerCase().localeCompare(paramB.toLowerCase())
-  //     }
-  //   })
-  //
-  //   let newSongs = sortedSongs
-  //   if (this.state.reverseSort) {
-  //     newSongs = sortedSongs.reverse()
-  //   }
-  //
-  //   // check whether old state is same as new state
-  //   let changed = false
-  //   this.state.filteredSongs.forEach((s, i) => {
-  //     if (s !== newSongs[i]) {
-  //       changed = true
-  //     }
-  //   })
-  //
-  //   if (changed) {
-  //     this.setState({
-  //       filteredSongs: newSongs
-  //     })
-  //   }
-  // }
 }
 
 export default App;

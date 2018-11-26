@@ -6,8 +6,6 @@ import { setBpm, setCrossfade } from '../../actions'
 import '../../css/Channel.css';
 import Waveform from './Waveform';
 import Controls from './Controls';
-// import PlayPause from '../presentational/PlayPause';
-// import Volume from '../presentational/Volume';
 import Queue from './Queue';
 
 class Channel extends Component {
