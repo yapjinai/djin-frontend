@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MasterPlayPause = ({}) => {
+const MasterPlayPause = (props) => {
   // const masterPlayPause = () => {
   //   if (masterPlaying) {
   //     return 'Pause'

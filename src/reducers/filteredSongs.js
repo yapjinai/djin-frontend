@@ -7,17 +7,4 @@ const filteredSongs = (state = [], action) => {
   }
 }
 
-function sortSongs(array, sortBy) {
-  return array.sort((a, b) => {
-    const paramA = a[sortBy]
-    const paramB = b[sortBy]
-    if (sortBy === 'bpm') { // sort numerically
-      return paramA - paramB
-    }
-    else { // sort alphabetically
-      return paramA.toLowerCase().localeCompare(paramB.toLowerCase())
-    }
-  })
-}
-
 export default filteredSongs

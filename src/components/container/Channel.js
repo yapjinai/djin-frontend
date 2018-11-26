@@ -43,7 +43,7 @@ class Channel extends Component {
             audioRate={this.state.calculatedAudioRate}
             pitchShift={this.state.pitchShift}
 
-            playNextFromQueue={this.playNextFromQueue}
+            // playNextFromQueue={this.playNextFromQueue}
           />
 
           <Controls
@@ -64,9 +64,6 @@ class Channel extends Component {
         </div>
         <Queue
           side={this.props.side}
-          queue={this.props.queue}
-          removeFromQueue={this.props.removeFromQueue}
-          changeCurrentSong={this.changeCurrentSong}
         />
       </div>
     );

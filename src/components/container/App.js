@@ -8,47 +8,45 @@ import Master from './Master';
 // const apiUrl = 'http://localhost:3000'
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      queues: {
-        left: [],
-        right: []
-      }
-    }
-  }
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     queues: {
+  //       left: [],
+  //       right: []
+  //     }
+  //   }
+  // }
 
   render() {
-    // this.sortSongs()
-
     return (
       <div className="App">
         <Channel
           side='left'
-          queue={this.state.queues.left}
-
-          shiftFromQueue={this.shiftFromQueue}
-          removeFromQueue={this.removeFromQueue}
+          // queue={this.state.queues.left}
+          //
+          // shiftFromQueue={this.shiftFromQueue}
+          // removeFromQueue={this.removeFromQueue}
         />
         <Master
-          pushToQueue={this.pushToQueue}
+          // pushToQueue={this.pushToQueue}
         />
         <Channel
           side='right'
-          queue={this.state.queues.right}
-
-          shiftFromQueue={this.shiftFromQueue}
-          removeFromQueue={this.removeFromQueue}
+          // queue={this.state.queues.right}
+          //
+          // shiftFromQueue={this.shiftFromQueue}
+          // removeFromQueue={this.removeFromQueue}
         />
       </div>
     );
   }
 
   ///////////////////////////
-
-  changeState = (newStateObject) => {
-    this.setState(newStateObject)
-  }
+  //
+  // changeState = (newStateObject) => {
+  //   this.setState(newStateObject)
+  // }
 
   setNewQueues = (side, newQueue) => {
     const newQueues = {

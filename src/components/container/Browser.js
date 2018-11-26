@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setAllSongs, setBrowserFilterQuery, setFilteredSongs, setSortBy, setReverseSort } from '../../actions'
+import {
+  setAllSongs,
+
+  setBrowserFilterQuery,
+  setFilteredSongs,
+  setSortBy,
+  setReverseSort,
+
+  pushToQueue,
+} from '../../actions'
 
 import '../../css/Browser.css';
 import BrowserSong from '../presentational/BrowserSong';
@@ -148,7 +157,7 @@ class Browser extends Component {
       this.props.setReverseSort(false)
     }
     else { // toggle between high-low and low-high
-      this.props.setReverseSort(      !this.props.reverseSort)
+      this.props.setReverseSort(!this.props.reverseSort)
     }
   }
 }
@@ -156,18 +165,24 @@ class Browser extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   allSongs: state.allSongs,
+
   filteredSongs: state.filteredSongs,
   browserFilterQuery: state.browserFilterQuery,
   sortBy: state.sortBy,
   reverseSort: state.reverseSort,
+
+
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setAllSongs: (allSongs) => dispatch(setAllSongs(allSongs)),
+
   setFilteredSongs: (filteredSongs) => dispatch(setFilteredSongs(filteredSongs)),
   setBrowserFilterQuery: (browserFilterQuery) => dispatch(setBrowserFilterQuery(browserFilterQuery)),
   setSortBy: (sortBy) => dispatch(setSortBy(sortBy)),
   setReverseSort: (reverseSort) => dispatch(setReverseSort(reverseSort)),
+
+  pushToQueue: (side, song) => dispatch(pushToQueue(side, song)),
 })
 
 const connectedBrowser = connect(

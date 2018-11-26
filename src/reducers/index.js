@@ -8,6 +8,8 @@ import browserFilterQuery from './browserFilterQuery'
 import sortBy from './sortBy'
 import reverseSort from './reverseSort'
 
+import queues from './queues'
+
 export default combineReducers({
   masterBpm,
   crossfade,
@@ -17,5 +19,7 @@ export default combineReducers({
   browserFilterQuery,
 
   sortBy,
-  reverseSort
+  reverseSort,
+
+  queues,
 })

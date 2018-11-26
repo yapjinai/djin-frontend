@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux'
+import { setSideQueue } from '../../actions'
+
 import '../../css/Queue.css';
 import QueueSong from '../presentational/QueueSong';
 const uuid = require('uuid/v4');
@@ -6,9 +10,9 @@ const uuid = require('uuid/v4');
 class Queue extends Component {
 
   render() {
+    console.log('rendering');
     return (
       <div className="Queue">
-        Queue for {this.props.side} side
         <ul>
           {this.renderQueue()}
         </ul>
@@ -19,18 +23,31 @@ class Queue extends Component {
   ////////////////
 
   renderQueue = () => {
+    console.log(this.props.queue);
     return this.props.queue.map(s => {
       return (
         <QueueSong
           song={s}
           key={uuid()}
           side={this.props.side}
-          removeFromQueue={this.props.removeFromQueue}
-          changeCurrentSong={this.props.changeCurrentSong}
+          setSideQueue={this.props.setSideQueue}
         />
       )
     })
   }
 }
 
-export default Queue;
+const mapStateToProps = (state, ownProps) => ({
+  queue: state.queues[ownProps.side]
+})
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  // setSideQueue: (side, queue) => dispatch(setSideQueue(side, queue))
+})
+
+const connectedQueue = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Queue)
+
+
+export default connectedQueue;

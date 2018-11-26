@@ -29,3 +29,18 @@ export const setReverseSort = (reverseSort) => ({
   type: 'SET_REVERSE_SORT',
   reverseSort: reverseSort
 })
+
+export const setSideQueue = (side, queue) => ({
+  type: 'SET_SIDE_QUEUE',
+  side: side,
+  queue: queue
+})
+export const pushToQueue = (side, song) => ({
+  type: 'PUSH_TO_QUEUE',
+  side: side,
+  song: song
+})
+export const shiftFromQueue = (side) => ({
+  type: 'SHIFT_FROM_QUEUE',
+  side: side
+})

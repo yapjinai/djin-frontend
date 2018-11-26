@@ -13,18 +13,9 @@ class Master extends Component {
       >
         <MasterControls
         />
-
         <Browser
-          // App state
-          // allSongs={this.props.allSongs}
-
-          browserFilterQuery={this.props.browserFilterQuery}
-          sortBy={this.props.sortBy}
-          reverseSort={this.props.reverseSort}
-
           // methods to change App state
           pushToQueue={this.props.pushToQueue}
-          // changeState={this.props.changeState}
         />
       </div>
     );
