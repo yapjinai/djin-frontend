@@ -1,14 +1,15 @@
 import React from 'react';
 
-const QueueSong = ({song, side, removeFromQueue, changeCurrentSong}) => {
-  // const handleClickLoad = (e) => {
-  //   removeFromQueue(side, song)
-  //   changeCurrentSong(song)
-  // }
-  //
-  // const handleClickRemove = (e) => {
-  //   removeFromQueue(side, song)
-  // }
+const QueueSong = ({song, removeFromQueue, changeCurrentSong}) => {
+  const handleClickLoad = (e) => {
+    removeFromQueue(song)
+
+    changeCurrentSong(song)
+  }
+
+  const handleClickRemove = (e) => {
+    removeFromQueue(song)
+  }
 
   return (
     <li
@@ -16,12 +17,12 @@ const QueueSong = ({song, side, removeFromQueue, changeCurrentSong}) => {
     >
       <span>
         <button
-          // onClick={handleClickLoad}
+          onClick={handleClickLoad}
         >
           Load
         </button>
         <button
-          // onClick={handleClickRemove}
+          onClick={handleClickRemove}
         >
           Remove
         </button>

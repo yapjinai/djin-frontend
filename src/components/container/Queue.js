@@ -23,17 +23,27 @@ class Queue extends Component {
   ////////////////
 
   renderQueue = () => {
-    console.log(this.props.queue);
     return this.props.queue.map(s => {
       return (
         <QueueSong
           song={s}
           key={uuid()}
-          side={this.props.side}
-          setSideQueue={this.props.setSideQueue}
+          removeFromQueue={this.removeFromQueue}
+          changeCurrentSong={this.changeCurrentSong}
         />
       )
     })
+  }
+
+  removeFromQueue = (song) => {
+    const side = this.props.side
+    const newQueue = [...this.props.queue].filter(s => s !== song)
+
+    this.props.setSideQueue(side, newQueue)
+  }
+
+  changeCurrentSong = (song) => {
+    console.log(`changing song to ${song.title}. need to write function in Queue`);
   }
 }
 
@@ -41,7 +51,7 @@ const mapStateToProps = (state, ownProps) => ({
   queue: state.queues[ownProps.side]
 })
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  // setSideQueue: (side, queue) => dispatch(setSideQueue(side, queue))
+  setSideQueue: (side, queue) => dispatch(setSideQueue(side, queue))
 })
 
 const connectedQueue = connect(
