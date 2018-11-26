@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setAllSongs, setBrowserFilterQuery, setFilteredSongs } from '../../actions'
+import { setAllSongs, setBrowserFilterQuery, setFilteredSongs, setSortBy, setReverseSort } from '../../actions'
 
 import '../../css/Browser.css';
 import BrowserSong from '../presentational/BrowserSong';
@@ -12,6 +12,7 @@ const apiUrl = 'http://localhost:3000'
 class Browser extends Component {
   render() {
     this.filterSongs()
+    this.sortSongs()
 
     return (
       <div className="Browser">
@@ -109,8 +110,30 @@ class Browser extends Component {
 
   //////////////
   // SORT
+  sortSongs = () => {
+    const sortBy = this.props.sortBy
+    const sortedSongs = this.props.filteredSongs.sort((a, b) => {
+      const paramA = a[sortBy]
+      const paramB = b[sortBy]
+      if (sortBy === 'bpm') { // sort numerically
+        return paramA - paramB
+      }
+      else { // sort alphabetically
+        return paramA.toLowerCase().localeCompare(paramB.toLowerCase())
+      }
+    })
 
-  sortByClass = (param) => {
+    let newSongs = sortedSongs
+    if (this.props.reverseSort) {
+      newSongs = sortedSongs.reverse()
+    }
+
+    if (this.props.filteredSongs !== newSongs) {
+      this.props.setFilteredSongs(newSongs)
+    }
+  }
+
+  sortByClass = (param) => { // to add CSS class
     if (this.props.sortBy === param) {
       return 'sortBy'
     }
@@ -121,15 +144,11 @@ class Browser extends Component {
 
   handleClick = (e) => {
     if (this.props.sortBy !== e.target.id) { // if filtering by different param
-      this.props.changeState({
-        sortBy: e.target.id,
-        reverseSort: false
-      })
+      this.props.setSortBy(e.target.id)
+      this.props.setReverseSort(false)
     }
     else { // toggle between high-low and low-high
-      this.props.changeState({
-        reverseSort: !this.props.reverseSort
-      })
+      this.props.setReverseSort(      !this.props.reverseSort)
     }
   }
 }
@@ -139,12 +158,16 @@ const mapStateToProps = (state, ownProps) => ({
   allSongs: state.allSongs,
   filteredSongs: state.filteredSongs,
   browserFilterQuery: state.browserFilterQuery,
+  sortBy: state.sortBy,
+  reverseSort: state.reverseSort,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setAllSongs: (allSongs) => dispatch(setAllSongs(allSongs)),
   setFilteredSongs: (filteredSongs) => dispatch(setFilteredSongs(filteredSongs)),
   setBrowserFilterQuery: (browserFilterQuery) => dispatch(setBrowserFilterQuery(browserFilterQuery)),
+  setSortBy: (sortBy) => dispatch(setSortBy(sortBy)),
+  setReverseSort: (reverseSort) => dispatch(setReverseSort(reverseSort)),
 })
 
 const connectedBrowser = connect(
