@@ -21,7 +21,7 @@ class MasterControls extends Component {
           changeState={this.props.changeState}
         />
         <Crossfader
-          crossFade={this.props.crossFade}
+          crossfade={this.props.crossfade}
           setCrossfade={this.props.setCrossfade}
         />
         <Bpm
@@ -36,7 +36,7 @@ class MasterControls extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   masterBpm: state.masterBpm,
-  crossFade: state.crossFade
+  crossfade: state.crossfade
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

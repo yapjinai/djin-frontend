@@ -146,7 +146,7 @@ class Channel extends Component {
 
   playCurrentOrQueue = () => {
     if (this.state.currentSong) {
-      this.toggleAudio()
+      // this.toggleAudio()
     }
     else {
       this.playNextFromQueue()
@@ -158,9 +158,11 @@ class Channel extends Component {
       const currentSong = this.props.shiftFromQueue(this.props.side)
       this.setState({
         currentSong: currentSong
-      }, () => {
-        this.toggleAudio()
-      })
+      }
+      // , () => {
+      //   this.toggleAudio()
+      // }
+      )
     }
     else {
       this.setState({
@@ -173,29 +175,29 @@ class Channel extends Component {
   //////////////////////
   // AUDIO CONTROLS
   //////////////////////
-
-  toggleAudio = () => {
-    if (this.state.playing) {
-      // this.state.audio.play()
-      this.props.changeState({masterPlaying: true})
-    }
-    else {
-      // this.state.audio.pause()
-    }
-  }
+  //
+  // toggleAudio = () => {
+  //   if (this.state.playing) {
+  //     // this.state.audio.play()
+  //     // this.props.changeState({masterPlaying: true})
+  //   }
+  //   else {
+  //     // this.state.audio.pause()
+  //   }
+  // }
 
   setAudioVolume = () => {
-    console.log(this.props.crossFade);
+    console.log(this.props.crossfade);
     const volume = this.state.volume
-    const crossFade = parseFloat(this.props.crossFade)
+    const crossfade = parseFloat(this.props.crossfade)
     const side = this.props.side
     let newVolume
 
-    if (crossFade > 0 && side === 'left') {
-      newVolume = volume * (1 - crossFade)
+    if (crossfade > 0 && side === 'left') {
+      newVolume = volume * (1 - crossfade)
     }
-    else if (crossFade < 0 && side === 'right') {
-      newVolume = volume * (1 + crossFade)
+    else if (crossfade < 0 && side === 'right') {
+      newVolume = volume * (1 + crossfade)
     }
     else {
       newVolume = volume
@@ -239,7 +241,7 @@ class Channel extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   masterBpm: state.masterBpm,
-  crossFade: state.crossFade
+  crossfade: state.crossfade
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

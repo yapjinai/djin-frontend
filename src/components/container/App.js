@@ -18,7 +18,7 @@ class App extends Component {
       reverseSort: false,
 
       masterPlaying: false,
-      // crossFade: 0,
+      // crossfade: 0,
       // masterBpm: 1,
       masterVolume: 1,
 
@@ -39,7 +39,7 @@ class App extends Component {
           side='left'
           masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.left}
-          // crossFade={this.state.crossFade}
+          // crossfade={this.state.crossfade}
           // masterBpm={this.state.masterBpm}
 
           // changeState={this.changeState}
@@ -48,7 +48,7 @@ class App extends Component {
         />
         <Master
           masterPlaying={this.state.masterPlaying}
-          // crossFade={this.state.crossFade}
+          // crossfade={this.state.crossfade}
           // masterBpm={this.state.masterBpm}
           // changeState={this.changeState}
 
@@ -65,7 +65,7 @@ class App extends Component {
           side='right'
           masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.right}
-          // crossFade={this.state.crossFade}
+          // crossfade={this.state.crossfade}
           // masterBpm={this.state.masterBpm}
 
           // changeState={this.changeState}
@@ -191,18 +191,18 @@ class App extends Component {
   //     let newStateValue
   //     switch (e.key) {
   //       case 'v':
-  //         newStateValue = this.state.crossFade - .1
+  //         newStateValue = this.state.crossfade - .1
   //         if (newStateValue >= -1) {
   //           this.setState({
-  //             crossFade: newStateValue
+  //             crossfade: newStateValue
   //           })
   //         }
   //         break;
   //       case 'n':
-  //         let newStateValue = this.state.crossFade + .1
+  //         let newStateValue = this.state.crossfade + .1
   //         if (newStateValue <= 1) {
   //           this.setState({
-  //             crossFade: newStateValue
+  //             crossfade: newStateValue
   //           })
   //         }
   //         break;

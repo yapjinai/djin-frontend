@@ -13,7 +13,6 @@ class Master extends Component {
       >
         <MasterControls
           masterPlaying={this.props.masterPlaying}
-          crossFade={this.props.crossFade}
 
           // changeState={this.props.changeState}
         />
