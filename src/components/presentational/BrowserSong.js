@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BrowserSong = ({song, key, pushToQueue}) => {
+const BrowserSong = ({song, pushToQueue}) => {
   const handleClick = (e) => {
     pushToQueue(e.target.name, song)
   }

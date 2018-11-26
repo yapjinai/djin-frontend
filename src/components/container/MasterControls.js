@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux'
+import { setBpm } from '../../actions'
+
 import '../../css/MasterControls.css';
 
 import MasterPlayPause from '../presentational/MasterPlayPause';
@@ -22,11 +26,26 @@ class MasterControls extends Component {
         />
         <Bpm
           masterBpm={this.props.masterBpm}
-          changeState={this.props.changeState}
+          setBpm={this.props.setBpm}
         />
       </div>
     );
   }
 }
 
-export default MasterControls;
+
+const mapStateToProps = (state, ownProps) => ({
+  masterBpm: state.masterBpm
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  setBpm: (bpm) => dispatch(setBpm(bpm))
+})
+
+const connectedMasterControls = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MasterControls)
+
+
+export default connectedMasterControls;

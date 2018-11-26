@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux'
+import { setBpm } from '../../actions'
+
 import '../../css/Channel.css';
 import Waveform from './Waveform';
 import Controls from './Controls';
@@ -104,9 +108,7 @@ class Channel extends Component {
 
   syncBpm = () => {
     if (this.state.currentSong) {
-      this.props.changeState({
-        masterBpm: this.state.currentSong.bpm
-      })
+      this.props.setBpm(this.state.currentSong.bpm)
     }
   }
 
@@ -234,4 +236,18 @@ class Channel extends Component {
   ///////////////////////
 }
 
-export default Channel;
+const mapStateToProps = (state, ownProps) => ({
+  masterBpm: state.masterBpm
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  setBpm: (bpm) => dispatch(setBpm(bpm))
+})
+
+const connectedChannel = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Channel)
+
+
+export default connectedChannel;

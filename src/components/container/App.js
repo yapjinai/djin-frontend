@@ -19,7 +19,7 @@ class App extends Component {
 
       masterPlaying: false,
       crossFade: 0,
-      masterBpm: 0,
+      // masterBpm: 1,
       masterVolume: 1,
 
       queues: {
@@ -40,7 +40,7 @@ class App extends Component {
           masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.left}
           crossFade={this.state.crossFade}
-          masterBpm={this.state.masterBpm}
+          // masterBpm={this.state.masterBpm}
 
           changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
@@ -49,7 +49,7 @@ class App extends Component {
         <Master
           masterPlaying={this.state.masterPlaying}
           crossFade={this.state.crossFade}
-          masterBpm={this.state.masterBpm}
+          // masterBpm={this.state.masterBpm}
           changeState={this.changeState}
 
           // for browser
@@ -66,7 +66,7 @@ class App extends Component {
           masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.right}
           crossFade={this.state.crossFade}
-          masterBpm={this.state.masterBpm}
+          // masterBpm={this.state.masterBpm}
 
           changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}

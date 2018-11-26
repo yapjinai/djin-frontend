@@ -13,10 +13,8 @@ class Master extends Component {
       >
         <MasterControls
           masterPlaying={this.props.masterPlaying}
-          changeState={this.props.changeState}
           crossFade={this.props.crossFade}
-          changeState={this.props.changeState}
-          masterBpm={this.props.masterBpm}
+          
           changeState={this.props.changeState}
         />
 

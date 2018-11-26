@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Bpm = ({masterBpm, changeState}) => {
+const Bpm = ({masterBpm, setBpm}) => {
   const handleChange = (e) => {
-    changeState({
-      masterBpm: parseInt(e.target.value)
-    })
+    setBpm(parseInt(e.target.value))
+    // changeState({
+    //   masterBpm: parseInt(e.target.value)
+    // })
   }
 
   return (
