@@ -29,7 +29,6 @@ class Channel extends Component {
 
     return (
       <div className={`Channel ${this.props.side}`}>
-        {this.props.side === 'left' ? this.displayQueue() : null}
         <div className='controls'>
           <h2>{this.state.currentSong ? `${this.state.currentSong.title} (${this.state.currentSong.bpm} bpm)` : 'No song playing'}</h2>
 
@@ -59,9 +58,13 @@ class Channel extends Component {
             pitchShift={this.state.pitchShift}
             togglePitchShift={this.togglePitchShift}
           />
-
         </div>
-        {this.props.side === 'right' ? this.displayQueue() : null}
+        <Queue
+          side={this.props.side}
+          queue={this.props.queue}
+          removeFromQueue={this.props.removeFromQueue}
+          changeCurrentSong={this.changeCurrentSong}
+        />
       </div>
     );
   }
@@ -69,16 +72,6 @@ class Channel extends Component {
   // CHANNEL CONTROLS
   //////////////////////
 
-  displayQueue = () => {
-    return (
-      <Queue
-        side={this.props.side}
-        queue={this.props.queue}
-        removeFromQueue={this.props.removeFromQueue}
-        changeCurrentSong={this.changeCurrentSong}
-      />
-    )
-  }
 
   changeVolume = (newVolume) => {
     this.setState({

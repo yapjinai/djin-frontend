@@ -1,4 +1,5 @@
 .Queue {
+  flex-grow: 1;
   min-width: 10vw;
 }
 .Queue ul {

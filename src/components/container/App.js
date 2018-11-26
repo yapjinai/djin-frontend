@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import '../../css/App.css';
-import Channels from './Channels';
-import Browser from './Browser';
+import Channel from './Channel';
+
+import Master from './Master';
+// import Channels from './Channels';
 
 const apiUrl = 'http://localhost:3000'
 
@@ -33,33 +35,24 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Channels
-          // songs
-          queues={this.state.queues}
-
-          // App state
+        <Channel
+          side='left'
           masterPlaying={this.state.masterPlaying}
+          queue={this.state.queues.left}
           crossFade={this.state.crossFade}
           masterBpm={this.state.masterBpm}
 
-          // methods to change App state
           changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
-
-          // for master
-          // App state
-          // masterPlaying={this.state.masterPlaying}
-          // crossFade={this.state.crossFade}
-          // masterBpm={this.state.masterBpm}
-          browserFilter={this.state.browserFilter}
-
-          // methods to change App state
-          // changeState={this.changeState}
         />
+        <Master
+          masterPlaying={this.state.masterPlaying}
+          crossFade={this.state.crossFade}
+          masterBpm={this.state.masterBpm}
+          changeState={this.changeState}
 
-        <Browser
-          // App state
+          // for browser
           allSongs={this.state.filteredSongs}
           browserFilterQuery={this.browserFilterQuery}
           sortBy={this.state.sortBy}
@@ -67,7 +60,17 @@ class App extends Component {
 
           // methods to change App state
           pushToQueue={this.pushToQueue}
-          changeState={this.props.changeState}
+        />
+        <Channel
+          side='right'
+          masterPlaying={this.state.masterPlaying}
+          queue={this.state.queues.right}
+          crossFade={this.state.crossFade}
+          masterBpm={this.state.masterBpm}
+
+          changeState={this.changeState}
+          shiftFromQueue={this.shiftFromQueue}
+          removeFromQueue={this.removeFromQueue}
         />
       </div>
     );

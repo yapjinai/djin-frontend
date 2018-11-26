@@ -1,5 +1,8 @@
 .Channel {
   display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  border-radius: 10px;
 }
 .Channel .controls {
   min-width: 20vw;

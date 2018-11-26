@@ -1,7 +1,10 @@
 .App {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
 }
 .App div {
   background: rgba(255, 153, 255, 0.5);

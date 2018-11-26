@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import MasterPlayPause from '../presentational/MasterPlayPause';
-import Crossfader from '../presentational/Crossfader';
-import Bpm from '../presentational/Bpm';
+import '../../css/Master.css';
+
+import MasterControls from './MasterControls';
+import Browser from './Browser';
+
 
 class Master extends Component {
   render() {
@@ -9,20 +11,26 @@ class Master extends Component {
       <div className="Master"
        style={{display: 'flex'}}
       >
-        <div>
-          <MasterPlayPause
-            masterPlaying={this.props.masterPlaying}
-            changeState={this.props.changeState}
-          />
-          <Crossfader
-            crossFade={this.props.crossFade}
-            changeState={this.props.changeState}
-          />
-          <Bpm
-            masterBpm={this.props.masterBpm}
-            changeState={this.props.changeState}
-          />
-        </div>
+        <MasterControls
+          masterPlaying={this.props.masterPlaying}
+          changeState={this.props.changeState}
+          crossFade={this.props.crossFade}
+          changeState={this.props.changeState}
+          masterBpm={this.props.masterBpm}
+          changeState={this.props.changeState}
+        />
+
+        <Browser
+          // App state
+          allSongs={this.props.allSongs}
+          browserFilterQuery={this.props.browserFilterQuery}
+          sortBy={this.props.sortBy}
+          reverseSort={this.props.reverseSort}
+
+          // methods to change App state
+          pushToQueue={this.props.pushToQueue}
+          changeState={this.props.changeState}
+        />
       </div>
     );
   }
