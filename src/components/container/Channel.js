@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/Channel.css';
-import Waveform from '../presentational/Waveform';
+import Waveform from './Waveform';
 import Controls from './Controls';
 // import PlayPause from '../presentational/PlayPause';
 // import Volume from '../presentational/Volume';

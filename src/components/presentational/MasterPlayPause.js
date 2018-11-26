@@ -1,8 +1,8 @@
 import React from 'react';
 
-const MasterPlayPause = (props) => {
+const MasterPlayPause = ({masterPlaying, changeState}) => {
   const masterPlayPause = () => {
-    if (props.masterPlaying) {
+    if (masterPlaying) {
       return 'Pause'
     }
     else {
@@ -11,7 +11,7 @@ const MasterPlayPause = (props) => {
   }
 
   const handleClick = () => {
-    props.changeState({masterPlaying: !props.masterPlaying})
+    changeState({masterPlaying: !masterPlaying})
   }
 
   return (

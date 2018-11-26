@@ -1,8 +1,8 @@
 import React from 'react';
 
-const BrowserSong = (props) => {
+const BrowserSong = ({song, key, pushToQueue}) => {
   const handleClick = (e) => {
-    props.pushToQueue(e.target.name, props.song)
+    pushToQueue(e.target.name, song)
   }
 
   return (
@@ -24,13 +24,13 @@ const BrowserSong = (props) => {
         </button>
       </td>
       <td>
-        {props.song.title}
+        {song.title}
       </td>
       <td>
-        {props.song.artist}
+        {song.artist}
       </td>
       <td>
-        {props.song.bpm}
+        {song.bpm}
       </td>
     </tr>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Crossfader = (props) => {
+const Crossfader = ({crossFade, changeState}) => {
   const handleChange = (e) => {
-    props.changeState({
+    changeState({
       crossFade: e.target.value
     })
   }
@@ -19,7 +19,7 @@ const Crossfader = (props) => {
         min="-1"
         max="1"
         step=".01"
-        value={props.crossFade}
+        value={crossFade}
         onChange={handleChange}
       />
     </div>

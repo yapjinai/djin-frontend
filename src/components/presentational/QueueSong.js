@@ -1,13 +1,13 @@
 import React from 'react';
 
-const QueueSong = (props) => {
+const QueueSong = ({song, side, removeFromQueue, changeCurrentSong}) => {
   const handleClickLoad = (e) => {
-    props.removeFromQueue(props.side, props.song)
-    props.changeCurrentSong(props.song)
+    removeFromQueue(side, song)
+    changeCurrentSong(song)
   }
 
   const handleClickRemove = (e) => {
-    props.removeFromQueue(props.side, props.song)
+    removeFromQueue(side, song)
   }
 
   return (
@@ -27,7 +27,7 @@ const QueueSong = (props) => {
         </button>
       </span>
 
-      {props.song.title}
+      {song.title}
     </li>
   );
 }
