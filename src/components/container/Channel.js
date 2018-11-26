@@ -12,6 +12,7 @@ class Channel extends Component {
     this.state = {
       currentSong: null,
       playing: false,
+      waveformPlaying: false,
       volume: .5,
       pitchShift: false,
       calculatedVolume: .5,
@@ -35,7 +36,7 @@ class Channel extends Component {
           <Waveform
             currentSong={this.state.currentSong}
 
-            playing={this.state.playing}
+            playing={this.state.waveformPlaying}
             volume={this.state.calculatedVolume}
             audioRate={this.state.calculatedAudioRate}
             pitchShift={this.state.pitchShift}
@@ -133,7 +134,8 @@ class Channel extends Component {
   togglePlaying = () => {
     if (this.state.currentSong || this.props.queue[0]) {
       this.setState({
-        playing: !this.state.playing
+        playing: !this.state.playing,
+        waveformPlaying: !this.state.waveformPlaying
       }, () => {
         this.playCurrentOrQueue()
       })
