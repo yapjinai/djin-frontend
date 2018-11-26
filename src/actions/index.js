@@ -2,6 +2,10 @@ export const setBpm = (bpm) => ({
   type: 'SET_BPM',
   bpm: bpm
 })
+export const setCrossfade = (crossfade) => ({
+  type: 'SET_CROSSFADE',
+  crossfade: crossfade
+})
 
 // export const toggleTodo = id => ({
 //   type: 'TOGGLE_TODO',

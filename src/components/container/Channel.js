@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setBpm } from '../../actions'
+import { setBpm, setCrossfade } from '../../actions'
 
 import '../../css/Channel.css';
 import Waveform from './Waveform';
@@ -185,6 +185,7 @@ class Channel extends Component {
   }
 
   setAudioVolume = () => {
+    console.log(this.props.crossFade);
     const volume = this.state.volume
     const crossFade = parseFloat(this.props.crossFade)
     const side = this.props.side
@@ -208,9 +209,9 @@ class Channel extends Component {
   }
 
   setAudioBpm = () => {
-    const globalBpm = this.props.masterBpm
+    const masterBpm = this.props.masterBpm
     const songBpm = this.state.currentSong.bpm
-    const songPlaybackRate = globalBpm / songBpm
+    const songPlaybackRate = masterBpm / songBpm
     const bpmFactor = this.state.bpmFactor
 
     if (songPlaybackRate > 0.1 && this.state.calculatedAudioRate !== songPlaybackRate * bpmFactor) {
@@ -237,11 +238,13 @@ class Channel extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  masterBpm: state.masterBpm
+  masterBpm: state.masterBpm,
+  crossFade: state.crossFade
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  setBpm: (bpm) => dispatch(setBpm(bpm))
+  setBpm: (bpm) => dispatch(setBpm(bpm)),
+  setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
 })
 
 const connectedChannel = connect(

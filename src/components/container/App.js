@@ -18,7 +18,7 @@ class App extends Component {
       reverseSort: false,
 
       masterPlaying: false,
-      crossFade: 0,
+      // crossFade: 0,
       // masterBpm: 1,
       masterVolume: 1,
 
@@ -39,18 +39,18 @@ class App extends Component {
           side='left'
           masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.left}
-          crossFade={this.state.crossFade}
+          // crossFade={this.state.crossFade}
           // masterBpm={this.state.masterBpm}
 
-          changeState={this.changeState}
+          // changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
         />
         <Master
           masterPlaying={this.state.masterPlaying}
-          crossFade={this.state.crossFade}
+          // crossFade={this.state.crossFade}
           // masterBpm={this.state.masterBpm}
-          changeState={this.changeState}
+          // changeState={this.changeState}
 
           // for browser
           allSongs={this.state.filteredSongs}
@@ -65,10 +65,10 @@ class App extends Component {
           side='right'
           masterPlaying={this.state.masterPlaying}
           queue={this.state.queues.right}
-          crossFade={this.state.crossFade}
+          // crossFade={this.state.crossFade}
           // masterBpm={this.state.masterBpm}
 
-          changeState={this.changeState}
+          // changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
         />

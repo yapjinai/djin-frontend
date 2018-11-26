@@ -14,8 +14,8 @@ class Master extends Component {
         <MasterControls
           masterPlaying={this.props.masterPlaying}
           crossFade={this.props.crossFade}
-          
-          changeState={this.props.changeState}
+
+          // changeState={this.props.changeState}
         />
 
         <Browser
@@ -27,7 +27,7 @@ class Master extends Component {
 
           // methods to change App state
           pushToQueue={this.props.pushToQueue}
-          changeState={this.props.changeState}
+          // changeState={this.props.changeState}
         />
       </div>
     );

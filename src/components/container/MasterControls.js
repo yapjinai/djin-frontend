@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setBpm } from '../../actions'
+import { setBpm, setCrossfade } from '../../actions'
 
 import '../../css/MasterControls.css';
 
@@ -22,7 +22,7 @@ class MasterControls extends Component {
         />
         <Crossfader
           crossFade={this.props.crossFade}
-          changeState={this.props.changeState}
+          setCrossfade={this.props.setCrossfade}
         />
         <Bpm
           masterBpm={this.props.masterBpm}
@@ -35,11 +35,13 @@ class MasterControls extends Component {
 
 
 const mapStateToProps = (state, ownProps) => ({
-  masterBpm: state.masterBpm
+  masterBpm: state.masterBpm,
+  crossFade: state.crossFade
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  setBpm: (bpm) => dispatch(setBpm(bpm))
+  setBpm: (bpm) => dispatch(setBpm(bpm)),
+  setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
 })
 
 const connectedMasterControls = connect(

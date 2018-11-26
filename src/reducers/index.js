@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import masterBpm from './masterBpm'
-// import visibilityFilter from './visibilityFilter'
+import crossfade from './crossfade'
 
 export default combineReducers({
   masterBpm,
-  // visibilityFilter
+  crossfade
 })
