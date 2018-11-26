@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MasterPlayPause from '../presentational/MasterPlayPause';
 import Crossfader from '../presentational/Crossfader';
 import Bpm from '../presentational/Bpm';
-import Browser from './Browser';
 
 class Master extends Component {
   render() {
@@ -10,7 +9,6 @@ class Master extends Component {
       <div className="Master"
        style={{display: 'flex'}}
       >
-        Master control
         <div>
           <MasterPlayPause
             masterPlaying={this.props.masterPlaying}
@@ -25,15 +23,6 @@ class Master extends Component {
             changeState={this.props.changeState}
           />
         </div>
-        <Browser
-          allSongs={this.props.allSongs}
-          browserFilterQuery={this.props.browserFilterQuery}
-          sortBy={this.props.sortBy}
-          reverseSort={this.props.reverseSort}
-
-          pushToQueue={this.props.pushToQueue}
-          changeState={this.props.changeState}
-        />
       </div>
     );
   }

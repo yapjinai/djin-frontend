@@ -1,5 +1,13 @@
-div {
-  border: 2px solid #f9f;
+body {
+  background: rgba(255, 153, 255, 0.5);
+}
+
+* {
+  font-family: sans-serif;
+  color: white;
+}
+* button, * input, * th {
+  color: black;
 }
 
 ul {

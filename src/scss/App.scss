@@ -1,4 +1,12 @@
 .App {
+
+  div {
+    background: rgba(255, 153, 255, .5);
+    border: 25px solid rgba(153, 153, 255, .25);
+    border-right-color: rgba(255, 153, 153, .25);
+    border-top-color: rgba(255, 200, 153, .25);
+    border-bottom-color: rgba(200, 153, 153, .25);
+  }
   // border: 2px solid rgba(0,0,225,.5);
 
   display: flex;

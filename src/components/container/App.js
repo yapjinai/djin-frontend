@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/App.css';
 import Channels from './Channels';
-import Master from './Master';
+import Browser from './Browser';
 
 const apiUrl = 'http://localhost:3000'
 
@@ -33,7 +33,6 @@ class App extends Component {
 
     return (
       <div className="App">
-      App
         <Channels
           // songs
           queues={this.state.queues}
@@ -47,21 +46,28 @@ class App extends Component {
           changeState={this.changeState}
           shiftFromQueue={this.shiftFromQueue}
           removeFromQueue={this.removeFromQueue}
-        />
-        <Master
+
+          // for master
           // App state
-          masterPlaying={this.state.masterPlaying}
-          allSongs={this.state.filteredSongs}
-          crossFade={this.state.crossFade}
-          masterBpm={this.state.masterBpm}
+          // masterPlaying={this.state.masterPlaying}
+          // crossFade={this.state.crossFade}
+          // masterBpm={this.state.masterBpm}
           browserFilter={this.state.browserFilter}
+
+          // methods to change App state
+          // changeState={this.changeState}
+        />
+
+        <Browser
+          // App state
+          allSongs={this.state.filteredSongs}
+          browserFilterQuery={this.browserFilterQuery}
           sortBy={this.state.sortBy}
           reverseSort={this.state.reverseSort}
 
           // methods to change App state
-          changeState={this.changeState}
           pushToQueue={this.pushToQueue}
-          browserFilterQuery={this.browserFilterQuery}
+          changeState={this.props.changeState}
         />
       </div>
     );

@@ -1,11 +1,16 @@
-div {
-  border: 2px solid #f9f;
-
-  // margin: 10px;
-
-  // text-align: center;
-  // align-items: center;
+body {
+  background: rgba(255, 153, 255, .5);
 }
+
+* {
+  font-family: sans-serif;
+  color: white;
+  button, input, th {
+    color: black;
+  }
+}
+
+
 
 ul {
   padding: 0;
