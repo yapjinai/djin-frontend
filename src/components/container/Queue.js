@@ -29,7 +29,7 @@ class Queue extends Component {
           song={s}
           key={uuid()}
           removeFromQueue={this.removeFromQueue}
-          changeCurrentSong={this.props.changeCurrentSong}
+          setCurrentSong={this.props.setCurrentSong}
         />
       )
     })
@@ -41,10 +41,6 @@ class Queue extends Component {
 
     this.props.setSideQueue(side, newQueue)
   }
-
-  // changeCurrentSong = (song) => {
-  //   console.log(`changing song to ${song.title}. need to write function in Queue`);
-  // }
 }
 
 const mapStateToProps = (state, ownProps) => ({

@@ -27,12 +27,13 @@ const channels = (state = defaultChannels, action) => {
 
   switch (action.type) {
     case 'SET_CHANNEL_STATE':
+    console.log('hi');
       const side = action.side
       const key = action.key
-      const newValue = action.payload
+      const newValue = action.newValue
 
       return setChannelState(side, key, newValue)
-      
+
     default:
       return state
   }

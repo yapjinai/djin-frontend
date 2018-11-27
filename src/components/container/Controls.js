@@ -23,7 +23,7 @@ const PlayPause = (props) => {
 }
 const Volume = (props) => {
   const handleChange = (e) => {
-    props.changeVolume(parseFloat(e.target.value))
+    props.setVolume(parseFloat(e.target.value))
   }
 
   return (
@@ -57,7 +57,7 @@ const BpmSync = (props) => {
 }
 const DoubleHalf = (props) => {
   const handleClick = (e) => {
-    props.changeBpmFactor(e.target.name)
+    props.setBpmFactor(e.target.name)
   }
 
   const displaySpeed = () => {
@@ -128,14 +128,14 @@ class Controls extends Component {
         />
         <Volume
           volume={this.props.volume}
-          changeVolume={this.props.changeVolume}
+          setVolume={this.props.setVolume}
         />
         <BpmSync
           syncBpm={this.props.syncBpm}
         />
         <DoubleHalf
           bpmFactor={this.props.bpmFactor}
-          changeBpmFactor={this.props.changeBpmFactor}
+          setBpmFactor={this.props.setBpmFactor}
         />
       </div>
     )

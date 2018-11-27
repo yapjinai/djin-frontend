@@ -1,10 +1,10 @@
 import React from 'react';
 
-const QueueSong = ({song, removeFromQueue, changeCurrentSong}) => {
+const QueueSong = ({song, removeFromQueue, setCurrentSong}) => {
   const handleClickLoad = (e) => {
     removeFromQueue(song)
 
-    changeCurrentSong(song)
+    setCurrentSong(song)
   }
 
   const handleClickRemove = (e) => {

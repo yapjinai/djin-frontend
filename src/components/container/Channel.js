@@ -42,17 +42,17 @@ class Channel extends Component {
             togglePlaying={this.togglePlaying}
 
             volume={this.props.channel.volume}
-            changeVolume={this.changeVolume}
+            setVolume={this.setVolume}
 
             syncBpm={this.syncBpm}
 
             bpmFactor={this.props.channel.bpmFactor}
-            changeBpmFactor={this.changeBpmFactor}
+            setBpmFactor={this.setBpmFactor}
           />
         </div>
         <Queue
           side={this.props.side}
-          changeCurrentSong={this.changeCurrentSong}
+          setCurrentSong={this.setCurrentSong}
         />
       </div>
     );
@@ -60,12 +60,19 @@ class Channel extends Component {
   //////////////////////
   // CHANNEL CONTROLS
   //////////////////////
+  togglePlaying = () => {
+    if (this.props.channel.currentSong || this.props.queue[0]) {
+      this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
 
-  changeVolume = (newVolume) => {
-    setChannelState(this.props.side, 'volume', newVolume)
+      this.playCurrentOrQueue()
+    }
   }
 
-  changeBpmFactor = (type) => {
+  setVolume = (newVolume) => {
+    this.props.setChannelState(this.props.side, 'volume', newVolume)
+  }
+
+  setBpmFactor = (type) => {
     let newBpmFactor = this.props.channel.bpmFactor
     switch (type) {
       case 'double':
@@ -79,24 +86,21 @@ class Channel extends Component {
         break;
     }
     if (newBpmFactor >= 0.125 && newBpmFactor <= 8) {
-      setChannelState(this.props.side, 'bpmFactor', newBpmFactor)
+      this.props.setChannelState(this.props.side, 'bpmFactor', newBpmFactor)
     }
   }
 
-  changeCurrentSong = (newSong) => {
-    setChannelState(this.props.side, 'currentSong', newSong)
-    this.playCurrentOrQueue()
+  setCurrentSong = (newSong) => {
+    console.log('hi');
+
+    this.props.setChannelState(this.props.side, 'currentSong', newSong)
+
+    // this.playCurrentOrQueue()
   }
   ///////////////////////
 
   // TODO: hacky
 
-  togglePlaying = () => {
-    if (this.props.channel.currentSong || this.props.queue[0]) {
-      setChannelState(this.props.side, 'playing', !this.props.channel.playing)
-      this.playCurrentOrQueue()
-    }
-  }
 
   playCurrentOrQueue = () => {
     if (this.props.channel.currentSong) {
@@ -110,11 +114,11 @@ class Channel extends Component {
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
       const currentSong = this.props.shiftFromQueue(this.props.side)
-      setChannelState(this.props.side, 'currentSong', currentSong)
+      this.props.setChannelState(this.props.side, 'currentSong', currentSong)
     }
     else {
-      setChannelState(this.props.side, 'currentSong', null)
-      setChannelState(this.props.side, 'playing', false)
+      this.props.setChannelState(this.props.side, 'currentSong', null)
+      this.props.setChannelState(this.props.side, 'playing', false)
     }
   }
 
@@ -140,7 +144,7 @@ class Channel extends Component {
     }
 
     if (this.props.channel.calculatedVolume !== newVolume) {
-      setChannelState(this.props.side, 'calculatedVolume', newVolume)
+      this.props.setChannelState(this.props.side, 'calculatedVolume', newVolume)
     }
   }
 
@@ -151,7 +155,7 @@ class Channel extends Component {
     const bpmFactor = this.props.channel.bpmFactor
 
     if (songPlaybackRate > 0.1 && this.props.channel.calculatedAudioRate !== songPlaybackRate * bpmFactor) {
-      setChannelState(this.props.side, 'calculatedAudioRate', songPlaybackRate * bpmFactor)
+      this.props.setChannelState(this.props.side, 'calculatedAudioRate', songPlaybackRate * bpmFactor)
     }
   }
 
@@ -160,19 +164,17 @@ class Channel extends Component {
   //////////////////////
 
 //////////////TODO THIS IS HACKY FIX IT!!!!!!!!
-  setBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
-    if (!this.props.masterBpm) {
-      this.syncBpm()
-    }
-  }
-
   syncBpm = () => {
     if (this.props.channel.currentSong) {
       this.props.setBpm(this.props.channel.currentSong.bpm)
     }
   }
 
-
+  setBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
+    if (!this.props.masterBpm) {
+      this.syncBpm()
+    }
+  }
 }
 
 ///////////////////////
