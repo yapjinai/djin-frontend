@@ -16,31 +16,20 @@ const defaultChannels = {
 
 const channels = (state = defaultChannels, action) => {
 
-  function returnChannelState(side, key, newValue) {
-    const newChannel = {...state[side]}
-    newChannel[key] = newValue
-
-    const newState = {...state}
-    newState[side] = newChannel
-    return newState
-  }
-
   switch (action.type) {
     case 'SET_CHANNEL_STATE':
-      const side = action.side
-      const key = action.key
-      const newValue = action.newValue
+      return ({...state,
+        [action.side]: {...state[action.side],
+          [action.key]: action.newValue
+        }
+      })
 
-      return returnChannelState(side, key, newValue)
-
-    case 'PLAY_ALL':
-      const play = action.play
-      const newLeft = {...state.left}
-      const newRight = {...state.right}
-      newLeft.playing = play
-      newRight.playing = play
-
-      return {left: newLeft, right: newRight}
+    case 'SET_PLAYING':
+      return ({...state,
+        [action.side]: {...state[action.side],
+          playing: action.playing
+        }
+      })
 
     default:
       return state

@@ -2,13 +2,22 @@
   flex-grow: 1;
 }
 .Browser table th {
-  background: #ff9;
+  background: #ffeaf9;
+}
+.Browser table .sortBy {
+  background: #fbe;
+}
+.Browser table td {
+  background: #fdf;
 }
 .Browser table #title, .Browser table #artist {
   width: 15vw;
 }
-.Browser table .sortBy {
-  background: #9ff;
+.Browser table .title, .Browser table .artist, .Browser table .bpm {
+  padding: 0 10px;
+}
+.Browser table .bpm {
+  text-align: right;
 }
 
 /*# sourceMappingURL=Browser.css.map */

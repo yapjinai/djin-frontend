@@ -23,13 +23,13 @@ const BrowserSong = ({song, pushToQueue}) => {
         R
         </button>
       </td>
-      <td>
+      <td className='title'>
         {song.title}
       </td>
-      <td>
+      <td className='artist'>
         {song.artist}
       </td>
-      <td>
+      <td className='bpm'>
         {song.bpm}
       </td>
     </tr>

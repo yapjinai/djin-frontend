@@ -4,7 +4,11 @@ import { connect } from 'react-redux'
 import {
   setBpm,
   setCrossfade,
-  playAll
+  setPlaying,
+
+  setChannelState,
+
+  shiftFromQueue
  } from '../../actions'
 
 import '../../css/MasterControls.css';
@@ -23,7 +27,13 @@ class MasterControls extends Component {
         <MasterPlayPause
           leftPlaying={this.props.leftPlaying}
           rightPlaying={this.props.rightPlaying}
-          playAll={this.props.playAll}
+          setPlaying={this.props.setPlaying}
+
+          channels={this.props.channels}
+          queues={this.props.queues}
+
+          setChannelState={this.props.setChannelState}
+          shiftFromQueue={this.props.shiftFromQueue}
         />
         <Crossfader
           crossfade={this.props.crossfade}
@@ -44,12 +54,22 @@ const mapStateToProps = (state, ownProps) => ({
   crossfade: state.crossfade,
   leftPlaying: state.channels.left.playing,
   rightPlaying: state.channels.right.playing,
+
+  // Channel state
+  channels: state.channels,
+
+  queues: state.queues
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setBpm: (bpm) => dispatch(setBpm(bpm)),
   setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
-  playAll: (play) => dispatch(playAll(play)),
+
+  // Channel state setters
+  setChannelState: (side, key, newValue) => dispatch(setChannelState(side, key, newValue)),
+
+  shiftFromQueue: (side) => dispatch(shiftFromQueue(side)),
+  setPlaying: (side, play) => dispatch(setPlaying(side, play)),
 })
 
 const connectedMasterControls = connect(
