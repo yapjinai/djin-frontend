@@ -1,5 +1,9 @@
 .MasterControls {
   display: flex;
 }
+.MasterControls div {
+  text-align: center;
+  flex-grow: 1;
+}
 
 /*# sourceMappingURL=MasterControls.css.map */

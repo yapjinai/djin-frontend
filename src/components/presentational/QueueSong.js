@@ -15,6 +15,7 @@ const QueueSong = ({song, removeFromQueue, setCurrentSong}) => {
     <li
       className="QueueSong"
     >
+      <span className='drag'>☰</span>
       <span>
         <button
           onClick={handleClickLoad}
@@ -29,6 +30,7 @@ const QueueSong = ({song, removeFromQueue, setCurrentSong}) => {
       </span>
 
       {song.title}
+
     </li>
   );
 }

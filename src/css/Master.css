@@ -1,7 +1,6 @@
 .Master {
   display: flex;
   flex-direction: column;
-  flex-shrink: 1;
   border-radius: 20px;
 }
 

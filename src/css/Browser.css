@@ -1,3 +1,6 @@
+.Browser {
+  flex-grow: 1;
+}
 .Browser table th {
   background: #ff9;
 }

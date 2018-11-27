@@ -7,4 +7,10 @@
   ul {
     padding: 0;
   }
+
+  .drag {
+    &:hover {
+      color: red;
+    }
+  }
 }

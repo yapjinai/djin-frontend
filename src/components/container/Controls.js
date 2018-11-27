@@ -1,26 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/Controls.css';
 
-const PlayPause = (props) => {
-  const playPause = () => {
-    if (props.playing) {
-      return 'Pause'
-    }
-    else {
-      return 'Play'
-    }
-  }
-
-  return (
-    <div className="PlayPause">
-      <button
-        onClick={props.togglePlaying}
-      >
-        {playPause()}
-      </button>
-    </div>
-  );
-}
 const Volume = (props) => {
   const handleChange = (e) => {
     props.setVolume(parseFloat(e.target.value))
@@ -39,19 +19,6 @@ const Volume = (props) => {
         value={props.volume}
         onChange={handleChange}
       />
-    </div>
-  );
-}
-const BpmSync = (props) => {
-  return (
-    <div className="BpmSync">
-      <label>Sync to this BPM</label>
-      <br />
-      <button
-        onClick={props.syncBpm}
-      >
-        Sync
-      </button>
     </div>
   );
 }
@@ -122,16 +89,22 @@ class Controls extends Component {
   render() {
     return (
       <div className='Controls'>
-        <PlayPause
-          playing={this.props.playing}
-          togglePlaying={this.props.togglePlaying}
-        />
+        <div className='buttons'>
+          <button
+            onClick={this.props.togglePlaying}
+          >
+            {this.playPause()}
+          </button>
+          <button
+            onClick={this.props.syncBpm}
+          >
+            Sync
+          </button>
+        </div>
+
         <Volume
           volume={this.props.volume}
           setVolume={this.props.setVolume}
-        />
-        <BpmSync
-          syncBpm={this.props.syncBpm}
         />
         <DoubleHalf
           bpmFactor={this.props.bpmFactor}
@@ -139,6 +112,17 @@ class Controls extends Component {
         />
       </div>
     )
+  }
+
+  //////////
+
+  playPause = () => {
+    if (this.props.playing) {
+      return 'Pause'
+    }
+    else {
+      return 'Play'
+    }
   }
 }
 export default Controls;

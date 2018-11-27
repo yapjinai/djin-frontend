@@ -5,10 +5,11 @@
     // border: none;
   }
 
-  .DoubleHalf {
+  .DoubleHalf, .Volume {
     text-align: center;
     .buttons {
       display: flex;
+      border: none;
     }
   }
 }

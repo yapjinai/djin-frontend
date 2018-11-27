@@ -5,5 +5,8 @@
 .Queue ul {
   padding: 0;
 }
+.Queue .drag:hover {
+  color: red;
+}
 
 /*# sourceMappingURL=Queue.css.map */

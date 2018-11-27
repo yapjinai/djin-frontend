@@ -1,4 +1,4 @@
-const masterBpm = (state = 0, action) => {
+const masterBpm = (state = null, action) => {
   switch (action.type) {
     case 'SET_BPM':
       return action.bpm

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sortable from 'sortablejs'
 
 import { connect } from 'react-redux'
 import { setSideQueue } from '../../actions'
@@ -12,11 +13,19 @@ class Queue extends Component {
   render() {
     return (
       <div className="Queue">
-        <ul>
+        <ul id={`${this.props.side}-queue`}>
           {this.renderQueue()}
         </ul>
       </div>
     );
+  }
+
+  componentDidMount() {
+    const list = document.getElementById(`${this.props.side}-queue`);
+    Sortable.create(list, {
+      animation: 150,
+      handle: '.drag'
+    })
   }
 
   ////////////////
