@@ -1,8 +1,17 @@
 import React from 'react';
 
-const BrowserSong = ({song, pushToQueue}) => {
+const BrowserSong = ({song, pushToQueue, browserFilterQuery, setBrowserFilterQuery}) => {
   const handleClick = (e) => {
     pushToQueue(e.target.name, song)
+  }
+
+  const clickSearch = (e) => {
+    if (browserFilterQuery !== e.target.innerHTML) {
+      setBrowserFilterQuery(e.target.innerHTML)
+    }
+    else {
+      setBrowserFilterQuery('')
+    }
   }
 
   return (
@@ -26,7 +35,10 @@ const BrowserSong = ({song, pushToQueue}) => {
       <td className='title'>
         {song.title}
       </td>
-      <td className='artist'>
+      <td
+        className='artist'
+        onClick={clickSearch}
+      >
         {song.artist}
       </td>
       <td className='bpm'>

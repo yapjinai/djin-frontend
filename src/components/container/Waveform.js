@@ -13,7 +13,6 @@ class Waveform extends Component {
   }
 
   render() {
-    console.log('render');
     return (
       <div className="Waveform">
         {this.renderWaveform()}
@@ -27,6 +26,11 @@ class Waveform extends Component {
     this.setState({
       pos: e.originalArgs[0]
     });
+  }
+
+  handleFinish = () => {
+    console.log('finished');
+    this.props.playNextFromQueue()
   }
 
   renderWaveform = () => {
@@ -58,7 +62,7 @@ class Waveform extends Component {
 
           pos={this.state.pos}
           onPosChange={this.handlePosChange}
-          onFinish={this.props.playNextFromQueue}
+          onFinish={this.handleFinish}
 
           // LOOPS
         >

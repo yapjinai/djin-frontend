@@ -103,8 +103,8 @@ class Channel extends Component {
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
       const currentSong = this.props.queue[0]
-      this.props.shiftFromQueue(this.props.side)
       this.props.setChannelState(this.props.side, 'currentSong', currentSong)
+      this.props.shiftFromQueue(this.props.side)
     }
     else {
       this.props.setChannelState(this.props.side, 'currentSong', null)

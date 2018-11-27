@@ -29,8 +29,12 @@ class Browser extends Component {
         placeholder='Filter'
         value={this.props.browserFilterQuery}
         onChange={this.handleChange}
+      />
+      <button
+        onClick={() => this.props.setBrowserFilterQuery('')}
       >
-      </input>
+        Clear
+      </button>
         <table>
           <thead>
             <tr>
@@ -91,6 +95,8 @@ class Browser extends Component {
           song={s}
           key={uuid()}
           pushToQueue={this.props.pushToQueue}
+          setBrowserFilterQuery={this.props.setBrowserFilterQuery}
+          browserFilterQuery={this.props.browserFilterQuery}
         />
       )
     })
@@ -170,8 +176,6 @@ const mapStateToProps = (state, ownProps) => ({
   browserFilterQuery: state.browserFilterQuery,
   sortBy: state.sortBy,
   reverseSort: state.reverseSort,
-
-
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
