@@ -23,8 +23,6 @@ class Channel extends Component {
       this.calculateAudioRate()
     }
 
-    console.log(this.props.channel.currentSong);
-
     return (
       <div className={`Channel ${this.props.side}`}>
         <div className='controls'>
@@ -92,31 +90,23 @@ class Channel extends Component {
 
   togglePlaying = () => {
     if (this.props.channel.currentSong) {
+      console.log('a');
       this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
     }
     else if (this.props.queue[0]) {
+      console.log('b');
       this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
 
-      this.playCurrentOrQueue()
-    }
-  }
-  ///////////////////////
-
-  playCurrentOrQueue = () => {
-    if (this.props.channel.currentSong) {
-
-    }
-    else {
       this.playNextFromQueue()
     }
   }
+  ///////////////////////
 
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
       const currentSong = this.props.queue[0]
       this.props.shiftFromQueue(this.props.side)
       this.props.setChannelState(this.props.side, 'currentSong', currentSong)
-      this.props.setChannelState(this.props.side, 'playing', true)
     }
     else {
       this.props.setChannelState(this.props.side, 'currentSong', null)
@@ -129,7 +119,6 @@ class Channel extends Component {
   //////////////////////
 
   calculateAudioVolume = () => {
-    console.log(this.props.crossfade);
     const volume = this.props.channel.volume
     const crossfade = parseFloat(this.props.crossfade)
     const side = this.props.side
@@ -167,7 +156,6 @@ class Channel extends Component {
 
   syncBpm = () => {
     if (this.props.channel.currentSong) {
-      console.log(this.props.channel.currentSong);
       this.props.setBpm(this.props.channel.currentSong.bpm)
     }
   }

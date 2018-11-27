@@ -10,7 +10,6 @@ const uuid = require('uuid/v4');
 class Queue extends Component {
 
   render() {
-    console.log('rendering');
     return (
       <div className="Queue">
         <ul>

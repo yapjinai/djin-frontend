@@ -16,7 +16,7 @@ const defaultChannels = {
 
 const channels = (state = defaultChannels, action) => {
 
-  function setChannelState(side, key, newValue) {
+  function returnChannelState(side, key, newValue) {
     const newChannel = {...state[side]}
     newChannel[key] = newValue
 
@@ -31,7 +31,7 @@ const channels = (state = defaultChannels, action) => {
       const key = action.key
       const newValue = action.newValue
 
-      return setChannelState(side, key, newValue)
+      return returnChannelState(side, key, newValue)
 
     default:
       return state
