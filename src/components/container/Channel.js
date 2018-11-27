@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setBpm, setCrossfade } from '../../actions'
+import {
+  setBpm,
+  setCrossfade,
+
+  setChannelState,
+
+  shiftFromQueue
+} from '../../actions'
 
 import '../../css/Channel.css';
 import Waveform from './Waveform';
@@ -9,61 +16,43 @@ import Controls from './Controls';
 import Queue from './Queue';
 
 class Channel extends Component {
-  constructor() {
-    super()
-    this.state = {
-      currentSong: null,
-      playing: false,
-      waveformPlaying: false,
-      volume: .5,
-      pitchShift: false,
-      calculatedVolume: .5,
-      bpmFactor: 1,
-      calculatedAudioRate: 1
-    }
-  }
-
   render() {
-    if (this.state.currentSong) {
+    if (this.props.channel.currentSong) {
       this.setBpm()
-      this.setAudioVolume()
-      this.setAudioBpm()
+      this.calculateAudioVolume()
+      this.calculateAudioRate()
     }
 
     return (
       <div className={`Channel ${this.props.side}`}>
         <div className='controls'>
-          <h2>{this.state.currentSong ? `${this.state.currentSong.title} (${this.state.currentSong.bpm} bpm)` : 'No song playing'}</h2>
+          <h2>{this.props.channel.currentSong ? `${this.props.channel.currentSong.title} (${this.props.channel.currentSong.bpm} bpm)` : 'No song playing'}</h2>
 
           <Waveform
-            currentSong={this.state.currentSong}
+            currentSong={this.props.channel.currentSong}
 
-            playing={this.state.waveformPlaying}
-            volume={this.state.calculatedVolume}
-            audioRate={this.state.calculatedAudioRate}
-            pitchShift={this.state.pitchShift}
+            volume={this.props.channel.calculatedVolume}
+            audioRate={this.props.channel.calculatedAudioRate}
 
-            // playNextFromQueue={this.playNextFromQueue}
+            playNextFromQueue={this.playNextFromQueue}
           />
 
           <Controls
-            playing={this.state.playing}
+            playing={this.props.channel.playing}
             togglePlaying={this.togglePlaying}
 
-            volume={this.state.volume}
+            volume={this.props.channel.volume}
             changeVolume={this.changeVolume}
 
             syncBpm={this.syncBpm}
 
-            bpmFactor={this.state.bpmFactor}
+            bpmFactor={this.props.channel.bpmFactor}
             changeBpmFactor={this.changeBpmFactor}
-
-            pitchShift={this.state.pitchShift}
-            togglePitchShift={this.togglePitchShift}
           />
         </div>
         <Queue
           side={this.props.side}
+          changeCurrentSong={this.changeCurrentSong}
         />
       </div>
     );
@@ -72,15 +61,12 @@ class Channel extends Component {
   // CHANNEL CONTROLS
   //////////////////////
 
-
   changeVolume = (newVolume) => {
-    this.setState({
-      volume: newVolume
-    })
+    setChannelState(this.props.side, 'volume', newVolume)
   }
 
   changeBpmFactor = (type) => {
-    let newBpmFactor = this.state.bpmFactor
+    let newBpmFactor = this.props.channel.bpmFactor
     switch (type) {
       case 'double':
         newBpmFactor *= 2
@@ -93,54 +79,27 @@ class Channel extends Component {
         break;
     }
     if (newBpmFactor >= 0.125 && newBpmFactor <= 8) {
-      this.setState({
-        bpmFactor: newBpmFactor
-      })
+      setChannelState(this.props.side, 'bpmFactor', newBpmFactor)
     }
-  }
-
-  ////
-
-  syncBpm = () => {
-    if (this.state.currentSong) {
-      this.props.setBpm(this.state.currentSong.bpm)
-    }
-  }
-
-  ////
-
-  togglePitchShift = () => {
-    this.setState({
-      pitchShift: !this.state.pitchShift
-    })
   }
 
   changeCurrentSong = (newSong) => {
-    this.setState({
-      currentSong: newSong,
-      // playing: true
-    }, () => {
-      this.playCurrentOrQueue()
-    })
+    setChannelState(this.props.side, 'currentSong', newSong)
+    this.playCurrentOrQueue()
   }
-
   ///////////////////////
 
   // TODO: hacky
 
   togglePlaying = () => {
-    if (this.state.currentSong || this.props.queue[0]) {
-      this.setState({
-        playing: !this.state.playing,
-        waveformPlaying: !this.state.waveformPlaying
-      }, () => {
-        this.playCurrentOrQueue()
-      })
+    if (this.props.channel.currentSong || this.props.queue[0]) {
+      setChannelState(this.props.side, 'playing', !this.props.channel.playing)
+      this.playCurrentOrQueue()
     }
   }
 
   playCurrentOrQueue = () => {
-    if (this.state.currentSong) {
+    if (this.props.channel.currentSong) {
       // this.toggleAudio()
     }
     else {
@@ -151,38 +110,21 @@ class Channel extends Component {
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
       const currentSong = this.props.shiftFromQueue(this.props.side)
-      this.setState({
-        currentSong: currentSong
-      }
-      // , () => {
-      //   this.toggleAudio()
-      // }
-      )
+      setChannelState(this.props.side, 'currentSong', currentSong)
     }
     else {
-      this.setState({
-        currentSong: null,
-        playing: false
-      })
+      setChannelState(this.props.side, 'currentSong', null)
+      setChannelState(this.props.side, 'playing', false)
     }
   }
 
   //////////////////////
   // AUDIO CONTROLS
   //////////////////////
-  //
-  // toggleAudio = () => {
-  //   if (this.state.playing) {
-  //     // this.state.audio.play()
-  //   }
-  //   else {
-  //     // this.state.audio.pause()
-  //   }
-  // }
 
-  setAudioVolume = () => {
+  calculateAudioVolume = () => {
     console.log(this.props.crossfade);
-    const volume = this.state.volume
+    const volume = this.props.channel.volume
     const crossfade = parseFloat(this.props.crossfade)
     const side = this.props.side
     let newVolume
@@ -197,31 +139,25 @@ class Channel extends Component {
       newVolume = volume
     }
 
-    if (this.state.calculatedVolume !== newVolume) {
-      this.setState({
-        calculatedVolume: newVolume
-      })
+    if (this.props.channel.calculatedVolume !== newVolume) {
+      setChannelState(this.props.side, 'calculatedVolume', newVolume)
     }
   }
 
-  setAudioBpm = () => {
+  calculateAudioRate = () => {
     const masterBpm = this.props.masterBpm
-    const songBpm = this.state.currentSong.bpm
+    const songBpm = this.props.channel.currentSong.bpm
     const songPlaybackRate = masterBpm / songBpm
-    const bpmFactor = this.state.bpmFactor
+    const bpmFactor = this.props.channel.bpmFactor
 
-    if (songPlaybackRate > 0.1 && this.state.calculatedAudioRate !== songPlaybackRate * bpmFactor) {
-      // this.state.audio.playbackRate = songPlaybackRate
-      this.setState({
-        calculatedAudioRate: songPlaybackRate * bpmFactor
-      })
+    if (songPlaybackRate > 0.1 && this.props.channel.calculatedAudioRate !== songPlaybackRate * bpmFactor) {
+      setChannelState(this.props.side, 'calculatedAudioRate', songPlaybackRate * bpmFactor)
     }
   }
 
   //////////////////////
   // GLOBAL CONTROLS
   //////////////////////
-
 
 //////////////TODO THIS IS HACKY FIX IT!!!!!!!!
   setBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
@@ -230,17 +166,39 @@ class Channel extends Component {
     }
   }
 
-  ///////////////////////
+  syncBpm = () => {
+    if (this.props.channel.currentSong) {
+      this.props.setBpm(this.props.channel.currentSong.bpm)
+    }
+  }
+
+
 }
 
+///////////////////////
+// redux
+///////////////////////
+
 const mapStateToProps = (state, ownProps) => ({
+  // App state
   masterBpm: state.masterBpm,
-  crossfade: state.crossfade
+  crossfade: state.crossfade,
+
+  // Channel state
+  channel: state.channels[ownProps.side],
+
+  queue: state.queues[ownProps.side]
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  // App state setters
   setBpm: (bpm) => dispatch(setBpm(bpm)),
   setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
+
+  // Channel state setters
+  setChannelState: (side, key, newValue) => dispatch(setChannelState(side, key, newValue)),
+
+  shiftFromQueue: (side) => dispatch(shiftFromQueue(side))
 })
 
 const connectedChannel = connect(

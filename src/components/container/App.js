@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import '../../css/App.css';
+
 import Channel from './Channel';
-
 import Master from './Master';
-// import Channels from './Channels';
-
-// const apiUrl = 'http://localhost:3000'
 
 class App extends Component {
   render() {
