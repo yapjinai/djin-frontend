@@ -48,8 +48,6 @@ class Waveform extends Component {
         }
       }
 
-      console.log(this.props.playing)
-      
       return (
         <Wavesurfer
           audioFile={this.props.currentSong.url}

@@ -33,6 +33,15 @@ const channels = (state = defaultChannels, action) => {
 
       return returnChannelState(side, key, newValue)
 
+    case 'PLAY_ALL':
+      const play = action.play
+      const newLeft = {...state.left}
+      const newRight = {...state.right}
+      newLeft.playing = play
+      newRight.playing = play
+
+      return {left: newLeft, right: newRight}
+
     default:
       return state
   }

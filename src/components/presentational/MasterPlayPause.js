@@ -1,25 +1,25 @@
 import React from 'react';
 
-const MasterPlayPause = (props) => {
-  // const masterPlayPause = () => {
-  //   if (masterPlaying) {
-  //     return 'Pause'
-  //   }
-  //   else {
-  //     return 'Play'
-  //   }
-  // }
+const MasterPlayPause = ({leftPlaying, rightPlaying, playAll}) => {
+  const masterPlaying = () => {
+    return leftPlaying || rightPlaying
+  }
 
-  // const handleClick = () => {
-  //   changeState({masterPlaying: !masterPlaying})
-  // }
+  const handleClick = () => {
+    if (masterPlaying()) {
+      playAll(false)
+    }
+    else {
+      playAll(true)
+    }
+  }
 
   return (
     <div className="MasterPlayPause">
       <button
-        // onClick={handleClick}
+        onClick={handleClick}
       >
-        PLAY/PAUSE
+        {masterPlaying() ? 'Pause' : 'Play'}
       </button>
     </div>
   );

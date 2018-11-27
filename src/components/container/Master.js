@@ -4,7 +4,6 @@ import '../../css/Master.css';
 import MasterControls from './MasterControls';
 import Browser from './Browser';
 
-
 class Master extends Component {
   render() {
     return (

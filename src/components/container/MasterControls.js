@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
-import { setBpm, setCrossfade } from '../../actions'
+import {
+  setBpm,
+  setCrossfade,
+  playAll
+ } from '../../actions'
 
 import '../../css/MasterControls.css';
 
@@ -17,6 +21,9 @@ class MasterControls extends Component {
        style={{display: 'flex'}}
       >
         <MasterPlayPause
+          leftPlaying={this.props.leftPlaying}
+          rightPlaying={this.props.rightPlaying}
+          playAll={this.props.playAll}
         />
         <Crossfader
           crossfade={this.props.crossfade}
@@ -34,12 +41,15 @@ class MasterControls extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   masterBpm: state.masterBpm,
-  crossfade: state.crossfade
+  crossfade: state.crossfade,
+  leftPlaying: state.channels.left.playing,
+  rightPlaying: state.channels.right.playing,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setBpm: (bpm) => dispatch(setBpm(bpm)),
   setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
+  playAll: (play) => dispatch(playAll(play)),
 })
 
 const connectedMasterControls = connect(

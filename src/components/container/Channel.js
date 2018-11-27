@@ -90,11 +90,9 @@ class Channel extends Component {
 
   togglePlaying = () => {
     if (this.props.channel.currentSong) {
-      console.log('a');
       this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
     }
     else if (this.props.queue[0]) {
-      console.log('b');
       this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
 
       this.playNextFromQueue()

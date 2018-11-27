@@ -66,3 +66,7 @@ export const setChannelState = (side, key, newValue) => ({
   key: key,
   newValue: newValue
 })
+export const playAll = (play) => ({
+  type: 'PLAY_ALL',
+  play: play
+})
