@@ -18,10 +18,12 @@ import Queue from './Queue';
 class Channel extends Component {
   render() {
     if (this.props.channel.currentSong) {
-      this.setBpm()
+      this.setInitialBpm()
       this.calculateAudioVolume()
       this.calculateAudioRate()
     }
+
+    console.log(this.props.channel.currentSong);
 
     return (
       <div className={`Channel ${this.props.side}`}>
@@ -30,6 +32,7 @@ class Channel extends Component {
 
           <Waveform
             currentSong={this.props.channel.currentSong}
+            playing={this.props.channel.playing}
 
             volume={this.props.channel.calculatedVolume}
             audioRate={this.props.channel.calculatedAudioRate}
@@ -60,13 +63,6 @@ class Channel extends Component {
   //////////////////////
   // CHANNEL CONTROLS
   //////////////////////
-  togglePlaying = () => {
-    if (this.props.channel.currentSong || this.props.queue[0]) {
-      this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
-
-      this.playCurrentOrQueue()
-    }
-  }
 
   setVolume = (newVolume) => {
     this.props.setChannelState(this.props.side, 'volume', newVolume)
@@ -91,20 +87,24 @@ class Channel extends Component {
   }
 
   setCurrentSong = (newSong) => {
-    console.log('hi');
-
     this.props.setChannelState(this.props.side, 'currentSong', newSong)
+  }
 
-    // this.playCurrentOrQueue()
+  togglePlaying = () => {
+    if (this.props.channel.currentSong) {
+      this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
+    }
+    else if (this.props.queue[0]) {
+      this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
+
+      this.playCurrentOrQueue()
+    }
   }
   ///////////////////////
 
-  // TODO: hacky
-
-
   playCurrentOrQueue = () => {
     if (this.props.channel.currentSong) {
-      // this.toggleAudio()
+
     }
     else {
       this.playNextFromQueue()
@@ -113,8 +113,10 @@ class Channel extends Component {
 
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
-      const currentSong = this.props.shiftFromQueue(this.props.side)
+      const currentSong = this.props.queue[0]
+      this.props.shiftFromQueue(this.props.side)
       this.props.setChannelState(this.props.side, 'currentSong', currentSong)
+      this.props.setChannelState(this.props.side, 'playing', true)
     }
     else {
       this.props.setChannelState(this.props.side, 'currentSong', null)
@@ -163,14 +165,14 @@ class Channel extends Component {
   // GLOBAL CONTROLS
   //////////////////////
 
-//////////////TODO THIS IS HACKY FIX IT!!!!!!!!
   syncBpm = () => {
     if (this.props.channel.currentSong) {
+      console.log(this.props.channel.currentSong);
       this.props.setBpm(this.props.channel.currentSong.bpm)
     }
   }
 
-  setBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
+  setInitialBpm = () => { // if no song bpm set and song playing for first time, set bpm to current song bpm
     if (!this.props.masterBpm) {
       this.syncBpm()
     }

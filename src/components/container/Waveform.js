@@ -32,7 +32,7 @@ class Waveform extends Component {
     if (this.props.currentSong) {
       const waveformOptions = {
         audioRate: this.props.audioRate,
-        backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
+        // backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
 
         height: 64,
         fillParent: false,

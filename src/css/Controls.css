@@ -1,9 +1,6 @@
 .Controls {
   display: flex;
 }
-.Controls div {
-  border: none;
-}
 .Controls .DoubleHalf {
   text-align: center;
 }
