@@ -5,5 +5,9 @@
   text-align: center;
   flex-grow: 1;
 }
+.MasterControls .MasterPlayPause button {
+  height: 100%;
+  width: 100%;
+}
 
 /*# sourceMappingURL=MasterControls.css.map */

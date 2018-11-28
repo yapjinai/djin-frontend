@@ -4,6 +4,8 @@
 
   min-width: 10vw;
 
+  color: #45f;
+
   ul {
     padding: 0;
   }
@@ -11,6 +13,7 @@
   .drag {
     &:hover {
       color: red;
+      cursor: move;
     }
   }
 }

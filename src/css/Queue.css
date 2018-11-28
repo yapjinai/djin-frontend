@@ -1,12 +1,14 @@
 .Queue {
   flex-grow: 1;
   min-width: 10vw;
+  color: #45f;
 }
 .Queue ul {
   padding: 0;
 }
 .Queue .drag:hover {
   color: red;
+  cursor: move;
 }
 
 /*# sourceMappingURL=Queue.css.map */
