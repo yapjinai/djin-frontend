@@ -27,6 +27,14 @@ class Upload extends Component {
             placeholder="BPM (optional)"
           />
           <input
+            id='upload'
+            name='upload'
+            type='file'
+            name='upload'
+            accept='audio/*'
+            // multiple={true}
+          />
+          <input
             name='submit'
             type='submit'
             value='Upload'
@@ -36,14 +44,6 @@ class Upload extends Component {
     );
   }
 
-  // <input
-  // id='upload'
-  // name='upload'
-  // type='file'
-  // name='upload'
-  // accept='audio/*'
-  // // multiple={true}
-  // />
   componentDidMount() {
   }
 
@@ -51,7 +51,6 @@ class Upload extends Component {
     e.preventDefault()
     const form = document.querySelector('#upload-form')
     const formData = new FormData(form)
-    console.log(formData);
 
     // const input = document.querySelector('#upload')
     // const file = input.files[0]
@@ -61,7 +60,9 @@ class Upload extends Component {
     fetch(uploadedSongsApi, {
       method: 'POST',
       body: formData
-    }).then(res => res.json()).then(json => console.log(json))
+    })
+    .then(r => r.json())
+    .then(console.log)
   }
 }
 
