@@ -6,6 +6,7 @@ import {
   setCrossfade,
 
   setChannelState,
+  setPlaying,
 
   shiftFromQueue
 } from '../../actions'
@@ -29,6 +30,8 @@ class Channel extends Component {
           <h2>{this.props.channel.currentSong ? `${this.props.channel.currentSong.title} (${this.props.channel.currentSong.bpm} bpm)` : 'No song playing'}</h2>
 
           <Waveform
+            side={this.props.side}
+
             currentSong={this.props.channel.currentSong}
             playing={this.props.channel.playing}
 
@@ -36,6 +39,7 @@ class Channel extends Component {
             audioRate={this.props.channel.calculatedAudioRate}
 
             playNextFromQueue={this.playNextFromQueue}
+            // setPlaying={this.props.setPlaying}
           />
 
           <Controls
@@ -90,10 +94,10 @@ class Channel extends Component {
 
   togglePlaying = () => {
     if (this.props.channel.currentSong) {
-      this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
+      this.props.setPlaying(this.props.side, !this.props.channel.playing)
     }
     else if (this.props.queue[0]) {
-      this.props.setChannelState(this.props.side, 'playing', !this.props.channel.playing)
+      this.props.setPlaying(this.props.side, !this.props.channel.playing)
 
       this.playNextFromQueue()
     }
@@ -102,13 +106,15 @@ class Channel extends Component {
 
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
+      console.log('playing next');
       const currentSong = this.props.queue[0]
       this.props.setChannelState(this.props.side, 'currentSong', currentSong)
       this.props.shiftFromQueue(this.props.side)
     }
     else {
+      console.log('hit');
       this.props.setChannelState(this.props.side, 'currentSong', null)
-      this.props.setChannelState(this.props.side, 'playing', false)
+      this.props.setPlaying(this.props.side, false)
     }
   }
 
@@ -187,6 +193,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   // Channel state setters
   setChannelState: (side, key, newValue) => dispatch(setChannelState(side, key, newValue)),
+  setPlaying: (side, playing) => dispatch(setPlaying(side, playing)),
 
   shiftFromQueue: (side) => dispatch(shiftFromQueue(side))
 })

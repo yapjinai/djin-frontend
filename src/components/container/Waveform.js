@@ -30,6 +30,7 @@ class Waveform extends Component {
 
   handleFinish = () => {
     console.log('finished');
+    // this.props.setPlaying(this.props.side, false)
     this.props.playNextFromQueue()
   }
 
@@ -39,7 +40,7 @@ class Waveform extends Component {
         audioRate: this.props.audioRate,
         // backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
 
-        height: 64,
+        height: 128,
         fillParent: false,
         scrollParent: true
       }
