@@ -82,9 +82,13 @@ class Browser extends Component {
 
   fetchAllSongs = () => {
     fetch(`${apiUrl}/songs`)
-    .then(r => r.json())
-    .then(r => {
-      this.props.setAllSongs(r)
+    .then(songs => songs.json())
+    .then(songs => {
+      fetch(`${apiUrl}/uploaded_songs`)
+      .then(uploaded => uploaded.json())
+      .then(uploaded => {
+        this.props.setAllSongs(songs.concat(uploaded))
+      })
     })
   }
 

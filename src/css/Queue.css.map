@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/Queue.scss"],"names":[],"mappings":"AAAA;EAEE;EAEA;EAEA;;AAEA;EACE;;AAIA;EACE;EACA","file":"Queue.css"}
+{
+"version": 3,
+"mappings": "AAAA,MAAO;EAEL,SAAS,EAAE,CAAC;EAEZ,SAAS,EAAE,IAAI;EAEf,KAAK,EAAE,IAAI;EAEX,SAAG;IACD,OAAO,EAAE,CAAC;EAIV,kBAAQ;IACN,KAAK,EAAE,GAAG;IACV,MAAM,EAAE,IAAI",
+"sources": ["../scss/Queue.scss"],
+"names": [],
+"file": "Queue.css"
+}

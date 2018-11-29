@@ -1,12 +1,9 @@
 .Controls {
-  display: flex;
-}
-.Controls .DoubleHalf, .Controls .Volume {
-  text-align: center;
-}
-.Controls .DoubleHalf .buttons, .Controls .Volume .buttons {
-  display: flex;
-  border: none;
-}
+  display: flex; }
+  .Controls .DoubleHalf, .Controls .Volume {
+    text-align: center; }
+    .Controls .DoubleHalf .buttons, .Controls .Volume .buttons {
+      display: flex;
+      border: none; }
 
 /*# sourceMappingURL=Controls.css.map */

@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/Channel.scss"],"names":[],"mappings":"AAAA;EAKE;EACA;EAEA;EAEA;;AATA;EACE;;AAUF;EACE","file":"Channel.css"}
+{
+"version": 3,
+"mappings": "AAAA,QAAS;EAKP,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EAEtB,SAAS,EAAE,CAAC;EAEZ,aAAa,EAAE,IAAI;EATnB,WAAG;IACD,OAAO,EAAE,MAAM;EAUjB,kBAAU;IACR,SAAS,EAAE,IAAI",
+"sources": ["../scss/Channel.scss"],
+"names": [],
+"file": "Channel.css"
+}

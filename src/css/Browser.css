@@ -1,6 +1,8 @@
 .Browser {
-  flex-grow: 1;
-  color: #45f; }
+  flex-shrink: 1;
+  color: #45f;
+  overflow-y: scroll;
+  height: 70%; }
   .Browser table th {
     background: #ffeaf9; }
   .Browser table .sortBy {
