@@ -23,7 +23,6 @@ class Channel extends Component {
       this.calculateAudioVolume()
       this.calculateAudioRate()
     }
-
     return (
       <div className={`Channel ${this.props.side}`}>
         <div className='controls'>

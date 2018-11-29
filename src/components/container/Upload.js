@@ -36,7 +36,6 @@ class Upload extends Component {
               id='upload'
               name='upload'
               type='file'
-              name='upload'
               accept='audio/*'
               required
               // multiple={true}
