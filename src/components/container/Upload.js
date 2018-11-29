@@ -44,18 +44,10 @@ class Upload extends Component {
     );
   }
 
-  componentDidMount() {
-  }
-
   handleSubmit = (e) => {
     e.preventDefault()
     const form = document.querySelector('#upload-form')
     const formData = new FormData(form)
-
-    // const input = document.querySelector('#upload')
-    // const file = input.files[0]
-    // formData.append('file', file)
-    // console.log(file);
 
     fetch(uploadedSongsApi, {
       method: 'POST',
@@ -63,7 +55,12 @@ class Upload extends Component {
     })
     .then(r => r.json())
     .then(console.log)
+
+    e.target.reset()
+
+    // todo: validations
   }
+
 }
 
 export default Upload;
