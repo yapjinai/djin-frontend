@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/Browser.scss"],"names":[],"mappings":"AAAA;EACE;EAEA;;AAGE;EACE;;AAEF;EACE;;AAEF;EACE;;AAEF;EACE;;AAEF;EACE;;AAEF;EACE","file":"Browser.css"}
+{
+"version": 3,
+"mappings": "AAAA,QAAS;EACP,SAAS,EAAE,CAAC;EAEZ,KAAK,EAAE,IAAI;EAGT,iBAAG;IACD,UAAU,EAAE,OAAO;EAErB,sBAAQ;IACN,UAAU,EAAE,IAAI;EAElB,iBAAG;IACD,UAAU,EAAE,IAAI;EAElB,6CAAgB;IACd,KAAK,EAAE,IAAI;EAEb,kEAAsB;IACpB,OAAO,EAAE,MAAM;EAEjB,mBAAK;IACH,UAAU,EAAE,KAAK",
+"sources": ["../scss/Browser.scss"],
+"names": [],
+"file": "Browser.css"
+}

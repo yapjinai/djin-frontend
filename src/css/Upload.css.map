@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["../scss/Upload.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EAEA","file":"Upload.css"}
+{
+"version": 3,
+"mappings": "AAAA,OAAQ;EACN,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;EAE7B,WAAW,EAAE,QAAQ",
+"sources": ["../scss/Upload.scss"],
+"names": [],
+"file": "Upload.css"
+}
