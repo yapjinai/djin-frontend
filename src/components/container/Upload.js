@@ -11,34 +11,42 @@ class Upload extends Component {
           id='upload-form'
           onSubmit={this.handleSubmit}
         >
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-          />
-          <input
-            type="text"
-            name="artist"
-            placeholder="Artist"
-          />
-          <input
-            type="text"
-            name="bpm"
-            placeholder="BPM (optional)"
-          />
-          <input
-            id='upload'
-            name='upload'
-            type='file'
-            name='upload'
-            accept='audio/*'
-            // multiple={true}
-          />
-          <input
-            name='submit'
-            type='submit'
-            value='Upload'
-          />
+          <span className='fields'>
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              required
+            />
+            <input
+              type="text"
+              name="artist"
+              placeholder="Artist"
+              required
+            />
+            <input
+              type="text"
+              name="bpm"
+              placeholder="BPM"
+              required
+            />
+          </span>
+          <span className='submit'>
+            <input
+              id='upload'
+              name='upload'
+              type='file'
+              name='upload'
+              accept='audio/*'
+              required
+              // multiple={true}
+            />
+            <input
+              name='submit'
+              type='submit'
+              value='Upload'
+            />
+          </span>
         </form>
       </div>
     );

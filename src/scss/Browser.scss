@@ -1,7 +1,10 @@
 .Browser {
-  flex-grow: 1;
+  flex-shrink: 1;
 
   color: #45f;
+  overflow-y: scroll;
+
+  height: 70%;
 
   table {
     th {
@@ -22,5 +25,7 @@
     .bpm {
       text-align: right;
     }
+
+    // height: 2vh;
   }
 }

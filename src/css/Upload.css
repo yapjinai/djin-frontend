@@ -1,7 +1,12 @@
-.Upload {
+.Upload form {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-}
+  flex-direction: column; }
+  .Upload form .fields {
+    display: flex; }
+    .Upload form .fields * {
+      flex-grow: 1; }
+  .Upload form .submit {
+    display: flex;
+    justify-content: space-between; }
 
 /*# sourceMappingURL=Upload.css.map */
