@@ -16,6 +16,7 @@ class Waveform extends Component {
   render() {
     this.setAudioRate()
     this.setBackend()
+    this.setLoop()
 
     return (
       <div className="Waveform">
@@ -27,27 +28,33 @@ class Waveform extends Component {
   ////////////////////
 
   setAudioRate = () => {
-    const calculatedAudioRate = this.props.channel.calculatedAudioRate
-    const audioRate = this.props.waveform.waveformOptions.audioRate
+    const givenAudioRate = this.props.audioRate
+    const actualAudioRate = this.props.waveform.waveformOptions.audioRate
 
-    if (audioRate !== calculatedAudioRate) {
-      this.props.setWaveformState('audioRate', this.props.audioRate)
+    if (actualAudioRate !== givenAudioRate) {
+      this.props.setWaveformState('audioRate', givenAudioRate)
     }
   }
 
+// todo: the redux and state work, but pitch shift toggle not working
   setBackend = () => {
     const pitchShift = this.props.pitchShift
     const backend = this.props.waveform.waveformOptions.backend
 
     if (pitchShift && (backend === 'MediaElement')) {
-      console.log(this.props.waveform.waveformOptions.backend);
       this.props.setWaveformState('backend', 'WebAudio')
-      console.log(this.props.waveform.waveformOptions.backend);
     }
     else if (!pitchShift && (backend === 'WebAudio')) {
-      console.log(this.props.waveform.waveformOptions.backend);
       this.props.setWaveformState('backend', 'MediaElement')
-      console.log(this.props.waveform.waveformOptions.backend);
+    }
+  }
+
+  setLoop = () => {
+    const givenLoop = this.props.loop
+    const actualLoop = this.props.waveform.regions.loop.loop
+
+    if (actualLoop !== givenLoop) {
+      this.props.setRegionsState('loop', givenLoop)
     }
   }
 
@@ -56,9 +63,7 @@ class Waveform extends Component {
   handlePosChange = (e) => {
     const newPos = e.originalArgs[0]
     if (newPos < this.props.waveform.regions.loop.start || newPos > this.props.waveform.regions.loop.end) {
-      this.setState({
-        pos: newPos
-      });
+      this.props.setPos(newPos)
     }
   }
 
@@ -69,19 +74,9 @@ class Waveform extends Component {
 
   // REGIONS METHODS
 
-  handleRegionUpdated = (e) => {
-    console.log('updating region');
-
-    const newRegions = {...this.props.waveform.regions}
-    const newLoop = {...this.props.waveform.loop}
-
-    newLoop.start = e.originalArgs[0].start
-    newLoop.end = e.originalArgs[0].end
-
-    newRegions.loop = newLoop
-    this.setState({
-      regions: newRegions
-    })
+  handleRegionUpdateEnd = (e) => {
+    this.props.setRegionsState('start', e.originalArgs[0].start)
+    this.props.setRegionsState('end', e.originalArgs[0].end)
   }
 
   // RENDER
@@ -100,12 +95,10 @@ class Waveform extends Component {
           onPosChange={this.handlePosChange}
           onFinish={this.handleFinish}
         >
-
           <Regions
             regions={this.props.waveform.regions}
-            onRegionUpdated={this.handleRegionUpdated}
+            onRegionUpdateEnd={this.handleRegionUpdateEnd}
           />
-
         </Wavesurfer>
       )
   }
@@ -116,7 +109,6 @@ class Waveform extends Component {
 ///////////////////////
 
 const mapStateToProps = (state, ownProps) => ({
-  channel: state.channels[ownProps.side],
   waveform: state.waveforms[ownProps.side]
 })
 

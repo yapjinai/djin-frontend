@@ -71,6 +71,7 @@ const DoubleHalf = (props) => {
     </div>
   );
 }
+
 const PitchShift = (props) => {
   return (
     <div className="PitchShift">
@@ -80,6 +81,19 @@ const PitchShift = (props) => {
         type="checkbox"
         value={props.pitchShift}
         onChange={props.togglePitchShift}
+      />
+    </div>
+  );
+}
+const Loop = (props) => {
+  return (
+    <div className="Loop">
+      <label>Loop selected region</label>
+      <br />
+      <input
+        type="checkbox"
+        value={props.loop}
+        onChange={props.toggleLoop}
       />
     </div>
   );
@@ -113,6 +127,10 @@ class Controls extends Component {
         <PitchShift
           pitchShift={this.props.pitchShift}
           togglePitchShift={this.props.togglePitchShift}
+        />
+        <Loop
+          loop={this.props.loop}
+          toggleLoop={this.props.toggleLoop}
         />
       </div>
     )

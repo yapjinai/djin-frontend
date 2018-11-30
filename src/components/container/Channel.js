@@ -37,6 +37,7 @@ class Channel extends Component {
             volume={this.props.channel.calculatedVolume}
             audioRate={this.props.channel.calculatedAudioRate}
             pitchShift={this.props.channel.pitchShift}
+            loop={this.props.channel.loop}
 
             playNextFromQueue={this.playNextFromQueue}
             // setPlaying={this.props.setPlaying}
@@ -56,6 +57,9 @@ class Channel extends Component {
 
             pitchShift={this.props.channel.pitchShift}
             togglePitchShift={this.togglePitchShift}
+
+            loop={this.props.channel.loop}
+            toggleLoop={this.toggleLoop}
           />
         </div>
         <Queue
@@ -108,6 +112,10 @@ class Channel extends Component {
 
   togglePitchShift = () => {
     this.props.setChannelState('pitchShift', !this.props.channel.pitchShift)
+  }
+
+  toggleLoop = () => {
+    this.props.setChannelState('loop', !this.props.channel.loop)
   }
   ///////////////////////
 
