@@ -15,6 +15,7 @@ import Regions from 'react-wavesurfer/src/plugins/regions';
 class Waveform extends Component {
   render() {
     this.setAudioRate()
+    this.setBackend()
 
     return (
       <div className="Waveform">
@@ -26,8 +27,27 @@ class Waveform extends Component {
   ////////////////////
 
   setAudioRate = () => {
-    if (this.props.waveform.waveformOptions.audioRate !== this.props.channel.calculatedAudioRate) {
+    const calculatedAudioRate = this.props.channel.calculatedAudioRate
+    const audioRate = this.props.waveform.waveformOptions.audioRate
+
+    if (audioRate !== calculatedAudioRate) {
       this.props.setWaveformState('audioRate', this.props.audioRate)
+    }
+  }
+
+  setBackend = () => {
+    const pitchShift = this.props.pitchShift
+    const backend = this.props.waveform.waveformOptions.backend
+
+    if (pitchShift && (backend === 'MediaElement')) {
+      console.log(this.props.waveform.waveformOptions.backend);
+      this.props.setWaveformState('backend', 'WebAudio')
+      console.log(this.props.waveform.waveformOptions.backend);
+    }
+    else if (!pitchShift && (backend === 'WebAudio')) {
+      console.log(this.props.waveform.waveformOptions.backend);
+      this.props.setWaveformState('backend', 'MediaElement')
+      console.log(this.props.waveform.waveformOptions.backend);
     }
   }
 

@@ -1,8 +1,11 @@
 const defaultWaveform = {
   pos: 0,
   waveformOptions: {
+    // changed in Waveform.js
     audioRate: 1,
-    // backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
+    backend: 'MediaElement',
+
+    // do not change
     height: 128,
     fillParent: false,
     scrollParent: true,

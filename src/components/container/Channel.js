@@ -36,6 +36,7 @@ class Channel extends Component {
 
             volume={this.props.channel.calculatedVolume}
             audioRate={this.props.channel.calculatedAudioRate}
+            pitchShift={this.props.channel.pitchShift}
 
             playNextFromQueue={this.playNextFromQueue}
             // setPlaying={this.props.setPlaying}
