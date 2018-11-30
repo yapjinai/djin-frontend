@@ -77,9 +77,6 @@ class Browser extends Component {
   componentDidMount() {
     this.fetchAllSongs()
   }
-  componentDidUpdate() {
-    this.fetchAllSongs()
-  }
 
 /////////////////////////
 
