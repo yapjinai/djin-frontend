@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Wavesurfer from 'react-wavesurfer';
-// import Regions from 'react-wavesurfer/src/plugins/regions';
+import Regions from 'react-wavesurfer/src/plugins/regions';
 import '../../css/Waveform.css';
-import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.min.js';
+// import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.min.js';
 
 class Waveform extends Component {
   constructor(props) {
@@ -43,15 +43,17 @@ class Waveform extends Component {
 
         height: 128,
         fillParent: false,
-        scrollParent: true
+        scrollParent: true,
+
+        interact: false,
       }
 
       const regionsObjects = {
         loop: {
           id: 'loop',
           start: 0,
-          end: 1,
-          loop: true
+          end: 2,
+          loop: true,
         }
       }
 
@@ -65,9 +67,11 @@ class Waveform extends Component {
           pos={this.state.pos}
           onPosChange={this.handlePosChange}
           onFinish={this.handleFinish}
-
-          // LOOPS
         >
+
+          <Regions
+            regions={regionsObjects}
+          />
 
         </Wavesurfer>
       )
