@@ -1,34 +1,21 @@
 import React, { Component } from 'react';
+
+import { connect } from 'react-redux'
+import {
+  setPos,
+  setWaveformState,
+  setRegionsState,
+} from '../../actions'
+
+import '../../css/Waveform.css';
 import Wavesurfer from 'react-wavesurfer';
 import Regions from 'react-wavesurfer/src/plugins/regions';
-import '../../css/Waveform.css';
 // import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.min.js';
 
 class Waveform extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pos: 0,
-      waveformOptions: {
-        audioRate: this.props.audioRate,
-        // backend: this.props.pitchShift ? 'WebAudio' : 'MediaElement',
-
-        height: 128,
-        fillParent: false,
-        scrollParent: true,
-      },
-      regions: {
-        loop: {
-          id: 'loop',
-          start: 6,
-          end: 8,
-          loop: true,
-        }
-      }
-    };
-  }
-
   render() {
+    this.setAudioRate()
+
     return (
       <div className="Waveform">
         {this.props.currentSong ? this.renderWaveform() : null}
@@ -38,11 +25,17 @@ class Waveform extends Component {
 
   ////////////////////
 
+  setAudioRate = () => {
+    if (this.props.waveform.waveformOptions.audioRate !== this.props.channel.calculatedAudioRate) {
+      this.props.setWaveformState('audioRate', this.props.audioRate)
+    }
+  }
+
   // WAVEFORM METHODS
 
   handlePosChange = (e) => {
     const newPos = e.originalArgs[0]
-    if (newPos < this.state.regions.loop.start || newPos > this.state.regions.loop.end) {
+    if (newPos < this.props.waveform.regions.loop.start || newPos > this.props.waveform.regions.loop.end) {
       this.setState({
         pos: newPos
       });
@@ -59,8 +52,8 @@ class Waveform extends Component {
   handleRegionUpdated = (e) => {
     console.log('updating region');
 
-    const newRegions = {...this.state.regions}
-    const newLoop = {...this.state.loop}
+    const newRegions = {...this.props.waveform.regions}
+    const newLoop = {...this.props.waveform.loop}
 
     newLoop.start = e.originalArgs[0].start
     newLoop.end = e.originalArgs[0].end
@@ -81,15 +74,15 @@ class Waveform extends Component {
           playing={this.props.playing}
           volume={this.props.volume}
 
-          options={this.state.waveformOptions}
-          pos={this.state.pos}
+          options={this.props.waveform.waveformOptions}
+          pos={this.props.waveform.pos}
 
           onPosChange={this.handlePosChange}
           onFinish={this.handleFinish}
         >
 
           <Regions
-            regions={this.state.regions}
+            regions={this.props.waveform.regions}
             onRegionUpdated={this.handleRegionUpdated}
           />
 
@@ -98,4 +91,25 @@ class Waveform extends Component {
   }
 }
 
-export default Waveform;
+///////////////////////
+// redux
+///////////////////////
+
+const mapStateToProps = (state, ownProps) => ({
+  channel: state.channels[ownProps.side],
+  waveform: state.waveforms[ownProps.side]
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  setPos: (pos) => dispatch(setPos(ownProps.side, pos)),
+  setWaveformState: (key, newValue) => dispatch(setWaveformState(ownProps.side, key, newValue)),
+  setRegionsState: (key, newValue) => dispatch(setRegionsState(ownProps.side, key, newValue)),
+})
+
+const connectedWaveform = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Waveform)
+
+
+export default connectedWaveform;

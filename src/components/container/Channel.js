@@ -52,6 +52,9 @@ class Channel extends Component {
 
             bpmFactor={this.props.channel.bpmFactor}
             setBpmFactor={this.setBpmFactor}
+
+            pitchShift={this.props.channel.pitchShift}
+            togglePitchShift={this.togglePitchShift}
           />
         </div>
         <Queue
@@ -66,7 +69,7 @@ class Channel extends Component {
   //////////////////////
 
   setVolume = (newVolume) => {
-    this.props.setChannelState(this.props.side, 'volume', newVolume)
+    this.props.setChannelState('volume', newVolume)
   }
 
   setBpmFactor = (type) => {
@@ -83,23 +86,27 @@ class Channel extends Component {
         break;
     }
     if (newBpmFactor >= 0.125 && newBpmFactor <= 8) {
-      this.props.setChannelState(this.props.side, 'bpmFactor', newBpmFactor)
+      this.props.setChannelState('bpmFactor', newBpmFactor)
     }
   }
 
   setCurrentSong = (newSong) => {
-    this.props.setChannelState(this.props.side, 'currentSong', newSong)
+    this.props.setChannelState('currentSong', newSong)
   }
 
   togglePlaying = () => {
     if (this.props.channel.currentSong) {
-      this.props.setPlaying(this.props.side, !this.props.channel.playing)
+      this.props.setPlaying(!this.props.channel.playing)
     }
     else if (this.props.queue[0]) {
-      this.props.setPlaying(this.props.side, !this.props.channel.playing)
+      this.props.setPlaying(!this.props.channel.playing)
 
       this.playNextFromQueue()
     }
+  }
+
+  togglePitchShift = () => {
+    this.props.setChannelState('pitchShift', !this.props.channel.pitchShift)
   }
   ///////////////////////
 
@@ -107,13 +114,13 @@ class Channel extends Component {
     if (this.props.queue[0]) {
       console.log('playing next');
       const currentSong = this.props.queue[0]
-      this.props.setChannelState(this.props.side, 'currentSong', currentSong)
-      this.props.shiftFromQueue(this.props.side)
+      this.props.setChannelState('currentSong', currentSong)
+      this.props.shiftFromQueue()
     }
     else {
       console.log('hit');
-      this.props.setChannelState(this.props.side, 'currentSong', null)
-      this.props.setPlaying(this.props.side, false)
+      this.props.setChannelState('currentSong', null)
+      this.props.setPlaying(false)
     }
   }
 
@@ -138,7 +145,7 @@ class Channel extends Component {
     }
 
     if (this.props.channel.calculatedVolume !== newVolume) {
-      this.props.setChannelState(this.props.side, 'calculatedVolume', newVolume)
+      this.props.setChannelState('calculatedVolume', newVolume)
     }
   }
 
@@ -149,7 +156,7 @@ class Channel extends Component {
     const bpmFactor = this.props.channel.bpmFactor
 
     if (songPlaybackRate > 0.1 && this.props.channel.calculatedAudioRate !== songPlaybackRate * bpmFactor) {
-      this.props.setChannelState(this.props.side, 'calculatedAudioRate', songPlaybackRate * bpmFactor)
+      this.props.setChannelState('calculatedAudioRate', songPlaybackRate * bpmFactor)
     }
   }
 
@@ -191,10 +198,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
 
   // Channel state setters
-  setChannelState: (side, key, newValue) => dispatch(setChannelState(side, key, newValue)),
-  setPlaying: (side, playing) => dispatch(setPlaying(side, playing)),
+  setChannelState: (key, newValue) => dispatch(setChannelState(ownProps.side, key, newValue)),
+  setPlaying: (playing) => dispatch(setPlaying(ownProps.side, playing)),
 
-  shiftFromQueue: (side) => dispatch(shiftFromQueue(side))
+  shiftFromQueue: () => dispatch(shiftFromQueue(ownProps.side))
 })
 
 const connectedChannel = connect(

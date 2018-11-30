@@ -71,3 +71,24 @@ export const setPlaying = (side, playing) => ({
   side: side,
   playing: playing
 })
+
+/////////////////////////
+/////////////////////////
+
+export const setPos = (side, pos) => ({
+  type: 'SET_POS',
+  side: side,
+  pos: pos
+})
+export const setWaveformState = (side, key, newValue) => ({
+  type: 'SET_WAVEFORM_STATE',
+  side: side,
+  key: key,
+  newValue: newValue
+})
+export const setRegionsState = (side, key, newValue) => ({
+  type: 'SET_REGIONS_STATE',
+  side: side,
+  key: key,
+  newValue: newValue
+})

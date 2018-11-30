@@ -1,11 +1,11 @@
 const defaultChannel = {
   // currentSong: null,
   currentSong: {
-    id: 116,
-    title: "Dead Island",
-    artist: "Kitty",
-    bpm: 117,
-    url: "http://localhost:3001/DeadIsland.mp3",
+    id: 106,
+    title: "Super Natural",
+    artist: "Carly Rae Jepsen",
+    bpm: 128,
+    url: "http://localhost:3001/SuperNatural.mp3",
   },
   playing: false,
 
@@ -13,7 +13,9 @@ const defaultChannel = {
   bpmFactor: 1,
 
   calculatedVolume: .5,
-  calculatedAudioRate: 1
+  calculatedAudioRate: 1,
+
+  pitchShift: false
 }
 
 const defaultChannels = {

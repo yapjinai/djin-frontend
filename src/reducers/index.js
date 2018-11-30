@@ -11,6 +11,7 @@ import reverseSort from './reverseSort'
 
 import queues from './queues'
 import channels from './channels'
+import waveforms from './waveforms'
 
 export default combineReducers({
   masterBpm,
@@ -25,4 +26,5 @@ export default combineReducers({
 
   queues,
   channels,
+  waveforms,
 })

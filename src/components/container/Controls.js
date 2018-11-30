@@ -71,19 +71,19 @@ const DoubleHalf = (props) => {
     </div>
   );
 }
-// const PitchShift = (props) => {
-//   return (
-//     <div className="PitchShift">
-//       <label>Shift pitch with tempo</label>
-//       <br />
-//       <input
-//         type="checkbox"
-//         value={props.pitchShift}
-//         onChange={props.togglePitchShift}
-//       />
-//     </div>
-//   );
-// }
+const PitchShift = (props) => {
+  return (
+    <div className="PitchShift">
+      <label>Shift pitch with tempo</label>
+      <br />
+      <input
+        type="checkbox"
+        value={props.pitchShift}
+        onChange={props.togglePitchShift}
+      />
+    </div>
+  );
+}
 
 class Controls extends Component {
   render() {
@@ -110,6 +110,10 @@ class Controls extends Component {
           bpmFactor={this.props.bpmFactor}
           setBpmFactor={this.props.setBpmFactor}
         />
+        <PitchShift
+          pitchShift={this.props.pitchShift}
+          togglePitchShift={this.props.togglePitchShift}
+        />
       </div>
     )
   }
@@ -126,8 +130,3 @@ class Controls extends Component {
   }
 }
 export default Controls;
-
-// <PitchShift
-// pitchShift={this.props.pitchShift}
-// togglePitchShift={this.props.togglePitchShift}
-// />
