@@ -8,8 +8,9 @@ import {
 
   setChannelState,
   setPlaying,
+  shiftFromQueue,
 
-  shiftFromQueue
+  setRegionsState
 } from '../../actions'
 
 import Channel from './Channel';
@@ -54,6 +55,31 @@ class App extends Component {
     document.addEventListener('keydown', (e) => {
       switch (e.key) {
         case ' ':
+          e.preventDefault()
+          if (this.props.leftPlaying || this.props.rightPlaying) { // master playing
+            this.props.setPlaying('left', false)
+            this.props.setPlaying('right', false)
+          }
+          else {
+            // if (this.props.channels.right.currentSong) {
+            //   const newPlayingRight = !this.props.channels.right.playing
+            //   this.props.setPlaying('right', newPlayingRight)
+            // }
+
+            ['left', 'right'].forEach(s => {
+              if (this.props.channels[s].currentSong) {
+                this.props.setPlaying(s, true)
+              }
+              else if (this.props.queues[s][0]) {
+                this.props.setChannelState(s, 'playing', true)
+                const currentSong = this.props.queues[s][0]
+                this.props.shiftFromQueue(s)
+                this.props.setChannelState(s, 'currentSong', currentSong)
+              }
+            })
+
+
+          }
           // masterPlayPause()
           break;
 
@@ -85,16 +111,24 @@ class App extends Component {
 
         // channel
         case 'q':
-
+          if (this.props.channels.left.currentSong) {
+            const newPlayingLeft = !this.props.channels.left.playing
+            this.props.setPlaying('left', newPlayingLeft)
+          }
           break;
         case 'p':
-
+          if (this.props.channels.right.currentSong) {
+            const newPlayingRight = !this.props.channels.right.playing
+            this.props.setPlaying('right', newPlayingRight)
+          }
           break;
         case 'a':
-
+          const newLoopLeft = !this.props.waveforms.left.regions.loop.loop
+          this.props.setRegionsState('left', 'loop', newLoopLeft)
           break;
         case 'l':
-
+          const newLoopRight = !this.props.waveforms.right.regions.loop.loop
+          this.props.setRegionsState('right', 'loop', newLoopRight)
           break;
         default:
       }
@@ -113,9 +147,9 @@ const mapStateToProps = (state, ownProps) => ({
   leftPlaying: state.channels.left.playing,
   rightPlaying: state.channels.right.playing,
 
-  // Channel state
+  // Channel states
   channels: state.channels,
-
+  waveforms: state.waveforms,
   queues: state.queues
 })
 
@@ -125,10 +159,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
 
   // Channel state setters
-  setChannelState: (key, newValue) => dispatch(setChannelState(ownProps.side, key, newValue)),
-  setPlaying: (playing) => dispatch(setPlaying(ownProps.side, playing)),
+  setChannelState: (side, key, newValue) => dispatch(setChannelState(side, key, newValue)),
+  setPlaying: (side, playing) => dispatch(setPlaying(side, playing)),
+  shiftFromQueue: (side) => dispatch(shiftFromQueue(side)),
 
-  shiftFromQueue: () => dispatch(shiftFromQueue(ownProps.side))
+  // Waveform state setters
+  setRegionsState: (side, key, newValue) => dispatch(setRegionsState(side, key, newValue)),
 })
 
 const connectedApp = connect(
