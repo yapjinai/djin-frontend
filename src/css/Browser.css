@@ -4,6 +4,13 @@
   overflow-y: scroll;
   height: 70%;
 }
+.Browser .filter {
+  display: flex;
+  justify-content: flex-end;
+}
+.Browser .filter input {
+  flex-grow: 1;
+}
 .Browser table th {
   background: #ffeaf9;
 }

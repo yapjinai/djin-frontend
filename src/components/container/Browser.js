@@ -25,17 +25,20 @@ class Browser extends Component {
 
     return (
       <div className="Browser">
-      <input
-        type='text'
-        placeholder='Filter'
-        value={this.props.browserFilterQuery}
-        onChange={this.handleChange}
-      />
-      <button
-        onClick={() => this.props.setBrowserFilterQuery('')}
-      >
-        Clear
-      </button>
+        <span className='filter'>
+          <input
+            type='text'
+            placeholder='Search'
+            value={this.props.browserFilterQuery}
+            onChange={this.handleChange}
+          />
+          <button
+            onClick={() => this.props.setBrowserFilterQuery('')}
+          >
+            Clear
+          </button>
+        </span>
+
         <table>
           <thead>
             <tr>

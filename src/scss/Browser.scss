@@ -6,6 +6,15 @@
 
   height: 70%;
 
+  .filter {
+    display: flex;
+    justify-content: flex-end;
+
+    input {
+      flex-grow: 1;
+    }
+  }
+
   table {
     th {
       background: #ffeaf9;

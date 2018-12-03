@@ -18,7 +18,21 @@ class Help extends Component {
       </button>
 
       <div className='info hidden'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum sem lorem, vel finibus metus pharetra id. Vestibulum sit amet massa id lectus posuere vehicula at sagittis ex. Pellentesque iaculis lacus vel ex tincidunt aliquam. Donec a euismod mi. Nulla porttitor, nisl nec hendrerit condimentum, nulla mauris dignissim mauris, volutpat tristique tellus felis eu dolor. Praesent in dui vel felis lacinia lacinia. Etiam risus eros, fermentum eu feugiat id, pellentesque id magna. Nulla aliquam cursus justo eu luctus. Nam laoreet lorem vitae ex sagittis, et pellentesque augue egestas. Nunc posuere eget urna vel ultrices. Vivamus quam arcu, tincidunt eget orci suscipit, tristique bibendum ipsum. Proin condimentum euismod rhoncus. Nullam lectus ligula, volutpat at malesuada non, malesuada eu est. Aliquam a pretium ex. Cras mattis dolor vitae blandit ultricies.
+        <label>Shortcuts:</label>
+        <ul>
+          <li>
+            Space: play/pause master
+          </li>
+          <li>
+            Q, P: play/pause left/right
+          </li>
+          <li>
+            ←, →: crossfade left/right
+          </li>
+          <li>
+            ↑, ↓: BPM up/down
+          </li>
+        </ul>
       </div>
       </div>
     );
@@ -37,6 +51,11 @@ class Help extends Component {
           shown: false
         })
       }
+    })
+    document.addEventListener('keydown', (e) => {
+      this.setState({
+        shown: false
+      })
     })
   }
 
