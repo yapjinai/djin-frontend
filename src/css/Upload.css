@@ -1,3 +1,6 @@
+.Upload label {
+  display: block;
+}
 .Upload form {
   display: flex;
   flex-direction: column;

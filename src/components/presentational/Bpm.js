@@ -10,8 +10,7 @@ const Bpm = ({masterBpm, setBpm}) => {
 
   return (
     <div className="Bpm">
-      <label>BPM: {masterBpm}</label>
-      <br />
+      <label>BPM:</label>
       <input
         id="bpmValue"
         type="number"

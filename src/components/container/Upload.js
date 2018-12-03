@@ -7,6 +7,7 @@ class Upload extends Component {
   render() {
     return (
       <div className='Upload'>
+      <label>Upload</label>
         <form
           id='upload-form'
           onSubmit={this.handleSubmit}

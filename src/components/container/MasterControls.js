@@ -21,7 +21,7 @@ import Bpm from '../presentational/Bpm';
 class MasterControls extends Component {
   render() {
     return (
-      <div className="MasterControls"
+      <span className="MasterControls"
        style={{display: 'flex'}}
       >
         <MasterPlayPause
@@ -43,7 +43,7 @@ class MasterControls extends Component {
           masterBpm={this.props.masterBpm}
           setBpm={this.props.setBpm}
         />
-      </div>
+      </span>
     );
   }
 }

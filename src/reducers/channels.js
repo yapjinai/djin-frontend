@@ -9,14 +9,14 @@ const defaultChannel = {
   },
   playing: false,
 
-  volume: .5,
+  volume: 0,
   bpmFactor: 1,
 
   calculatedVolume: .5,
   calculatedAudioRate: 1,
 
-  pitchShift: false,
-  loop: false,
+  pitchShift: true,
+  loop: true,
 }
 
 const defaultChannels = {

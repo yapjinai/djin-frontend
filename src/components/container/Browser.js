@@ -26,6 +26,7 @@ class Browser extends Component {
     return (
       <div className="Browser">
       <input
+        type='text'
         placeholder='Filter'
         value={this.props.browserFilterQuery}
         onChange={this.handleChange}
@@ -154,7 +155,7 @@ class Browser extends Component {
 
   sortByClass = (param) => { // to add CSS class
     if (this.props.sortBy === param) {
-      return 'sortBy'
+      return 'sortedBy'
     }
     else {
       return null

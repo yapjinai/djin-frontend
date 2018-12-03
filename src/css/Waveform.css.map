@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,SAAU;EACR,MAAM,EAAE,KAAK;EACb,aAAI;IACF,MAAM,EAAE,CAAC;IACT,MAAM,EAAE,IAAI",
-"sources": ["../scss/Waveform.scss"],
-"names": [],
-"file": "Waveform.css"
-}

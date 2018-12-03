@@ -4,19 +4,21 @@ const defaultWaveform = {
     // changed in Waveform.js
     audioRate: 1,
     backend: 'MediaElement',
+    // backend: 'WebAudio',
 
-    // do not change
+    // these do not change
     height: 128,
     fillParent: false,
     scrollParent: true,
+    interact: true,
   },
   regions: {
     loop: {
       id: 'loop',
-      start: 0,
-      end: 4,
+      start: 1,
+      end: 3,
       loop: false,
-      color: 'rgba(0,0,225,.5)',
+      color: 'rgba(0,0,225,.2)',
     }
   }
 }
