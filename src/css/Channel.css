@@ -1,0 +1,14 @@
+.Channel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  border-radius: 20px;
+}
+.Channel h2 {
+  padding: 0 10px;
+}
+.Channel .controls {
+  min-width: 20vw;
+}
+
+/*# sourceMappingURL=Channel.css.map */

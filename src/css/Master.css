@@ -1,0 +1,10 @@
+.Master {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+}
+.Master div {
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=Master.css.map */

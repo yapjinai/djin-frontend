@@ -1,0 +1,43 @@
+.App {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.App div {
+  background: rgba(200, 100, 150, 0.2);
+  border: 20px solid rgba(153, 153, 255, 0.25);
+  border-right-color: rgba(255, 153, 153, 0.25);
+  border-top-color: rgba(255, 200, 153, 0.25);
+  border-bottom-color: rgba(200, 153, 153, 0.25);
+}
+.App label {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+.App button {
+  outline: none;
+  font-size: 100%;
+  color: white;
+  margin: 0;
+  background: rgba(150, 150, 200, 0.4);
+  border-width: medium;
+  border-bottom-color: rgba(150, 150, 200, 0.5);
+  border-right-color: rgba(150, 150, 200, 0.5);
+}
+.App input[type=text],
+.App input[type=number] {
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid rgba(150, 150, 200, 0.5);
+  margin: 5px;
+  font-size: medium;
+}
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,27 @@
+body {
+  background: rgba(200, 100, 200, 0.1);
+}
+
+* {
+  font-family: "Trebuchet MS";
+}
+* button, * input, * th {
+  color: black;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+input[type=range][orient=vertical] {
+  writing-mode: bt-lr;
+  /* IE */
+  -webkit-appearance: slider-vertical;
+  /* WebKit */
+  width: 8px;
+  height: 175px;
+  padding: 0 5px;
+}
+
+/*# sourceMappingURL=index.css.map */
