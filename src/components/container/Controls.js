@@ -48,7 +48,7 @@ const DoubleHalf = (props) => {
   return (
     <div className="DoubleHalf">
     {displaySpeed()}
-      <div className='buttons'>
+      <div className='double-half-buttons'>
         <button
           name='half'
           onClick={handleClick}
@@ -103,32 +103,39 @@ class Controls extends Component {
   render() {
     return (
       <div className='Controls'>
-        <div className='buttons'>
-          <button
-            onClick={this.props.togglePlaying}
-          >
-            {this.playPause()}
-          </button>
+        <div className='toggles'>
+          <div className='top'>
+            <div className='buttons'>
+              <button
+                onClick={this.props.togglePlaying}
+                className='play-pause'
+              >
+                {this.playPause()}
+              </button>
+              <br />
+              <button
+                onClick={this.props.syncBpm}
+              >
+                Sync master
+              </button>
+            </div>
 
-          <button
-            onClick={this.props.syncBpm}
-          >
-            Sync
-          </button>
+            <div className='checkboxes'>
+              <PitchShift
+              pitchShift={this.props.pitchShift}
+              togglePitchShift={this.props.togglePitchShift}
+              />
+
+              <Loop
+              loop={this.props.loop}
+              toggleLoop={this.props.toggleLoop}
+              />
+            </div>
+          </div>
 
           <DoubleHalf
           bpmFactor={this.props.bpmFactor}
           setBpmFactor={this.props.setBpmFactor}
-          />
-
-          <PitchShift
-          pitchShift={this.props.pitchShift}
-          togglePitchShift={this.props.togglePitchShift}
-          />
-
-          <Loop
-          loop={this.props.loop}
-          toggleLoop={this.props.toggleLoop}
           />
         </div>
 

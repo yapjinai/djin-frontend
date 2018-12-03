@@ -9,7 +9,7 @@ const defaultChannel = {
   },
   playing: false,
 
-  volume: 0,
+  volume: 0.2,
   bpmFactor: 1,
 
   calculatedVolume: .5,

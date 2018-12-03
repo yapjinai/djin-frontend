@@ -77,10 +77,7 @@ class Waveform extends Component {
 
   handlePosChange = (e) => {
     const newPos = e.originalArgs[0]
-    if (newPos < this.props.waveform.regions.loop.start || newPos > this.props.waveform.regions.loop.end) {
-      console.log('hi');
-      this.props.setPos(newPos)
-    }
+    this.props.setPos(newPos)
   }
 
   handleFinish = () => {
@@ -92,7 +89,6 @@ class Waveform extends Component {
   handleRegionUpdateEnd = (e) => {
     this.props.setRegionsState('start', e.originalArgs[0].start)
     this.props.setRegionsState('end', e.originalArgs[0].end)
-    // this.props.setRegionsState('color', 'green')
   }
 
   // RENDER

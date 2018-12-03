@@ -5,17 +5,28 @@
 }
 .Controls div {
   border: none;
+  background: none;
 }
-.Controls .buttons {
+.Controls .toggles {
   flex-grow: 1;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.Controls .toggles .top {
+  display: flex;
+  justify-content: space-around;
+}
+.Controls .toggles .top .buttons .play-pause {
+  font-size: x-large;
 }
 .Controls .DoubleHalf, .Controls .Volume {
   text-align: center;
 }
-.Controls .DoubleHalf .buttons, .Controls .Volume .buttons {
+.Controls .DoubleHalf .double-half-buttons, .Controls .Volume .double-half-buttons {
   display: flex;
   border: none;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=Controls.css.map */

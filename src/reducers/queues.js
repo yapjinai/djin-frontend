@@ -11,12 +11,17 @@ const queues = (state = defaultQueues, action) => {
       return newState
 
     case 'PUSH_TO_QUEUE':
-      let pushedNewState = {...state}
-      let pushedSideQueue = [...state[action.side]]
-      pushedSideQueue.push(action.song)
-      
-      pushedNewState[action.side] = pushedSideQueue
-      return pushedNewState
+      if (state[action.side].includes(action.song)) {
+        return state
+      }
+      else {
+        let pushedNewState = {...state}
+        let pushedSideQueue = [...state[action.side]]
+        pushedSideQueue.push(action.song)
+
+        pushedNewState[action.side] = pushedSideQueue
+        return pushedNewState
+      }
 
     case 'SHIFT_FROM_QUEUE':
       const shiftedNewState = {...state}

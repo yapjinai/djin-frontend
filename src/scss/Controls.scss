@@ -4,19 +4,27 @@
   justify-content: center;
 
   div {
-    // flex-grow: 1;
-
     border: none;
-    // border: 1px solid green;
-
-    div {
-      // border: 1px solid blue;
-    }
+    background: none;
   }
 
-  .buttons {
+  .toggles {
     flex-grow: 1;
-    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .top {
+      display: flex;
+      justify-content: space-around;
+
+      .buttons {
+        .play-pause {
+          font-size: x-large;
+        }
+      }
+    }
   }
 
   .sliders {
@@ -26,9 +34,10 @@
   .DoubleHalf, .Volume {
     text-align: center;
 
-    .buttons {
+    .double-half-buttons {
       display: flex;
       border: none;
+      justify-content: center;
     }
   }
 }

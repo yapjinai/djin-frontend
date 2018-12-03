@@ -2,17 +2,13 @@ import Wavesurfer from 'react-wavesurfer';
 import { connect } from 'react-redux'
 
 class MyWavesurfer extends Wavesurfer {
+
+
   shouldComponentUpdate(nextProps, nextState) {
     return true
   }
 
-  componentDidUpdate() {
-    // console.log('Wavesurfer updating');
-  }
-
   componentWillReceiveProps(nextProps) {
-    console.log('this.props:', this.props);
-    console.log('nextProps:', nextProps);
     let newSource = false;
     let seekToInNewFile;
 
@@ -42,12 +38,25 @@ class MyWavesurfer extends Wavesurfer {
         this._loadAudio(nextProps.audioFile, nextProps.audioPeaks);
       }
     }
-    
+
+    // if clicked inside a Region, make un-interactive
+    const regionStart = this.props.waveform.regions.loop.start
+    const regionEnd = this.props.waveform.regions.loop.end
+
+    if (nextProps.pos > regionStart && nextProps.pos < regionEnd) {
+      this._wavesurfer.params.interact = false
+    }
+    else {
+      this._wavesurfer.params.interact = true
+
+    }
+
+    // update position
     if (
-      (nextProps.pos !== undefined &&
+      nextProps.pos !== undefined &&
       this.state.isReady &&
       nextProps.pos !== this.props.pos &&
-      nextProps.pos !== this.state.pos)
+      nextProps.pos !== this.state.pos
     ) {
       if (newSource) {
         seekToInNewFile = this._wavesurfer.on('ready', () => {
@@ -77,7 +86,7 @@ class MyWavesurfer extends Wavesurfer {
       this._wavesurfer.setVolume(nextProps.volume);
     }
 
-    // update volume
+    // update zoom
     if (this.props.zoom !== nextProps.zoom) {
       this._wavesurfer.zoom(nextProps.zoom);
     }
@@ -87,9 +96,8 @@ class MyWavesurfer extends Wavesurfer {
       this._wavesurfer.setPlaybackRate(nextProps.options.audioRate);
     }
 
-    // update backend - DOESN'T WORK
+    // update backend - DOESN'T WORK (updating works, but wavesurfer doesnt change)
     if (this.props.options.backend !== nextProps.options.backend) {
-      console.log(this._wavesurfer.params.backend);
       this._wavesurfer.params.backend = nextProps.options.backend
     }
 
@@ -109,20 +117,6 @@ class MyWavesurfer extends Wavesurfer {
       window.removeEventListener('resize', this._handleResize);
     }
   }
-
-  // _seekTo(sec) {
-  //   const pos = this._secToPos(sec);
-  //
-  //   if (sec < this.props.waveform.regions.loop.start || sec > this.props.waveform.regions.loop.end) {
-  //     console.log('seekto');
-  //     if (this.props.options.autoCenter) {
-  //       this._wavesurfer.seekAndCenter(pos);
-  //     } else {
-  //       this._wavesurfer.seekTo(pos);
-  //     }
-  //   }
-  // }
-
 }
 
 ///////////////////////
