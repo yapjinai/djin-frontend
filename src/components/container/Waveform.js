@@ -24,7 +24,7 @@ class Waveform extends Component {
 
   render() {
     this.setAudioRate()
-    // this.setBackend()
+    this.setBackend()
     this.setLoop()
 
     return (

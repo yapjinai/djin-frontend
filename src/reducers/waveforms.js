@@ -3,8 +3,8 @@ const defaultWaveform = {
   waveformOptions: {
     // changed in Waveform.js
     audioRate: 1,
-    backend: 'MediaElement',
-    // backend: 'WebAudio',
+    // backend: 'MediaElement',
+    backend: 'WebAudio',
 
     // these do not change
     height: 128,

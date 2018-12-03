@@ -6,7 +6,7 @@ class MyRegions extends Regions {
   }
 
   componentDidUpdate() {
-    console.log('Regions updating');
+    // console.log('Regions updating');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,9 +24,7 @@ class MyRegions extends Regions {
     let oldRegionId;
 
     for (newRegionId in nextProps.regions) {
-      console.log(newRegionId, 'hi');
       if ({}.hasOwnProperty.call(nextProps.regions, newRegionId)) {
-        console.log('if');
         const newRegion = nextProps.regions[newRegionId];
 
         // remove from oldRegions
@@ -34,7 +32,6 @@ class MyRegions extends Regions {
 
         // new regions
         if (!this.props.wavesurfer.regions.list[newRegionId]) {
-          console.log('a');
           this._hookUpRegionEvents(nextProps.wavesurfer.addRegion(newRegion));
 
           // update regions
@@ -45,7 +42,6 @@ class MyRegions extends Regions {
             oldRegions[newRegionId].loop !== newRegion.loop ||
             oldRegions[newRegionId].color !== newRegion.color)
         ) {
-          console.log('b')
           nextProps.wavesurfer.regions.list[newRegionId].update({
             start: newRegion.start,
             end: newRegion.end,
