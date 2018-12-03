@@ -114,24 +114,26 @@ class Controls extends Component {
           >
             Sync
           </button>
-        </div>
-
-        <Volume
-          volume={this.props.volume}
-          setVolume={this.props.setVolume}
-        />
-        <DoubleHalf
+          <DoubleHalf
           bpmFactor={this.props.bpmFactor}
           setBpmFactor={this.props.setBpmFactor}
-        />
-        <PitchShift
+          />
+          <PitchShift
           pitchShift={this.props.pitchShift}
           togglePitchShift={this.props.togglePitchShift}
-        />
-        <Loop
+          />
+          <Loop
           loop={this.props.loop}
           toggleLoop={this.props.toggleLoop}
-        />
+          />
+        </div>
+
+        <div className='sliders'>
+          <Volume
+            volume={this.props.volume}
+            setVolume={this.props.setVolume}
+          />
+        </div>
       </div>
     )
   }

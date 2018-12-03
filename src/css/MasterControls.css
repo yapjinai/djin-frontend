@@ -4,6 +4,8 @@
     text-align: center; }
   .MasterControls .MasterPlayPause button {
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    min-width: 120px;
+    font-size: xx-large; }
 
 /*# sourceMappingURL=MasterControls.css.map */

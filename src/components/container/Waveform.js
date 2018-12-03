@@ -8,14 +8,23 @@ import {
 } from '../../actions'
 
 import '../../css/Waveform.css';
-import Wavesurfer from 'react-wavesurfer';
-import Regions from 'react-wavesurfer/src/plugins/regions';
-// import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.min.js';
+// import Wavesurfer from 'react-wavesurfer';
+import MyWavesurfer from '../MyWavesurfer';
+// import Regions from 'react-wavesurfer/src/plugins/regions';
+import MyRegions from '../MyRegions';
 
 class Waveform extends Component {
+  constructor(props) {
+    super(props)
+    this.props.setRegionsState({
+      start: 1,
+      end: 5
+    })
+  }
+
   render() {
     this.setAudioRate()
-    this.setBackend()
+    // this.setBackend()
     this.setLoop()
 
     return (
@@ -68,7 +77,6 @@ class Waveform extends Component {
   }
 
   handleFinish = () => {
-    console.log('finished');
     this.props.playNextFromQueue()
   }
 
@@ -82,9 +90,8 @@ class Waveform extends Component {
   // RENDER
 
   renderWaveform = () => {
-
       return (
-        <Wavesurfer
+        <MyWavesurfer
           audioFile={this.props.currentSong.url}
           playing={this.props.playing}
           volume={this.props.volume}
@@ -95,11 +102,13 @@ class Waveform extends Component {
           onPosChange={this.handlePosChange}
           onFinish={this.handleFinish}
         >
-          <Regions
-            regions={this.props.waveform.regions}
-            onRegionUpdateEnd={this.handleRegionUpdateEnd}
-          />
-        </Wavesurfer>
+
+        <MyRegions
+          regions={this.props.waveform.regions}
+          onRegionUpdateEnd={this.handleRegionUpdateEnd}
+        />
+
+        </MyWavesurfer>
       )
   }
 }

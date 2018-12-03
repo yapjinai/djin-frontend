@@ -1,7 +1,10 @@
 .Controls {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   .Controls div {
     border: none; }
+  .Controls .buttons {
+    flex-grow: 1; }
   .Controls .DoubleHalf, .Controls .Volume {
     text-align: center; }
     .Controls .DoubleHalf .buttons, .Controls .Volume .buttons {

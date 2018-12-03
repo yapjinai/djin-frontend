@@ -5,12 +5,15 @@
   height: 70%; }
   .Browser table th {
     background: #ffeaf9; }
-  .Browser table .sortBy {
-    background: #fbe; }
+  .Browser table .sortedBy {
+    background: #f6c; }
   .Browser table td {
     background: #fdf; }
   .Browser table #title, .Browser table #artist {
     width: 15vw; }
+  .Browser table .queue {
+    min-width: 60px;
+    text-align: center; }
   .Browser table .title, .Browser table .artist, .Browser table .bpm {
     padding: 0 10px; }
   .Browser table .bpm {

@@ -8,7 +8,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Channel side='left' />
         <Master />
         <Channel side='right' />
       </div>
@@ -17,3 +16,5 @@ class App extends Component {
 }
 
 export default App;
+
+// <Channel side='left' />

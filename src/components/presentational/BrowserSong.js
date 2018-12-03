@@ -18,7 +18,7 @@ const BrowserSong = ({song, pushToQueue, browserFilterQuery, setBrowserFilterQue
     <tr
       className="BrowserSong"
     >
-      <td>
+      <td className='queue'>
         <button
         name='left'
         onClick={handleClick}

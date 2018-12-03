@@ -10,14 +10,18 @@
     th {
       background: #ffeaf9;
     }
-    .sortBy {
-      background: #fbe;
+    .sortedBy {
+      background: #f6c;
     }
     td {
       background: #fdf;
     }
     #title, #artist {
       width: 15vw;
+    }
+    .queue {
+      min-width: 60px;
+      text-align: center;
     }
     .title, .artist, .bpm {
       padding: 0 10px;

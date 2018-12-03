@@ -14,7 +14,6 @@ const MasterPlayPause = ({leftPlaying, rightPlaying, setPlaying, channels, queue
     else {
       ['left', 'right'].forEach(s => {
         if (channels[s].currentSong) {
-          console.log('hi');
           setPlaying(s, true)
         }
         else if (queues[s][0]) {
