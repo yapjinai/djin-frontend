@@ -16,7 +16,7 @@ const defaultChannel = {
   calculatedAudioRate: 1,
 
   pitchShift: true,
-  loop: true,
+  loop: false,
 }
 
 const defaultChannels = {

@@ -85,6 +85,7 @@ class Waveform extends Component {
   handleRegionUpdateEnd = (e) => {
     this.props.setRegionsState('start', e.originalArgs[0].start)
     this.props.setRegionsState('end', e.originalArgs[0].end)
+    // this.props.setRegionsState('color', 'green')
   }
 
   // RENDER
