@@ -1,23 +1,41 @@
 .MasterControls {
   display: flex;
+  position: relative;
 
   div {
     text-align: center;
-
-    // flex-grow: 1;
   }
 
+
   .MasterPlayPause {
+    min-width: 120px;
     button {
       height: 100%;
       width: 100%;
-      min-width: 120px;
 
       font-size: xx-large;
     }
+  }
 
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
+  .Help {
+    width: 10px;
+    button {
+      height: 100%;
+      width: 100%;
+
+      font-size: xx-large;
+    }
+    .info {
+      position: absolute;
+      right: 20px;
+      padding: 5%;
+      text-align: justify;
+
+      background: #eeccdd;
+      color: #666;
+    }
+    .hidden {
+      display: none;
+    }
   }
 }

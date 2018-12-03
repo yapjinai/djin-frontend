@@ -16,7 +16,7 @@ import '../../css/MasterControls.css';
 import MasterPlayPause from '../presentational/MasterPlayPause';
 import Crossfader from '../presentational/Crossfader';
 import Bpm from '../presentational/Bpm';
-
+import Help from '../presentational/Help';
 
 class MasterControls extends Component {
   render() {
@@ -43,6 +43,7 @@ class MasterControls extends Component {
           masterBpm={this.props.masterBpm}
           setBpm={this.props.setBpm}
         />
+        <Help/>
       </span>
     );
   }
