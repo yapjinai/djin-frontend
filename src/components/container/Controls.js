@@ -79,7 +79,7 @@ const PitchShift = (props) => {
       <br />
       <input
         type="checkbox"
-        value={props.pitchShift}
+        checked={props.loop}
         onChange={props.togglePitchShift}
       />
     </div>
@@ -92,7 +92,7 @@ const Loop = (props) => {
       <br />
       <input
         type="checkbox"
-        value={props.loop}
+        checked={props.loop}
         onChange={props.toggleLoop}
       />
     </div>

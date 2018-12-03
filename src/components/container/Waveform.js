@@ -64,7 +64,7 @@ class Waveform extends Component {
 
     if (actualLoop !== givenLoop) {
       this.props.setRegionsState('loop', givenLoop)
-      if (givenLoop === true) {
+      if (givenLoop) {
         this.props.setRegionsState('color', 'rgba(0,0,225,.3)')
       }
       else {
