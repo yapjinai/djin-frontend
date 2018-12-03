@@ -1,12 +1,14 @@
 .Controls {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .Controls div {
   border: none;
 }
 .Controls .buttons {
   flex-grow: 1;
+  justify-content: center;
 }
 .Controls .DoubleHalf, .Controls .Volume {
   text-align: center;

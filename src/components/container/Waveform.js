@@ -78,6 +78,7 @@ class Waveform extends Component {
   handlePosChange = (e) => {
     const newPos = e.originalArgs[0]
     if (newPos < this.props.waveform.regions.loop.start || newPos > this.props.waveform.regions.loop.end) {
+      console.log('hi');
       this.props.setPos(newPos)
     }
   }
@@ -99,6 +100,8 @@ class Waveform extends Component {
   renderWaveform = () => {
       return (
         <MyWavesurfer
+          side={this.props.side}
+
           audioFile={this.props.currentSong.url}
           playing={this.props.playing}
           volume={this.props.volume}

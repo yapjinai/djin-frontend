@@ -1,4 +1,5 @@
 import Wavesurfer from 'react-wavesurfer';
+import { connect } from 'react-redux'
 
 class MyWavesurfer extends Wavesurfer {
   shouldComponentUpdate(nextProps, nextState) {
@@ -41,13 +42,12 @@ class MyWavesurfer extends Wavesurfer {
         this._loadAudio(nextProps.audioFile, nextProps.audioPeaks);
       }
     }
-
-    // update position
+    
     if (
-      nextProps.pos !== undefined &&
+      (nextProps.pos !== undefined &&
       this.state.isReady &&
       nextProps.pos !== this.props.pos &&
-      nextProps.pos !== this.state.pos
+      nextProps.pos !== this.state.pos)
     ) {
       if (newSource) {
         seekToInNewFile = this._wavesurfer.on('ready', () => {
@@ -110,5 +110,32 @@ class MyWavesurfer extends Wavesurfer {
     }
   }
 
+  // _seekTo(sec) {
+  //   const pos = this._secToPos(sec);
+  //
+  //   if (sec < this.props.waveform.regions.loop.start || sec > this.props.waveform.regions.loop.end) {
+  //     console.log('seekto');
+  //     if (this.props.options.autoCenter) {
+  //       this._wavesurfer.seekAndCenter(pos);
+  //     } else {
+  //       this._wavesurfer.seekTo(pos);
+  //     }
+  //   }
+  // }
+
 }
-export default MyWavesurfer;
+
+///////////////////////
+// redux
+///////////////////////
+
+const mapStateToProps = (state, ownProps) => ({
+  waveform: state.waveforms[ownProps.side]
+})
+
+const connectedMyWavesurfer = connect(
+  mapStateToProps
+)(MyWavesurfer)
+
+
+export default connectedMyWavesurfer;

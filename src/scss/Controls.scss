@@ -1,6 +1,7 @@
 .Controls {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   div {
     // flex-grow: 1;
@@ -11,11 +12,11 @@
     div {
       // border: 1px solid blue;
     }
-
-
   }
+
   .buttons {
     flex-grow: 1;
+    justify-content: center;
   }
 
   .sliders {
@@ -24,6 +25,7 @@
 
   .DoubleHalf, .Volume {
     text-align: center;
+
     .buttons {
       display: flex;
       border: none;
