@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Crossfader = ({crossFade, setCrossfade}) => {
+const Crossfader = ({crossfade, setCrossfade}) => {
   const handleChange = (e) => {
     setCrossfade(e.target.value)
   }
@@ -17,7 +17,7 @@ const Crossfader = ({crossFade, setCrossfade}) => {
         min="-1"
         max="1"
         step=".01"
-        value={crossFade}
+        value={crossfade}
         onChange={handleChange}
       />
     </div>

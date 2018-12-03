@@ -52,23 +52,38 @@ class App extends Component {
     // }
 
     document.addEventListener('keydown', (e) => {
-      console.log(e.key);
       switch (e.key) {
         case ' ':
           // masterPlayPause()
           break;
-        case 'arrowLeft':
 
+        // global
+        case 'ArrowLeft':
+          const decrCrossfade = this.props.crossfade - .1
+          if (decrCrossfade >= -1) {
+            this.props.setCrossfade(decrCrossfade)
+          }
           break;
-        case 'arrowRight':
+        case 'ArrowRight':
+          const incrCrossfade = this.props.crossfade + .1
+          if (incrCrossfade <= 1) {
+            this.props.setCrossfade(incrCrossfade)
+          }
+          break;
+        case 'ArrowUp':
+          const incrBpm = this.props.masterBpm + 1
+          if (incrBpm <= 300) {
+            this.props.setBpm(incrBpm)
+          }
+          break;
+        case 'ArrowDown':
+          const decrBpm = this.props.masterBpm - 1
+          if (decrBpm > 0) {
+            this.props.setBpm(decrBpm)
+          }
+          break;
 
-          break;
-        case 'arrowUp':
-
-          break;
-        case 'arrowDown':
-
-          break;
+        // channel
         case 'q':
 
           break;
