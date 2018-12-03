@@ -33,7 +33,7 @@ class Help extends Component {
             Q, P: play/pause left/right
           </li>
           <li>
-            A, L: toggle looping left/right
+            S, L: toggle looping left/right
           </li>
         </ul>
 

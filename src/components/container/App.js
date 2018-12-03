@@ -28,44 +28,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // const masterPlaying = () => {
-    //   return this.props.leftPlaying || this.props.rightPlaying
-    // }
-    //
-    // const masterPlayPause = () => {
-    //   if (masterPlaying()) {
-    //     this.props.setPlaying('left', false)
-    //     this.props.setPlaying('right', false)
-    //   }
-    //   else {
-    //     ['left', 'right'].forEach(s => {
-    //       if (this.props.channels[s].currentSong) {
-    //         this.props.setPlaying(s, true)
-    //       }
-    //       else if (this.props.queues[s][0]) {
-    //         this.props.setChannelState(s, 'playing', true)
-    //         const currentSong = this.props.queues[s][0]
-    //         this.props.shiftFromQueue(s)
-    //         this.props.setChannelState(s, 'currentSong', currentSong)
-    //       }
-    //     })
-    //   }
-    // }
-
     document.addEventListener('keydown', (e) => {
       switch (e.key) {
         case ' ':
           e.preventDefault()
           if (this.props.leftPlaying || this.props.rightPlaying) { // master playing
-            this.props.setPlaying('left', false)
+            this.props.setPlaying('left ', false)
             this.props.setPlaying('right', false)
           }
           else {
-            // if (this.props.channels.right.currentSong) {
-            //   const newPlayingRight = !this.props.channels.right.playing
-            //   this.props.setPlaying('right', newPlayingRight)
-            // }
-
             ['left', 'right'].forEach(s => {
               if (this.props.channels[s].currentSong) {
                 this.props.setPlaying(s, true)
@@ -77,10 +48,7 @@ class App extends Component {
                 this.props.setChannelState(s, 'currentSong', currentSong)
               }
             })
-
-
           }
-          // masterPlayPause()
           break;
 
         // global
@@ -122,13 +90,15 @@ class App extends Component {
             this.props.setPlaying('right', newPlayingRight)
           }
           break;
-        case 'a':
+        case 's':
           const newLoopLeft = !this.props.waveforms.left.regions.loop.loop
           this.props.setRegionsState('left', 'loop', newLoopLeft)
+          this.props.setChannelState('left', 'loop', newLoopLeft)
           break;
         case 'l':
           const newLoopRight = !this.props.waveforms.right.regions.loop.loop
           this.props.setRegionsState('right', 'loop', newLoopRight)
+          this.props.setChannelState('right', 'loop', newLoopRight)
           break;
         default:
       }
