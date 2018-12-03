@@ -18,7 +18,7 @@ const defaultWaveform = {
       start: 1,
       end: 3,
       loop: false,
-      color: 'rgba(0,0,225,.2)',
+      color: 'rgba(0,0,225,.1)',
     }
   }
 }

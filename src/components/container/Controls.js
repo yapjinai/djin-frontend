@@ -75,7 +75,7 @@ const DoubleHalf = (props) => {
 const PitchShift = (props) => {
   return (
     <div className="PitchShift">
-      <label>Shift pitch with tempo</label>
+      <label>Pitch shift</label>
       <br />
       <input
         type="checkbox"
@@ -88,7 +88,7 @@ const PitchShift = (props) => {
 const Loop = (props) => {
   return (
     <div className="Loop">
-      <label>Loop selected region</label>
+      <label>Loop</label>
       <br />
       <input
         type="checkbox"
