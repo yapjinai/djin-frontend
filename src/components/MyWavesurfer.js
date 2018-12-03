@@ -39,17 +39,17 @@ class MyWavesurfer extends Wavesurfer {
       }
     }
 
-    // if clicked inside a Region, make un-interactive
-    const regionStart = this.props.waveform.regions.loop.start
-    const regionEnd = this.props.waveform.regions.loop.end
-
-    if (nextProps.pos > regionStart && nextProps.pos < regionEnd) {
-      this._wavesurfer.params.interact = false
-    }
-    else {
-      this._wavesurfer.params.interact = true
-
-    }
+    // // if clicked inside a Region, make un-interactive
+    // const regionStart = this.props.waveform.regions.loop.start
+    // const regionEnd = this.props.waveform.regions.loop.end
+    //
+    // if (nextProps.pos > regionStart && nextProps.pos < regionEnd) {
+    //   this._wavesurfer.params.interact = false
+    // }
+    // else {
+    //   this._wavesurfer.params.interact = true
+    //
+    // }
 
     // update position
     if (

@@ -1,12 +1,12 @@
 const defaultChannel = {
-  // currentSong: null,
-  currentSong: {
-    id: 106,
-    title: "Super Natural",
-    artist: "Carly Rae Jepsen",
-    bpm: 128,
-    url: "http://localhost:3001/SuperNatural.mp3",
-  },
+  currentSong: null,
+  // currentSong: {
+  //   id: 106,
+  //   title: "Super Natural",
+  //   artist: "Carly Rae Jepsen",
+  //   bpm: 128,
+  //   url: "http://localhost:3001/SuperNatural.mp3",
+  // },
   playing: false,
 
   volume: 0.2,
