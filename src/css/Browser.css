@@ -2,18 +2,25 @@
   flex-shrink: 1;
   color: #45f;
   overflow-y: scroll;
-  height: 70%; }
-  .Browser table th {
-    background: #ffeaf9; }
-  .Browser table .sortBy {
-    background: #fbe; }
-  .Browser table td {
-    background: #fdf; }
-  .Browser table #title, .Browser table #artist {
-    width: 15vw; }
-  .Browser table .title, .Browser table .artist, .Browser table .bpm {
-    padding: 0 10px; }
-  .Browser table .bpm {
-    text-align: right; }
+  height: 70%;
+}
+.Browser table th {
+  background: #ffeaf9;
+}
+.Browser table .sortBy {
+  background: #fbe;
+}
+.Browser table td {
+  background: #fdf;
+}
+.Browser table #title, .Browser table #artist {
+  width: 15vw;
+}
+.Browser table .title, .Browser table .artist, .Browser table .bpm {
+  padding: 0 10px;
+}
+.Browser table .bpm {
+  text-align: right;
+}
 
 /*# sourceMappingURL=Browser.css.map */

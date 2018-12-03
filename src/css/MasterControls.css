@@ -1,9 +1,12 @@
 .MasterControls {
-  display: flex; }
-  .MasterControls div {
-    text-align: center; }
-  .MasterControls .MasterPlayPause button {
-    height: 100%;
-    width: 100%; }
+  display: flex;
+}
+.MasterControls div {
+  text-align: center;
+}
+.MasterControls .MasterPlayPause button {
+  height: 100%;
+  width: 100%;
+}
 
 /*# sourceMappingURL=MasterControls.css.map */
