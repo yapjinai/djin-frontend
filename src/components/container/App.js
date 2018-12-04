@@ -31,9 +31,10 @@ class App extends Component {
     document.addEventListener('keydown', (e) => {
       switch (e.key) {
         case ' ':
+        // console.log('space');
           e.preventDefault()
-          if (this.props.leftPlaying || this.props.rightPlaying) { // master playing
-            this.props.setPlaying('left ', false)
+          if (this.props.channels.left.playing || this.props.channels.right.playing) { // master playing
+            this.props.setPlaying('left', false)
             this.props.setPlaying('right', false)
           }
           else {
