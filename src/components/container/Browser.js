@@ -122,8 +122,9 @@ class Browser extends Component {
       const query = this.props.browserFilterQuery.toLowerCase().split(' ').join('')
       const title = s.title.toLowerCase().split(' ').join('')
       const artist = s.artist.toLowerCase().split(' ').join('')
+      // const tags = s.tags.toLowerCase().split(' ').join('')
 
-      return title.includes(query) || artist.includes(query)
+      return title.includes(query) || artist.includes(query)// || tags.includes(query)
     })
 
     if (this.props.filteredSongs.length !== newSongs.length) {
