@@ -29,9 +29,10 @@ class App extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case ' ':
-        // console.log('space');
+      if (e.target.type !== 'text' && e.target.type !== 'number') {
+        switch (e.key) {
+          case ' ':
+          // console.log('space');
           e.preventDefault()
           if (this.props.channels.left.playing || this.props.channels.right.playing) { // master playing
             this.props.setPlaying('left', false)
@@ -52,56 +53,77 @@ class App extends Component {
           }
           break;
 
-        // global
-        case 'ArrowLeft':
+          // global
+          case 'ArrowLeft':
+          e.preventDefault()
           const decrCrossfade = this.props.crossfade - .1
           if (decrCrossfade >= -1) {
             this.props.setCrossfade(decrCrossfade)
           }
           break;
-        case 'ArrowRight':
+          case 'ArrowRight':
+          e.preventDefault()
           const incrCrossfade = this.props.crossfade + .1
           if (incrCrossfade <= 1) {
             this.props.setCrossfade(incrCrossfade)
           }
           break;
-        case 'ArrowUp':
+          case 'ArrowUp':
+          e.preventDefault()
           const incrBpm = this.props.masterBpm + 1
           if (incrBpm <= 300) {
             this.props.setBpm(incrBpm)
           }
           break;
-        case 'ArrowDown':
+          case 'ArrowDown':
+          e.preventDefault()
           const decrBpm = this.props.masterBpm - 1
           if (decrBpm > 0) {
             this.props.setBpm(decrBpm)
           }
           break;
 
-        // channel
-        case 'q':
+          // channel
+          case 'q':
+          // e.preventDefault()
           if (this.props.channels.left.currentSong) {
             const newPlayingLeft = !this.props.channels.left.playing
             this.props.setPlaying('left', newPlayingLeft)
           }
+          else if (this.props.queues['left'][0]) {
+            this.props.setChannelState('left', 'playing', true)
+            const currentSong = this.props.queues['left'][0]
+            this.props.shiftFromQueue('left')
+            this.props.setChannelState('left', 'currentSong', currentSong)
+          }
           break;
-        case 'p':
+          case 'p':
+          // e.preventDefault()
           if (this.props.channels.right.currentSong) {
             const newPlayingRight = !this.props.channels.right.playing
             this.props.setPlaying('right', newPlayingRight)
           }
+          else if (this.props.queues['right'][0]) {
+            this.props.setChannelState('right', 'playing', true)
+            const currentSong = this.props.queues['right'][0]
+            this.props.shiftFromQueue('right')
+            this.props.setChannelState('right', 'currentSong', currentSong)
+          }
           break;
-        case 's':
+          case 's':
+          // e.preventDefault()
           const newLoopLeft = !this.props.waveforms.left.regions.loop.loop
           this.props.setRegionsState('left', 'loop', newLoopLeft)
           this.props.setChannelState('left', 'loop', newLoopLeft)
           break;
-        case 'l':
+          case 'l':
+          // e.preventDefault()
           const newLoopRight = !this.props.waveforms.right.regions.loop.loop
           this.props.setRegionsState('right', 'loop', newLoopRight)
           this.props.setChannelState('right', 'loop', newLoopRight)
           break;
-        default:
+          default:
+        }
       }
     })
   }
