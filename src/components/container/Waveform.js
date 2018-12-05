@@ -94,28 +94,28 @@ class Waveform extends Component {
   // RENDER
 
   renderWaveform = () => {
-      return (
-        <MyWavesurfer
-          side={this.props.side}
+    return (
+      <MyWavesurfer
+        side={this.props.side}
 
-          audioFile={this.props.currentSong.url}
-          playing={this.props.playing}
-          volume={this.props.volume}
+        audioFile={this.props.currentSong.url}
+        playing={this.props.playing}
+        volume={this.props.volume}
 
-          options={this.props.waveform.waveformOptions}
-          pos={this.props.waveform.pos}
+        options={this.props.waveform.waveformOptions}
+        pos={this.props.waveform.pos}
 
-          onPosChange={this.handlePosChange}
-          onFinish={this.handleFinish}
-        >
+        onPosChange={this.handlePosChange}
+        onFinish={this.handleFinish}
+      >
 
-        <MyRegions
-          regions={this.props.waveform.regions}
-          onRegionUpdateEnd={this.handleRegionUpdateEnd}
-        />
+      <MyRegions
+        regions={this.props.waveform.regions}
+        onRegionUpdateEnd={this.handleRegionUpdateEnd}
+      />
 
-        </MyWavesurfer>
-      )
+      </MyWavesurfer>
+    )
   }
 }
 

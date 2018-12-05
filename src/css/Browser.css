@@ -38,6 +38,7 @@
 }
 .Browser table td {
   background: #fdf;
+  padding: 0;
 }
 .Browser table #title, .Browser table #artist {
   width: 15vw;

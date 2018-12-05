@@ -4,6 +4,24 @@ import { connect } from 'react-redux'
 class MyWavesurfer extends Wavesurfer {
 
 
+
+
+////////////////////////
+//do not edit above this line
+////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
   shouldComponentUpdate(nextProps, nextState) {
     return true
   }

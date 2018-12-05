@@ -305,10 +305,12 @@ class Browser extends Component {
 
   handleClick = (e) => {
     if (this.props.sortBy !== e.target.id) { // if filtering by different param
+      console.log('diff param');
       this.props.setSortBy(e.target.id)
       this.props.setReverseSort(false)
     }
     else { // toggle between high-low and low-high
+      console.log('toggle');
       this.props.setReverseSort(!this.props.reverseSort)
     }
   }

@@ -31,7 +31,11 @@ class Help extends Component {
     document.addEventListener('click', (e) => {
       if (this.state.shown &&
         e.target !== info &&
-        e.target !== button
+        e.target !== button &&
+        e.target.parentElement !== info &&
+        e.target.parentElement !== button &&
+        e.target.parentElement.parentElement !== info &&
+        e.target.parentElement.parentElement !== button
       ) {
         this.setState({
           shown: false

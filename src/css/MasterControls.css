@@ -29,6 +29,9 @@
   background: #eeccdd;
   color: #666;
 }
+.MasterControls .Help .Info ul {
+  list-style: square;
+}
 .MasterControls .Help .hidden {
   display: none;
 }

@@ -71,36 +71,70 @@ const DoubleHalf = (props) => {
     </div>
   );
 }
+// const PitchShift = (props) => {
+//   return (
+//     <div className="PitchShift">
+//       <label>Pitch shift</label>
+//       <br />
+//       <input
+//         type="checkbox"
+//         checked={props.loop}
+//         onChange={props.togglePitchShift}
+//       />
+//     </div>
+//   );
+// }
+const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
+  const setLoopStart = (e) => {
+    // if (e.target.value < waveform.regions.loopEnd) {
+      setRegionsState('start', e.target.value)
+    // }
+  }
+  const setLoopEnd = (e) => {
+    // if (e.target.value > waveform.regions.loopStart) {
+      setRegionsState('end', e.target.value)
+    // }
+  }
 
-const PitchShift = (props) => {
-  return (
-    <div className="PitchShift">
-      <label>Pitch shift</label>
-      <br />
-      <input
-        type="checkbox"
-        checked={props.loop}
-        onChange={props.togglePitchShift}
-      />
-    </div>
-  );
-}
-const Loop = (props) => {
   return (
     <div className="Loop">
       <label>Loop</label>
       <br />
       <input
         type="checkbox"
-        checked={props.loop}
-        onChange={props.toggleLoop}
+        checked={loop}
+        onChange={toggleLoop}
       />
+      <div className="loopSliders">
+        <div>
+          <label>Loop start</label>
+          <input
+            id='loopStart'
+            type="range"
+            name='loopStart'
+            value={waveform.regions.loop.start}
+            onChange={setLoopStart}
+          />
+        </div>
+        <div>
+          <label>Loop end</label>
+          <input
+            id='loopEnd'
+            type="range"
+            name='loopEnd'
+            value={waveform.regions.loop.end}
+            onChange={setLoopEnd}
+          />
+        </div>
+      </div>
     </div>
   );
 }
 
 class Controls extends Component {
   render() {
+    console.log(this.props.waveform.regions.loop);
+
     return (
       <div className='Controls'>
         <div className='toggles'>
@@ -121,14 +155,13 @@ class Controls extends Component {
             </div>
 
             <div className='checkboxes'>
-              <PitchShift
-              pitchShift={this.props.pitchShift}
-              togglePitchShift={this.props.togglePitchShift}
-              />
 
               <Loop
               loop={this.props.loop}
               toggleLoop={this.props.toggleLoop}
+
+              waveform={this.props.waveform}
+              setRegionsState={this.props.setRegionsState}
               />
             </div>
           </div>
@@ -161,3 +194,8 @@ class Controls extends Component {
   }
 }
 export default Controls;
+
+// <PitchShift
+// pitchShift={this.props.pitchShift}
+// togglePitchShift={this.props.togglePitchShift}
+// />
