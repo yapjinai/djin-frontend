@@ -16,10 +16,6 @@ import MyRegions from '../MyRegions';
 class Waveform extends Component {
   constructor(props) {
     super(props)
-    this.props.setRegionsState({
-      start: 1,
-      end: 5
-    })
   }
 
   render() {
