@@ -102,8 +102,9 @@ class Channel extends Component {
   }
 
   setCurrentSong = (newSong) => {
+    // this.props.setChannelState('currentSong', null)
     this.props.setChannelState('currentSong', newSong)
-    this.props.setPos(0)
+    // this.props.setPos(0)
   }
 
   togglePlaying = () => {

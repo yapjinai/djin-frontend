@@ -14,10 +14,6 @@ import MyWavesurfer from '../MyWavesurfer';
 import MyRegions from '../MyRegions';
 
 class Waveform extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     this.setAudioRate()
     this.setBackend()
@@ -72,8 +68,8 @@ class Waveform extends Component {
   // WAVEFORM METHODS
 
   handlePosChange = (e) => {
-    const newPos = e.originalArgs[0]
-    this.props.setPos(newPos)
+    // const newPos = e.originalArgs[0]
+    // this.props.setPos(newPos)
   }
 
   handleFinish = () => {
