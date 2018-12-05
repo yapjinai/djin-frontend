@@ -40,7 +40,6 @@ class App extends Component {
       if (e.target.type !== 'text' && e.target.type !== 'number') {
         switch (e.key) {
           case ' ':
-            // console.log('space');
             e.preventDefault()
             if (this.props.channels.left.playing || this.props.channels.right.playing) { // master playing
               this.props.setPlaying('left', false)
@@ -134,7 +133,6 @@ class App extends Component {
             this.props.setRegionsState('right', 'loop', newLoopRight)
             this.props.setChannelState('right', 'loop', newLoopRight)
             break;
-          default:
 
           // MOVE LOOP START
           // E, U: nudge loop start backwards left/right
@@ -145,10 +143,8 @@ class App extends Component {
             }
           break;
           case 'u':
-            console.log(rightStart);
             const startBackRight = rightStart - 0.05
             if (startBackRight >= 0) {
-              console.log(startBackRight);
               this.props.setRegionsState('right', 'start', startBackRight)
             }
           break;
@@ -224,10 +220,9 @@ class App extends Component {
             const doubleLengthRight = rightLength * 2
             // if (start + doubleLengthRight < ?????) { // HOW TO FIND END OF FILE?
               this.props.setRegionsState('right', 'end', rightStart + doubleLengthRight)
-
-              console.log(this.props.waveforms['left'].regions.loop.end);
             // }
           break;
+          default:
         }
       }
     })

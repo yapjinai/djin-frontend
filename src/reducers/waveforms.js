@@ -30,6 +30,9 @@ const defaultWaveforms = {
 
 const waveforms = (state = defaultWaveforms, action) => {
   switch (action.type) {
+    case 'REVERT_TO_DEFAULT':
+    return defaultWaveforms
+
     case 'SET_POS':
     return ({...state,
       [action.side]: {...state[action.side],

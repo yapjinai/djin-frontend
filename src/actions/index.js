@@ -80,6 +80,9 @@ export const setPos = (side, pos) => ({
   side: side,
   pos: pos
 })
+export const revertToDefault = () => ({
+  type: 'REVERT_TO_DEFAULT'
+})
 export const setWaveformState = (side, key, newValue) => ({
   type: 'SET_WAVEFORM_STATE',
   side: side,
