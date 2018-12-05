@@ -34,12 +34,14 @@
 
       .checkboxes {
         .Loop {
-          .loopSliders {
+          .loopSettings {
             font-size: x-small;
+            display: flex;
+            justify-content: space-between;
 
             div {
               display: flex;
-              justify-content: space-between;
+              // justify-content: space-between;
             }
 
             input {

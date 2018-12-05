@@ -25,14 +25,15 @@
 .Controls .toggles .top .buttons .play-pause {
   font-size: x-large;
 }
-.Controls .toggles .top .checkboxes .Loop .loopSliders {
+.Controls .toggles .top .checkboxes .Loop .loopSettings {
   font-size: x-small;
-}
-.Controls .toggles .top .checkboxes .Loop .loopSliders div {
   display: flex;
   justify-content: space-between;
 }
-.Controls .toggles .top .checkboxes .Loop .loopSliders input {
+.Controls .toggles .top .checkboxes .Loop .loopSettings div {
+  display: flex;
+}
+.Controls .toggles .top .checkboxes .Loop .loopSettings input {
   width: 50%;
 }
 .Controls .DoubleHalf, .Controls .Volume {

@@ -101,37 +101,71 @@ const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
   return (
     <div className="Loop">
       <label>Loop</label>
-      <br />
+
       <input
         type="checkbox"
         checked={loop}
         onChange={toggleLoop}
       />
-      <div className="loopSliders">
+
+      <div className="loopSettings">
+
         <div>
           <label>Loop start</label>
-          <input
-            id='loopStart'
-            type="range"
-            name='loopStart'
-            value={waveform.regions.loop.start}
-            onChange={setLoopStart}
-          />
+          <br />
+          <span>
+            <button>
+              {'<'}
+            </button>
+            <button>
+              {'>'}
+            </button>
+          </span>
         </div>
         <div>
           <label>Loop end</label>
-          <input
-            id='loopEnd'
-            type="range"
-            name='loopEnd'
-            value={waveform.regions.loop.end}
-            onChange={setLoopEnd}
-          />
+          <br />
+          <button>
+            {'<'}
+          </button>
+          <button>
+            {'>'}
+          </button>
         </div>
+
       </div>
+
     </div>
   );
 }
+// <div className="loopSettings">
+//   <div>
+//     <label>Loop start</label>
+//     <input
+//       id='loopStart'
+//       type="range"
+//       min="0"
+//       max="200"
+//       step=".01"
+//       name='loopStart'
+//       value={waveform.regions.loop.start}
+//       onChange={setLoopStart}
+//     />
+//   </div>
+//   <div>
+//     <label>Loop end</label>
+//     <input
+//       id='loopEnd'
+//       type="range"
+//       min="0"
+//       max="200"
+//       step=".01"
+//       name='loopEnd'
+//       value={waveform.regions.loop.end}
+//       onChange={setLoopEnd}
+//     />
+//   </div>
+// </div>
 
 class Controls extends Component {
   render() {
