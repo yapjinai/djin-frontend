@@ -8,8 +8,25 @@
   display: flex;
   justify-content: flex-end;
 }
+.Browser .filter div {
+  border: none;
+  background: none;
+}
 .Browser .filter input {
   flex-grow: 1;
+}
+.Browser .filter .genres {
+  display: flex;
+}
+.Browser .filter .genres .genre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Browser .filter .genres .genre label {
+  color: initial;
+  font-size: small;
+  font-weight: initial;
 }
 .Browser table th {
   background: #ffeaf9;

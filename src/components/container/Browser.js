@@ -26,12 +26,100 @@ class Browser extends Component {
     return (
       <div className="Browser">
         <span className='filter'>
-          <input
-            type='text'
-            placeholder='Search'
-            value={this.props.browserFilterQuery}
-            onChange={this.handleChange}
-          />
+          <div className='genres'>
+            <div className='genre pop'>
+              <label
+                for='pop'
+              >
+                Pop
+              </label>
+              <input
+                type='checkbox'
+                name='pop'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+            <div className='genre house'>
+              <label
+                for='house'
+              >
+                House
+              </label>
+              <input
+                type='checkbox'
+                name='house'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+            <div className='genre trap'>
+              <label
+                for='trap'
+              >
+                Trap
+              </label>
+              <input
+                type='checkbox'
+                name='trap'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+            <div className='genre rnb'>
+              <label
+                for='rnb'
+              >
+                R&B
+              </label>
+              <input
+                type='checkbox'
+                name='rnb'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+            <div className='genre hiphop'>
+              <label
+                for='hiphop'
+              >
+                Hip Hop
+              </label>
+              <input
+                type='checkbox'
+                name='hiphop'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+            <div className='genre weird'>
+              <label
+                for='weird'
+              >
+                Weird
+              </label>
+              <input
+                type='checkbox'
+                name='weird'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+            <div className='genre straight'>
+              <label
+                for='straight'
+              >
+                Beat-heavy
+              </label>
+              <input
+                type='checkbox'
+                name='straight'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
+          </div>
+
+            <input
+              type='text'
+              placeholder='Search'
+              value={this.props.browserFilterQuery}
+              onChange={this.handleChange}
+            />
+
           <button
             onClick={() => this.props.setBrowserFilterQuery('')}
           >

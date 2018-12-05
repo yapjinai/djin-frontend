@@ -10,8 +10,29 @@
     display: flex;
     justify-content: flex-end;
 
+    div {
+      border: none;
+      background: none;
+    }
+
     input {
       flex-grow: 1;
+    }
+
+    .genres {
+      display: flex;
+
+      .genre {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        label {
+          color: initial;
+          font-size: small;
+          font-weight: initial;
+        }
+      }
     }
   }
 
