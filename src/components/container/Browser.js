@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {
   setAllSongs,
 
-  setBrowserFilterQuery,
+  // setBrowserFilterQuery,
   setFilteredSongs,
   setSortBy,
   setReverseSort,
@@ -19,6 +19,14 @@ const uuid = require('uuid/v4');
 const apiUrl = 'http://localhost:3000'
 
 class Browser extends Component {
+  constructor() {
+    super()
+    this.state = {
+      browserFilterQuery: '',
+      tags: []
+    }
+  }
+
   render() {
     this.filterSongs()
     this.sortSongs()
@@ -29,7 +37,7 @@ class Browser extends Component {
           <div className='genres'>
             <div className='genre pop'>
               <label
-                for='pop'
+                htmlFor='pop'
               >
                 Pop
               </label>
@@ -41,7 +49,7 @@ class Browser extends Component {
             </div>
             <div className='genre house'>
               <label
-                for='house'
+                htmlFor='house'
               >
                 House
               </label>
@@ -53,7 +61,7 @@ class Browser extends Component {
             </div>
             <div className='genre trap'>
               <label
-                for='trap'
+                htmlFor='trap'
               >
                 Trap
               </label>
@@ -65,7 +73,7 @@ class Browser extends Component {
             </div>
             <div className='genre rnb'>
               <label
-                for='rnb'
+                htmlFor='rnb'
               >
                 R&B
               </label>
@@ -77,7 +85,7 @@ class Browser extends Component {
             </div>
             <div className='genre hiphop'>
               <label
-                for='hiphop'
+                htmlFor='hiphop'
               >
                 Hip Hop
               </label>
@@ -89,7 +97,7 @@ class Browser extends Component {
             </div>
             <div className='genre weird'>
               <label
-                for='weird'
+                htmlFor='weird'
               >
                 Weird
               </label>
@@ -99,15 +107,15 @@ class Browser extends Component {
                 onChange={this.handleCheckboxChange}
               />
             </div>
-            <div className='genre straight'>
+            <div className='genre beat'>
               <label
-                for='straight'
+                htmlFor='beat'
               >
                 Beat-heavy
               </label>
               <input
                 type='checkbox'
-                name='straight'
+                name='beat'
                 onChange={this.handleCheckboxChange}
               />
             </div>
@@ -116,12 +124,12 @@ class Browser extends Component {
             <input
               type='text'
               placeholder='Search'
-              value={this.props.browserFilterQuery}
+              value={this.state.browserFilterQuery}
               onChange={this.handleChange}
             />
 
           <button
-            onClick={() => this.props.setBrowserFilterQuery('')}
+            onClick={this.clearQueries}
           >
             Clear
           </button>
@@ -191,8 +199,8 @@ class Browser extends Component {
           song={s}
           key={uuid()}
           pushToQueue={this.props.pushToQueue}
-          setBrowserFilterQuery={this.props.setBrowserFilterQuery}
-          browserFilterQuery={this.props.browserFilterQuery}
+          setBrowserFilterQuery={this.setBrowserFilterQuery}
+          browserFilterQuery={this.state.browserFilterQuery}
         />
       )
     })
@@ -202,17 +210,58 @@ class Browser extends Component {
   // FILTER
 
   handleChange = (e) => {
-    this.props.setBrowserFilterQuery(e.target.value)
+    this.setBrowserFilterQuery(e.target.value)
+  }
+
+  handleCheckboxChange = (e) => {
+    if (e.target.checked) {
+      const newTags = [...this.state.tags]
+      newTags.push(e.target.name)
+      this.setState({
+        tags: newTags
+      }, () => console.log(this.state.tags))
+    }
+    else {
+      const newTags = this.state.tags.filter(g => g !== e.target.name)
+      this.setState({
+        tags: newTags
+      }, () => console.log(this.state.tags))
+    }
+  }
+
+  setBrowserFilterQuery = (query) => {
+    this.setState({
+      browserFilterQuery: query
+    })
+  }
+
+  clearQueries = () => {
+    this.setBrowserFilterQuery('')
+    this.setState({
+      tags: []
+    })
+    document.querySelectorAll('[type=checkbox]').forEach(c => {
+      c.checked = false
+    })
   }
 
   filterSongs = () => {
     const newSongs = this.props.allSongs.filter(s => {
-      const query = this.props.browserFilterQuery.toLowerCase().split(' ').join('')
+      const query = this.state.browserFilterQuery.toLowerCase().split(' ').join('')
       const title = s.title.toLowerCase().split(' ').join('')
       const artist = s.artist.toLowerCase().split(' ').join('')
-      // const tags = s.tags.toLowerCase().split(' ').join('')
+      const tags = s.tags
 
-      return title.includes(query) || artist.includes(query)// || tags.includes(query)
+      let matchesTags = true
+      this.state.tags.forEach(t => {
+        if (!tags.includes(t)) {
+          matchesTags = false
+        }
+      })
+
+      return (
+        (title.includes(query) || artist.includes(query)) &&
+        matchesTags)
     })
 
     if (this.props.filteredSongs.length !== newSongs.length) {
@@ -270,7 +319,7 @@ const mapStateToProps = (state, ownProps) => ({
   allSongs: state.allSongs,
 
   filteredSongs: state.filteredSongs,
-  browserFilterQuery: state.browserFilterQuery,
+  // browserFilterQuery: state.browserFilterQuery,
   sortBy: state.sortBy,
   reverseSort: state.reverseSort,
 })
@@ -279,7 +328,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   setAllSongs: (allSongs) => dispatch(setAllSongs(allSongs)),
 
   setFilteredSongs: (filteredSongs) => dispatch(setFilteredSongs(filteredSongs)),
-  setBrowserFilterQuery: (browserFilterQuery) => dispatch(setBrowserFilterQuery(browserFilterQuery)),
+  // setBrowserFilterQuery: (browserFilterQuery) => dispatch(setBrowserFilterQuery(browserFilterQuery)),
   setSortBy: (sortBy) => dispatch(setSortBy(sortBy)),
   setReverseSort: (reverseSort) => dispatch(setReverseSort(reverseSort)),
 

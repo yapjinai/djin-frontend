@@ -5,7 +5,7 @@ import crossfade from './crossfade'
 
 import allSongs from './allSongs'
 import filteredSongs from './filteredSongs'
-import browserFilterQuery from './browserFilterQuery'
+// import browserFilterQuery from './browserFilterQuery'
 import sortBy from './sortBy'
 import reverseSort from './reverseSort'
 
@@ -19,7 +19,7 @@ export default combineReducers({
 
   allSongs,
   filteredSongs,
-  browserFilterQuery,
+  // browserFilterQuery,
 
   sortBy,
   reverseSort,

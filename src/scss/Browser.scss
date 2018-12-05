@@ -1,5 +1,5 @@
 .Browser {
-  flex-shrink: 1;
+  // flex-shrink: 1;
 
   color: #45f;
   overflow-y: scroll;
@@ -37,6 +37,8 @@
   }
 
   table {
+    width: 40vw;
+
     th {
       background: #ffeaf9;
     }
@@ -49,14 +51,24 @@
     #title, #artist {
       width: 15vw;
     }
-    .queue {
-      min-width: 60px;
+    .queue,
+    #queue {
+      width: 60px;
       text-align: center;
     }
-    .title, .artist, .bpm {
+    .title, .artist,
+    #title, #artist {
+      max-height: 30px;
+      width: 41%;
       padding: 0 10px;
+
+      white-space: nowrap;
+      overflow-x: scroll;
     }
-    .bpm {
+    .bpm,
+    #bpm {
+      // width: 10%;
+      padding: 0 10px;
       text-align: right;
     }
 

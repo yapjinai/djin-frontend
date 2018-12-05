@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Info from '../presentational/Info';
 
 class Help extends Component {
   state = {
@@ -17,37 +18,15 @@ class Help extends Component {
         ?
       </button>
 
-      <div className='info hidden'>
-        <label>Shortcuts:</label>
-        <ul>
-          <li>
-            Space: play/pause master
-          </li>
-          <li>
-            ←, →: crossfade left/right
-          </li>
-          <li>
-            ↑, ↓: BPM up/down
-          </li>
-          <li>
-            Q, P: play/pause left/right
-          </li>
-          <li>
-            S, L: toggle looping left/right
-          </li>
-        </ul>
+      <Info />
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut velit in libero maximus dapibus quis quis arcu. Donec nisi metus, tempor ultrices finibus eget, posuere vitae nisl. Quisque rutrum nibh ut turpis faucibus, vel elementum leo pellentesque. Ut blandit nisl mauris, id volutpat ex dapibus lobortis. Sed sit amet lobortis arcu. Phasellus dignissim nibh quis gravida rhoncus. Vivamus pulvinar mauris purus, et feugiat metus sollicitudin eu.
-        </p>
-      </div>
       </div>
     );
   }
 
   componentDidMount() {
     const button = document.querySelector('.help')
-    const info = document.querySelector('.info')
+    const info = document.querySelector('.Info')
 
     document.addEventListener('click', (e) => {
       if (this.state.shown &&
@@ -72,7 +51,7 @@ class Help extends Component {
 
   setInfoVisibility = () => {
     const button = document.querySelector('.help')
-    const info = document.querySelector('.info')
+    const info = document.querySelector('.Info')
 
     if (button && info) {
       if (this.state.shown) {

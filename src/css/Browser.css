@@ -1,5 +1,4 @@
 .Browser {
-  flex-shrink: 1;
   color: #45f;
   overflow-y: scroll;
   height: 70%;
@@ -28,6 +27,9 @@
   font-size: small;
   font-weight: initial;
 }
+.Browser table {
+  width: 40vw;
+}
 .Browser table th {
   background: #ffeaf9;
 }
@@ -40,14 +42,22 @@
 .Browser table #title, .Browser table #artist {
   width: 15vw;
 }
-.Browser table .queue {
-  min-width: 60px;
+.Browser table .queue,
+.Browser table #queue {
+  width: 60px;
   text-align: center;
 }
-.Browser table .title, .Browser table .artist, .Browser table .bpm {
+.Browser table .title, .Browser table .artist,
+.Browser table #title, .Browser table #artist {
+  max-height: 30px;
+  width: 41%;
   padding: 0 10px;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
-.Browser table .bpm {
+.Browser table .bpm,
+.Browser table #bpm {
+  padding: 0 10px;
   text-align: right;
 }
 

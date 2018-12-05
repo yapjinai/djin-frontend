@@ -22,10 +22,10 @@ export const setFilteredSongs = (filteredSongs) => ({
   type: 'SET_FILTERED_SONGS',
   filteredSongs: filteredSongs
 })
-export const setBrowserFilterQuery = (browserFilterQuery) => ({
-  type: 'SET_BROWSER_FILTER_QUERY',
-  browserFilterQuery: browserFilterQuery
-})
+// export const setBrowserFilterQuery = (browserFilterQuery) => ({
+//   type: 'SET_BROWSER_FILTER_QUERY',
+//   browserFilterQuery: browserFilterQuery
+// })
 
 /////////////////////////
 /////////////////////////

@@ -1,7 +1,7 @@
 .Channel {
   display: flex;
   flex-direction: column;
-  flex-grow: 2;
+  width: 28vw;
   border-radius: 20px;
 }
 .Channel h2 {
