@@ -87,8 +87,10 @@ class Waveform extends Component {
   // REGIONS METHODS
 
   handleRegionUpdateEnd = (e) => {
-    this.props.setRegionsState('start', e.originalArgs[0].start)
-    this.props.setRegionsState('end', e.originalArgs[0].end)
+    const end = e.originalArgs[0].end
+    const start = e.originalArgs[0].start
+    this.props.setRegionsState('end', end)
+    this.props.setRegionsState('start', start)
   }
 
   // RENDER
