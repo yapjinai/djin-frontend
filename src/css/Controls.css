@@ -31,10 +31,17 @@
   justify-content: space-between;
 }
 .Controls .toggles .top .checkboxes .Loop .loopSettings div {
+  text-align: center;
+  white-space: nowrap;
+}
+.Controls .toggles .top .checkboxes .Loop .loopSettings div span {
   display: flex;
 }
 .Controls .toggles .top .checkboxes .Loop .loopSettings input {
   width: 50%;
+}
+.Controls .toggles .top .checkboxes .Loop .hidden {
+  visibility: hidden;
 }
 .Controls .DoubleHalf, .Controls .Volume {
   text-align: center;

@@ -40,13 +40,19 @@
             justify-content: space-between;
 
             div {
-              display: flex;
-              // justify-content: space-between;
+              text-align: center;
+              white-space: nowrap;
+              span {
+                display: flex;
+              }
             }
 
             input {
               width: 50%;
             }
+          }
+          .hidden {
+            visibility: hidden;
           }
         }
       }

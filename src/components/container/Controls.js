@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../../css/Controls.css';
 
+import Loop from './Loop';
+
 const Volume = (props) => {
   const handleChange = (e) => {
     props.setVolume(parseFloat(e.target.value))
@@ -84,60 +86,147 @@ const DoubleHalf = (props) => {
 //     </div>
 //   );
 // }
-const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
-  const setLoopStart = (e) => {
-    e.preventDefault()
-    if (parseInt(e.target.value) < waveform.regions.loop.end) {
-      setRegionsState('start', e.target.value)
-    }
-  }
-  const setLoopEnd = (e) => {
-    e.preventDefault()
-    if (parseInt(e.target.value) > waveform.regions.loop.start) {
-      setRegionsState('end', e.target.value)
-    }
-  }
 
-  return (
-    <div className="Loop">
-      <label>Loop</label>
-
-      <input
-        type="checkbox"
-        checked={loop}
-        onChange={toggleLoop}
-      />
-
-      <div className="loopSettings">
-
-        <div>
-          <label>Loop start</label>
-          <br />
-          <span>
-            <button>
-              {'<'}
-            </button>
-            <button>
-              {'>'}
-            </button>
-          </span>
-        </div>
-        <div>
-          <label>Loop end</label>
-          <br />
-          <button>
-            {'<'}
-          </button>
-          <button>
-            {'>'}
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-  );
-}
+//
+// const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
+//   // const setLoopStart = (e) => {
+//   //   e.preventDefault()
+//   //   if (parseInt(e.target.value) < waveform.regions.loop.end) {
+//   //     setRegionsState('start', e.target.value)
+//   //   }
+//   // }
+//   // const setLoopEnd = (e) => {
+//   //   e.preventDefault()
+//   //   if (parseInt(e.target.value) > waveform.regions.loop.start) {
+//   //     setRegionsState('end', e.target.value)
+//   //   }
+//   // }
+//
+//   const handleChange = (e) => {
+//     const container = e.target.parentElement
+//     const loopSettings = container.querySelector('.loopSettings')
+//     if (loop) {
+//       loopSettings.classList.add('hidden')
+//     }
+//     else {
+//       loopSettings.classList.remove('hidden')
+//     }
+//     toggleLoop()
+//   }
+//
+//   const start = waveform.regions.loop.start
+//   const end = waveform.regions.loop.end
+//   const length = end - start
+//
+//   const startBack = () => {
+//     const newStart = start - 0.05
+//     if (newStart >= 0) {
+//       setRegionsState('start', newStart)
+//     }
+//   }
+//   const startForwards = () => {
+//     const newStart = start + 0.05
+//     if (newStart <= end) {
+//       setRegionsState('start', newStart)
+//     }
+//   }
+//   const endBack = () => {
+//     const newEnd = end - 0.05
+//     if (newEnd >= start) {
+//       setRegionsState('end', newEnd)
+//     }
+//   }
+//   const endForwards = () => {
+//     const newEnd = end + 0.05
+//     // if (newEnd <= ?????) { // HOW TO FIND END OF FILE?
+//       setRegionsState('end', newEnd)
+//     // }
+//   }
+//   const loopHalf = () => {
+//     const newLength = length / 2
+//     if (newLength > .01) {
+//       setRegionsState('end', start + newLength)
+//     }
+//   }
+//   const loopDouble = () => {
+//     const newLength = length * 2
+//     // if (start + newLength < ?????) { // HOW TO FIND END OF FILE?
+//       setRegionsState('end', start + newLength)
+//     // }
+//   }
+//
+//   const renderLoopSettings = () => {
+//     return (
+//       <div className="loopSettings hidden">
+//         <div>
+//           <label>Loop start</label>
+//           <br />
+//           <span>
+//             <button
+//               onClick={startBack}
+//             >
+//               {'<'}
+//             </button>
+//             <button
+//               onClick={startForwards}
+//             >
+//               {'>'}
+//             </button>
+//           </span>
+//         </div>
+//
+//         <div>
+//           <label>Loop</label>
+//           <br />
+//           <span>
+//             <button
+//               onClick={loopHalf}
+//             >
+//               /2
+//             </button>
+//             <button
+//               onClick={loopDouble}
+//             >
+//               ×2
+//             </button>
+//           </span>
+//         </div>
+//
+//         <div>
+//           <label>Loop end</label>
+//           <br />
+//           <span>
+//             <button
+//               onClick={endBack}
+//             >
+//               {'<'}
+//             </button>
+//             <button
+//               onClick={endForwards}
+//             >
+//               {'>'}
+//             </button>
+//           </span>
+//         </div>
+//       </div>
+//     )
+//   }
+//
+//   return (
+//     <div className="Loop">
+//       <label>Loop</label>
+//
+//       <input
+//         type="checkbox"
+//         checked={loop}
+//         onChange={handleChange}
+//       />
+//
+//       {renderLoopSettings()}
+//
+//     </div>
+//   );
+// }
 // <div className="loopSettings">
 //   <div>
 //     <label>Loop start</label>
@@ -191,11 +280,11 @@ class Controls extends Component {
             <div className='checkboxes'>
 
               <Loop
-              loop={this.props.loop}
-              toggleLoop={this.props.toggleLoop}
+                loop={this.props.loop}
+                toggleLoop={this.props.toggleLoop}
 
-              waveform={this.props.waveform}
-              setRegionsState={this.props.setRegionsState}
+                waveform={this.props.waveform}
+                setRegionsState={this.props.setRegionsState}
               />
             </div>
           </div>

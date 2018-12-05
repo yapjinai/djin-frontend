@@ -21,6 +21,9 @@ const Info = () => {
           S, L: toggle looping left/right
         </li>
       </ul>
+
+      <hr />
+
       <label>DJin</label>
       <p>
         was created by <a href='https://github.com/yapjinai'>Jin Ai Yap</a>.
