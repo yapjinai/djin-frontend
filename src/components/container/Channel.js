@@ -5,13 +5,14 @@ import {
   setBpm,
   setCrossfade,
 
+  revertToDefault,
   setChannelState,
   setRegionsState,
 
   setPlaying,
 
   shiftFromQueue,
-  setPos
+  // setPos
 } from '../../actions'
 
 import '../../css/Channel.css';
@@ -102,7 +103,8 @@ class Channel extends Component {
   }
 
   setCurrentSong = (newSong) => {
-    // this.props.setChannelState('currentSong', null)
+    this.props.setChannelState('currentSong', null)
+    this.props.revertToDefault()
     this.props.setChannelState('currentSong', newSong)
     // this.props.setPos(0)
   }
@@ -129,13 +131,11 @@ class Channel extends Component {
 
   playNextFromQueue = () => {
     if (this.props.queue[0]) {
-      console.log('playing next');
       const currentSong = this.props.queue[0]
       this.props.setChannelState('currentSong', currentSong)
       this.props.shiftFromQueue()
     }
     else {
-      console.log('hit');
       this.props.setChannelState('currentSong', null)
       this.props.setPlaying(false)
     }
@@ -216,6 +216,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   // Channel state setters
   setChannelState: (key, newValue) => dispatch(setChannelState(ownProps.side, key, newValue)),
+  revertToDefault: () => dispatch(revertToDefault()),
   setRegionsState: (key, newValue) => dispatch(setRegionsState(ownProps.side, key, newValue)),
 
   setPlaying: (playing) => dispatch(setPlaying(ownProps.side, playing)),
@@ -223,7 +224,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   shiftFromQueue: () => dispatch(shiftFromQueue(ownProps.side)),
 
   // Waveform state setters
-  setPos: (pos) => dispatch(setPos(ownProps.side, pos))
+  // setPos: (pos) => dispatch(setPos(ownProps.side, pos))
 })
 
 const connectedChannel = connect(

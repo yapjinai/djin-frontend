@@ -105,7 +105,7 @@ class Loop extends Component {
         </div>
 
         <div>
-          <label>Loop</label>
+          <label>Loop length</label>
           <br />
           <span>
             <button
