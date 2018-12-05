@@ -14,12 +14,44 @@ const Info = () => {
         <li>
           ↑, ↓: BPM up/down
         </li>
+
+        <br />
+
         <li>
           Q, P: play/pause left/right
         </li>
         <li>
           S, L: toggle looping left/right
         </li>
+
+        <br />
+        
+        <li>
+          E, U: nudge loop start backwards left/right
+        </li>
+        <li>
+          R, I: nudge loop start forwards left/right
+        </li>
+
+        <br />
+
+        <li>
+          C, N: nudge loop end backwards left/right
+        </li>
+        <li>
+          V, M: nudge loop end forwards left/right
+        </li>
+
+        <br />
+
+        <li>
+          D, J: halve loop left/right
+        </li>
+        <li>
+          F, K: double loop left/right
+        </li>
+
+
       </ul>
 
       <hr />

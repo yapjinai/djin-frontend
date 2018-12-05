@@ -29,6 +29,7 @@
         justify-content: space-around;
         .play-pause {
           font-size: x-large;
+          min-width: 90px;
         }
       }
 
@@ -51,9 +52,9 @@
               width: 50%;
             }
           }
-          .hidden {
-            visibility: hidden;
-          }
+          // .hidden {
+          //   visibility: hidden;
+          // }
         }
       }
     }

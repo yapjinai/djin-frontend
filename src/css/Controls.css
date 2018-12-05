@@ -24,6 +24,7 @@
 }
 .Controls .toggles .top .buttons .play-pause {
   font-size: x-large;
+  min-width: 90px;
 }
 .Controls .toggles .top .checkboxes .Loop .loopSettings {
   font-size: x-small;
@@ -39,9 +40,6 @@
 }
 .Controls .toggles .top .checkboxes .Loop .loopSettings input {
   width: 50%;
-}
-.Controls .toggles .top .checkboxes .Loop .hidden {
-  visibility: hidden;
 }
 .Controls .DoubleHalf, .Controls .Volume {
   text-align: center;
