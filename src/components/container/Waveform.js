@@ -83,35 +83,37 @@ class Waveform extends Component {
   // REGIONS METHODS
 
   handleRegionUpdateEnd = (e) => {
-    this.props.setRegionsState('start', e.originalArgs[0].start)
-    this.props.setRegionsState('end', e.originalArgs[0].end)
+    const end = e.originalArgs[0].end
+    const start = e.originalArgs[0].start
+    this.props.setRegionsState('end', end)
+    this.props.setRegionsState('start', start)
   }
 
   // RENDER
 
   renderWaveform = () => {
-      return (
-        <MyWavesurfer
-          side={this.props.side}
+    return (
+      <MyWavesurfer
+        side={this.props.side}
 
-          audioFile={this.props.currentSong.url}
-          playing={this.props.playing}
-          volume={this.props.volume}
+        audioFile={this.props.currentSong.url}
+        playing={this.props.playing}
+        volume={this.props.volume}
 
-          options={this.props.waveform.waveformOptions}
-          pos={this.props.waveform.pos}
+        options={this.props.waveform.waveformOptions}
+        pos={this.props.waveform.pos}
 
-          onPosChange={this.handlePosChange}
-          onFinish={this.handleFinish}
-        >
+        onPosChange={this.handlePosChange}
+        onFinish={this.handleFinish}
+      >
 
-        <MyRegions
-          regions={this.props.waveform.regions}
-          onRegionUpdateEnd={this.handleRegionUpdateEnd}
-        />
+      <MyRegions
+        regions={this.props.waveform.regions}
+        onRegionUpdateEnd={this.handleRegionUpdateEnd}
+      />
 
-        </MyWavesurfer>
-      )
+      </MyWavesurfer>
+    )
   }
 }
 

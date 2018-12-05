@@ -6,6 +6,8 @@ import {
   setCrossfade,
 
   setChannelState,
+  setRegionsState,
+
   setPlaying,
 
   shiftFromQueue,
@@ -61,6 +63,9 @@ class Channel extends Component {
 
             loop={this.props.channel.loop}
             toggleLoop={this.toggleLoop}
+
+            waveform={this.props.waveform}
+            setRegionsState={this.props.setRegionsState}
           />
         </div>
         <Queue
@@ -199,7 +204,7 @@ const mapStateToProps = (state, ownProps) => ({
 
   // Channel state
   channel: state.channels[ownProps.side],
-
+  waveform: state.waveforms[ownProps.side],
   queue: state.queues[ownProps.side]
 })
 
@@ -210,6 +215,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   // Channel state setters
   setChannelState: (key, newValue) => dispatch(setChannelState(ownProps.side, key, newValue)),
+  setRegionsState: (key, newValue) => dispatch(setRegionsState(ownProps.side, key, newValue)),
+
   setPlaying: (playing) => dispatch(setPlaying(ownProps.side, playing)),
 
   shiftFromQueue: () => dispatch(shiftFromQueue(ownProps.side)),

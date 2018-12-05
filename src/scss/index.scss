@@ -9,6 +9,17 @@ body {
     color: black;
   }
 }
+
+a {
+  color: #333;
+  &:hover {
+    color: #666;
+  }
+  &:active {
+    color: #999;
+  }
+}
+
 ul {
   padding: 0;
   list-style: none;

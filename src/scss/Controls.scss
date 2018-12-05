@@ -1,11 +1,14 @@
 .Controls {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   justify-content: center;
 
   div {
     border: none;
+    // border: 1px solid green;
     background: none;
+
+    padding: 1%;
   }
 
   .toggles {
@@ -17,11 +20,34 @@
 
     .top {
       display: flex;
+      flex-direction: column;
+
       justify-content: space-around;
 
       .buttons {
+        display: flex;
+        justify-content: space-around;
         .play-pause {
           font-size: x-large;
+        }
+      }
+
+      .checkboxes {
+        .Loop {
+          .loopSettings {
+            font-size: x-small;
+            display: flex;
+            justify-content: space-between;
+
+            div {
+              display: flex;
+              // justify-content: space-between;
+            }
+
+            input {
+              width: 50%;
+            }
+          }
         }
       }
     }

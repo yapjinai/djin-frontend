@@ -71,33 +71,101 @@ const DoubleHalf = (props) => {
     </div>
   );
 }
+// const PitchShift = (props) => {
+//   return (
+//     <div className="PitchShift">
+//       <label>Pitch shift</label>
+//       <br />
+//       <input
+//         type="checkbox"
+//         checked={props.loop}
+//         onChange={props.togglePitchShift}
+//       />
+//     </div>
+//   );
+// }
+const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
+  const setLoopStart = (e) => {
+    e.preventDefault()
+    if (parseInt(e.target.value) < waveform.regions.loop.end) {
+      setRegionsState('start', e.target.value)
+    }
+  }
+  const setLoopEnd = (e) => {
+    e.preventDefault()
+    if (parseInt(e.target.value) > waveform.regions.loop.start) {
+      setRegionsState('end', e.target.value)
+    }
+  }
 
-const PitchShift = (props) => {
-  return (
-    <div className="PitchShift">
-      <label>Pitch shift</label>
-      <br />
-      <input
-        type="checkbox"
-        checked={props.loop}
-        onChange={props.togglePitchShift}
-      />
-    </div>
-  );
-}
-const Loop = (props) => {
   return (
     <div className="Loop">
       <label>Loop</label>
-      <br />
+
       <input
         type="checkbox"
-        checked={props.loop}
-        onChange={props.toggleLoop}
+        checked={loop}
+        onChange={toggleLoop}
       />
+
+      <div className="loopSettings">
+
+        <div>
+          <label>Loop start</label>
+          <br />
+          <span>
+            <button>
+              {'<'}
+            </button>
+            <button>
+              {'>'}
+            </button>
+          </span>
+        </div>
+        <div>
+          <label>Loop end</label>
+          <br />
+          <button>
+            {'<'}
+          </button>
+          <button>
+            {'>'}
+          </button>
+        </div>
+
+      </div>
+
     </div>
   );
 }
+// <div className="loopSettings">
+//   <div>
+//     <label>Loop start</label>
+//     <input
+//       id='loopStart'
+//       type="range"
+//       min="0"
+//       max="200"
+//       step=".01"
+//       name='loopStart'
+//       value={waveform.regions.loop.start}
+//       onChange={setLoopStart}
+//     />
+//   </div>
+//   <div>
+//     <label>Loop end</label>
+//     <input
+//       id='loopEnd'
+//       type="range"
+//       min="0"
+//       max="200"
+//       step=".01"
+//       name='loopEnd'
+//       value={waveform.regions.loop.end}
+//       onChange={setLoopEnd}
+//     />
+//   </div>
+// </div>
 
 class Controls extends Component {
   render() {
@@ -121,14 +189,13 @@ class Controls extends Component {
             </div>
 
             <div className='checkboxes'>
-              <PitchShift
-              pitchShift={this.props.pitchShift}
-              togglePitchShift={this.props.togglePitchShift}
-              />
 
               <Loop
               loop={this.props.loop}
               toggleLoop={this.props.toggleLoop}
+
+              waveform={this.props.waveform}
+              setRegionsState={this.props.setRegionsState}
               />
             </div>
           </div>
@@ -161,3 +228,8 @@ class Controls extends Component {
   }
 }
 export default Controls;
+
+// <PitchShift
+// pitchShift={this.props.pitchShift}
+// togglePitchShift={this.props.togglePitchShift}
+// />
