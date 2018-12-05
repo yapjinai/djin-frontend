@@ -29,7 +29,6 @@ const defaultWaveforms = {
 }
 
 const waveforms = (state = defaultWaveforms, action) => {
-  console.log(action.type)
   switch (action.type) {
     case 'SET_POS':
     return ({...state,

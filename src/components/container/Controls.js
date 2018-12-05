@@ -86,14 +86,16 @@ const DoubleHalf = (props) => {
 // }
 const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
   const setLoopStart = (e) => {
-    // if (e.target.value < waveform.regions.loopEnd) {
+    e.preventDefault()
+    if (parseInt(e.target.value) < waveform.regions.loop.end) {
       setRegionsState('start', e.target.value)
-    // }
+    }
   }
   const setLoopEnd = (e) => {
-    // if (e.target.value > waveform.regions.loopStart) {
+    e.preventDefault()
+    if (parseInt(e.target.value) > waveform.regions.loop.start) {
       setRegionsState('end', e.target.value)
-    // }
+    }
   }
 
   return (
@@ -133,8 +135,6 @@ const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
 
 class Controls extends Component {
   render() {
-    console.log(this.props.waveform.regions.loop);
-
     return (
       <div className='Controls'>
         <div className='toggles'>
