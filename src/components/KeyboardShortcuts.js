@@ -80,6 +80,12 @@ export default function addKeyboardShortcuts() {
 
             if (shiftPressed) {
               switch (secondEvent.key) {
+                // HELP
+                case '?':
+
+                break;
+
+                // HARD CROSSFADE
                 case 'ArrowLeft':
                   secondEvent.preventDefault()
                   this.props.setCrossfade(-1)
@@ -89,7 +95,7 @@ export default function addKeyboardShortcuts() {
                   this.props.setCrossfade(1)
                 break;
 
-                // FASTER BPM SHIFT
+                // FASTER BPM INCR/DECREASE
                 case 'ArrowUp':
                   const incrBpm = this.props.masterBpm + 9
                   if (incrBpm <= 300) {

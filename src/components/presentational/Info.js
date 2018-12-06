@@ -9,10 +9,12 @@ const Info = () => {
           Space: play/pause master
         </li>
         <li>
-          ←, →: crossfade left/right
+          ←, →: crossfade left/right<br />
+          (with Shift: hard crossfade)
         </li>
         <li>
-          ↑, ↓: BPM up/down
+          ↑, ↓: BPM up/down<br />
+          (with Shift: faster up/down)
         </li>
 
         <br />
@@ -25,21 +27,25 @@ const Info = () => {
         </li>
 
         <br />
-        
+
         <li>
-          E, U: nudge loop start backwards left/right
+          E, U: nudge loop start backwards left/right<br />
+          (with Shift: nudge faster)
         </li>
         <li>
-          R, I: nudge loop start forwards left/right
+          R, I: nudge loop start forwards left/right<br />
+          (with Shift: nudge faster)
         </li>
 
         <br />
 
         <li>
-          C, N: nudge loop end backwards left/right
+          C, N: nudge loop end backwards left/right<br />
+          (with Shift: nudge faster)
         </li>
         <li>
           V, M: nudge loop end forwards left/right
+          (with Shift: nudge faster)
         </li>
 
         <br />
