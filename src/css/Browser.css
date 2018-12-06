@@ -46,6 +46,7 @@
 .Browser table .queue,
 .Browser table #queue {
   width: 60px;
+  min-width: 60px;
   text-align: center;
 }
 .Browser table .title, .Browser table .artist,
@@ -53,7 +54,6 @@
   max-height: 30px;
   width: 41%;
   padding: 0 10px;
-  white-space: nowrap;
   overflow-x: scroll;
 }
 .Browser table .bpm,

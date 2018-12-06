@@ -42,7 +42,7 @@ const BrowserSong = ({song, pushToQueue, browserFilterQuery, setBrowserFilterQue
         {song.artist}
       </td>
       <td className='bpm'>
-        {song.bpm}
+        {parseInt(song.bpm)}
       </td>
     </tr>
   );

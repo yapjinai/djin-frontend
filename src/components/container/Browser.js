@@ -119,6 +119,18 @@ class Browser extends Component {
                 onChange={this.handleCheckboxChange}
               />
             </div>
+            <div className='genre flatiron'>
+              <label
+                htmlFor='flatiron'
+              >
+                :)
+              </label>
+              <input
+                type='checkbox'
+                name='flatiron'
+                onChange={this.handleCheckboxChange}
+              />
+            </div>
           </div>
 
             <input

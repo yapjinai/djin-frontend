@@ -55,6 +55,7 @@
     .queue,
     #queue {
       width: 60px;
+      min-width: 60px;
       text-align: center;
     }
     .title, .artist,
@@ -63,7 +64,7 @@
       width: 41%;
       padding: 0 10px;
 
-      white-space: nowrap;
+      // white-space: nowrap;
       overflow-x: scroll;
     }
     .bpm,
