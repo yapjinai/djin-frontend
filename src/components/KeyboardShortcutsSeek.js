@@ -19,9 +19,25 @@ export default function addKeyboardShortcutsSeek() {
             secondEvent.preventDefault()
             if (shiftPressed) {
               switch (secondEvent.key) {
-                // HELP
-                case '?':
-                  this.handleClick()
+                case '!':
+                  if (this.props.side === 'left') {
+                    this.fastBack()
+                  }
+                break;
+                case '@':
+                  if (this.props.side === 'left') {
+                    this.fastForwards()
+                  }
+                break;
+                case '(':
+                  if (this.props.side === 'right') {
+                    this.fastBack()
+                  }
+                break;
+                case ')':
+                  if (this.props.side === 'right') {
+                    this.fastForwards()
+                  }
                 break;
 
                 default:
@@ -35,12 +51,23 @@ export default function addKeyboardShortcutsSeek() {
       switch (firstEvent.key) {
         case '1':
           if (this.props.side === 'left') {
-            console.log(this.props.side);
             this.back()
           }
         break;
         case '2':
-          this.forwards()
+          if (this.props.side === 'left') {
+            this.forwards()
+          }
+        break;
+        case '9':
+          if (this.props.side === 'right') {
+            this.back()
+          }
+        break;
+        case '0':
+          if (this.props.side === 'right') {
+            this.forwards()
+          }
         break;
 
 

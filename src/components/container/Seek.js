@@ -56,6 +56,19 @@ class Seek extends Component {
     this.props.setPos(newPos)
   }
 
+  fastBack = () => {
+    const pos = this.props.waveform.pos
+    const newPos = pos - 0.9
+    if (newPos > 0) {
+      this.props.setPos(newPos)
+    }
+  }
+  fastForwards = () => {
+    const pos = this.props.waveform.pos
+    const newPos = pos + 0.9
+    this.props.setPos(newPos)
+  }
+
 }
 
 export default Seek;
