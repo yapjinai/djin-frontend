@@ -35,7 +35,6 @@ export default function addKeyboardShortcuts() {
             const rightLength = rightEnd - rightStart
 
             if (commandPressed) {
-              console.log(commandPressed);
               switch (secondEvent.key) {
 
 
@@ -184,10 +183,8 @@ export default function addKeyboardShortcuts() {
 
 
       if (commandPressed) {
-        // console.log('command is pressed');
       }
       else if (shiftPressed) {
-        // console.log('hi');
       }
 
       // SINGLE KEY SHORTCUTS

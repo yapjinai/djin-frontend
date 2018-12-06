@@ -231,13 +231,13 @@ class Browser extends Component {
       newTags.push(e.target.name)
       this.setState({
         tags: newTags
-      }, () => console.log(this.state.tags))
+      })
     }
     else {
       const newTags = this.state.tags.filter(g => g !== e.target.name)
       this.setState({
         tags: newTags
-      }, () => console.log(this.state.tags))
+      })
     }
   }
 
@@ -317,12 +317,10 @@ class Browser extends Component {
 
   handleClick = (e) => {
     if (this.props.sortBy !== e.target.id) { // if filtering by different param
-      console.log('diff param');
       this.props.setSortBy(e.target.id)
       this.props.setReverseSort(false)
     }
     else { // toggle between high-low and low-high
-      console.log('toggle');
       this.props.setReverseSort(!this.props.reverseSort)
     }
   }
