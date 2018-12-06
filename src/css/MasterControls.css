@@ -52,6 +52,9 @@
 .MasterControls .Help .Info strong {
   color: #ff1ebb;
 }
+.MasterControls .Help .Info em {
+  color: #999;
+}
 .MasterControls .Help .hidden {
   display: none;
 }

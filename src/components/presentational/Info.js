@@ -13,13 +13,22 @@ const Info = () => {
           <li>
             <strong>Space</strong>: play/pause master
           </li>
+
+          <br />
+
           <li>
             <strong>←</strong>, <strong>→</strong>: crossfade left/right<br />
-            (with <strong>Shift</strong>: hard crossfade)
+            <em>(with <strong>Shift</strong>: hard crossfade)</em>
           </li>
           <li>
-            <strong>↑</strong>, <strong>↓</strong>: BPM up/down<br />
-            (with <strong>Shift</strong>: faster up/down)
+            <strong>Cmd</strong> + <strong>↓</strong>: crossfade to center
+          </li>
+
+          <br />
+
+          <li>
+          <strong>↑</strong>, <strong>↓</strong>: BPM up/down<br />
+            <em>(with <strong>Shift</strong>: faster up/down)</em>
           </li>
 
           <br />
@@ -34,7 +43,7 @@ const Info = () => {
           <br />
           <label>Seek forwards/backwards</label>
           <br />
-          (with <strong>Shift</strong>: seek faster)
+          <em>(with <strong>Shift</strong>: seek faster)</em>
 
 
           <li>
@@ -48,7 +57,7 @@ const Info = () => {
         <span>
           <label>Loop controls</label>
           <br />
-          (with <strong>Shift</strong>: nudge faster)
+          <em>(with <strong>Shift</strong>: nudge faster)</em>
 
           <li>
             <strong>Shift</strong> + <strong>S</strong>, <strong>Shift</strong> + <strong>L</strong>: jump to loop start
@@ -80,6 +89,9 @@ const Info = () => {
           <li>
             <strong>F</strong>, <strong>K</strong>: double loop
           </li>
+          
+          <br />
+
           <li>
             <strong>Shift</strong> + <strong>D</strong>, <strong>Shift</strong> + <strong>J</strong>: halve loop from end
           </li>
