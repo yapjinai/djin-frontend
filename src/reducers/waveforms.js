@@ -15,8 +15,8 @@ const defaultWaveform = {
   regions: {
     loop: {
       id: 'loop',
-      start: 1,
-      end: 3,
+      start: 0,
+      end: 4,
       loop: false,
       color: 'rgba(0,0,225,.1)',
     }

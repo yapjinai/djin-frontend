@@ -30,7 +30,7 @@ const Info = () => {
           <li>
             <strong>S</strong>, <strong>L</strong>: toggle looping left/right
           </li>
-          
+
           <br />
           <label>Seek forwards/backwards</label>
           <br />
@@ -38,10 +38,10 @@ const Info = () => {
 
 
           <li>
-            <strong>1</strong>, <strong>9</strong>: seek backwards left/right
+            <strong>1</strong>, <strong>9</strong>: seek backwards
           </li>
           <li>
-            <strong>2</strong>, <strong>0</strong>: seek forwards left/right
+            <strong>2</strong>, <strong>0</strong>: seek forwards
           </li>
         </span>
 
@@ -51,28 +51,40 @@ const Info = () => {
           (with <strong>Shift</strong>: nudge faster)
 
           <li>
-            <strong>E</strong>, <strong>U</strong>: nudge loop start backwards left/right
-          </li>
-          <li>
-            <strong>R</strong>, <strong>I</strong>: nudge loop start forwards left/right
+            <strong>Shift</strong> + <strong>S</strong>, <strong>Shift</strong> + <strong>L</strong>: jump to loop start
           </li>
 
           <br />
 
           <li>
-            <strong>C</strong>, <strong>N</strong>: nudge loop end backwards left/right
+            <strong>E</strong>, <strong>U</strong>: nudge loop start backwards
           </li>
           <li>
-            <strong>V</strong>, <strong>M</strong>: nudge loop end forwards left/right
+            <strong>R</strong>, <strong>I</strong>: nudge loop start forwards
           </li>
 
           <br />
 
           <li>
-            <strong>D</strong>, <strong>J</strong>: halve loop left/right
+            <strong>C</strong>, <strong>N</strong>: nudge loop end backwards
           </li>
           <li>
-            <strong>F</strong>, <strong>K</strong>: double loop left/right
+            <strong>V</strong>, <strong>M</strong>: nudge loop end forwards
+          </li>
+
+          <br />
+
+          <li>
+            <strong>D</strong>, <strong>J</strong>: halve loop
+          </li>
+          <li>
+            <strong>F</strong>, <strong>K</strong>: double loop
+          </li>
+          <li>
+            <strong>Shift</strong> + <strong>D</strong>, <strong>Shift</strong> + <strong>J</strong>: halve loop from end
+          </li>
+          <li>
+            <strong>Shift</strong> + <strong>F</strong>, <strong>Shift</strong> + <strong>K</strong>: double loop from end
           </li>
         </span>
 
