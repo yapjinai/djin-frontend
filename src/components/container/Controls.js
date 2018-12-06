@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../css/Controls.css';
 
 import Loop from './Loop';
+import Seek from './Seek';
 
 const Volume = (props) => {
   const handleChange = (e) => {
@@ -86,175 +87,53 @@ const DoubleHalf = (props) => {
 //     </div>
 //   );
 // }
-
+// const Seek = ({playing, togglePlaying, setPos, waveform}) => {
+//   addKeyboardShortcutsControls.bind(this)()
 //
-// const Loop = ({loop, toggleLoop, waveform, setRegionsState}) => {
-//   // const setLoopStart = (e) => {
-//   //   e.preventDefault()
-//   //   if (parseInt(e.target.value) < waveform.regions.loop.end) {
-//   //     setRegionsState('start', e.target.value)
-//   //   }
-//   // }
-//   // const setLoopEnd = (e) => {
-//   //   e.preventDefault()
-//   //   if (parseInt(e.target.value) > waveform.regions.loop.start) {
-//   //     setRegionsState('end', e.target.value)
-//   //   }
-//   // }
-//
-//   const handleChange = (e) => {
-//     const container = e.target.parentElement
-//     const loopSettings = container.querySelector('.loopSettings')
-//     if (loop) {
-//       loopSettings.classList.add('hidden')
+//   const playPause = () => {
+//     if (playing) {
+//       return 'Pause'
 //     }
 //     else {
-//       loopSettings.classList.remove('hidden')
-//     }
-//     toggleLoop()
-//   }
-//
-//   const start = waveform.regions.loop.start
-//   const end = waveform.regions.loop.end
-//   const length = end - start
-//
-//   const startBack = () => {
-//     const newStart = start - 0.05
-//     if (newStart >= 0) {
-//       setRegionsState('start', newStart)
+//       return 'Play'
 //     }
 //   }
-//   const startForwards = () => {
-//     const newStart = start + 0.05
-//     if (newStart <= end) {
-//       setRegionsState('start', newStart)
+//
+//   const pos = waveform.pos
+//   const back = () => {
+//     const newPos = pos - 0.1
+//     if (newPos > 0) {
+//       setPos(newPos)
 //     }
 //   }
-//   const endBack = () => {
-//     const newEnd = end - 0.05
-//     if (newEnd >= start) {
-//       setRegionsState('end', newEnd)
-//     }
-//   }
-//   const endForwards = () => {
-//     const newEnd = end + 0.05
-//     // if (newEnd <= ?????) { // HOW TO FIND END OF FILE?
-//       setRegionsState('end', newEnd)
-//     // }
-//   }
-//   const loopHalf = () => {
-//     const newLength = length / 2
-//     if (newLength > .01) {
-//       setRegionsState('end', start + newLength)
-//     }
-//   }
-//   const loopDouble = () => {
-//     const newLength = length * 2
-//     // if (start + newLength < ?????) { // HOW TO FIND END OF FILE?
-//       setRegionsState('end', start + newLength)
-//     // }
-//   }
-//
-//   const renderLoopSettings = () => {
-//     return (
-//       <div className="loopSettings hidden">
-//         <div>
-//           <label>Loop start</label>
-//           <br />
-//           <span>
-//             <button
-//               onClick={startBack}
-//             >
-//               {'<'}
-//             </button>
-//             <button
-//               onClick={startForwards}
-//             >
-//               {'>'}
-//             </button>
-//           </span>
-//         </div>
-//
-//         <div>
-//           <label>Loop</label>
-//           <br />
-//           <span>
-//             <button
-//               onClick={loopHalf}
-//             >
-//               /2
-//             </button>
-//             <button
-//               onClick={loopDouble}
-//             >
-//               ×2
-//             </button>
-//           </span>
-//         </div>
-//
-//         <div>
-//           <label>Loop end</label>
-//           <br />
-//           <span>
-//             <button
-//               onClick={endBack}
-//             >
-//               {'<'}
-//             </button>
-//             <button
-//               onClick={endForwards}
-//             >
-//               {'>'}
-//             </button>
-//           </span>
-//         </div>
-//       </div>
-//     )
+//   const forwards = () => {
+//     const newPos = pos + 0.1
+//     setPos(newPos)
 //   }
 //
 //   return (
-//     <div className="Loop">
-//       <label>Loop</label>
+//     <div className="Seek">
+//       <button
+//         onClick={back}
+//       >
+//         {'<<'}
+//       </button>
 //
-//       <input
-//         type="checkbox"
-//         checked={loop}
-//         onChange={handleChange}
-//       />
+//       <button
+//         onClick={togglePlaying}
+//         className='play-pause'
+//       >
+//         {playPause()}
+//       </button>
 //
-//       {renderLoopSettings()}
-//
+//       <button
+//         onClick={forwards}
+//       >
+//         {'>>'}
+//       </button>
 //     </div>
 //   );
 // }
-// <div className="loopSettings">
-//   <div>
-//     <label>Loop start</label>
-//     <input
-//       id='loopStart'
-//       type="range"
-//       min="0"
-//       max="200"
-//       step=".01"
-//       name='loopStart'
-//       value={waveform.regions.loop.start}
-//       onChange={setLoopStart}
-//     />
-//   </div>
-//   <div>
-//     <label>Loop end</label>
-//     <input
-//       id='loopEnd'
-//       type="range"
-//       min="0"
-//       max="200"
-//       step=".01"
-//       name='loopEnd'
-//       value={waveform.regions.loop.end}
-//       onChange={setLoopEnd}
-//     />
-//   </div>
-// </div>
 
 class Controls extends Component {
   render() {
@@ -263,13 +142,14 @@ class Controls extends Component {
         <div className='toggles'>
           <div className='top'>
             <div className='buttons'>
-              <button
-                onClick={this.props.togglePlaying}
-                className='play-pause'
-              >
-                {this.playPause()}
-              </button>
-              <br />
+              <Seek
+                side={this.props.side}
+                playing={this.props.playing}
+                togglePlaying={this.props.togglePlaying}
+                setPos={this.props.setPos}
+                waveform={this.props.waveform}
+              />
+
               <button
                 onClick={this.props.syncBpm}
               >
@@ -290,8 +170,8 @@ class Controls extends Component {
           </div>
 
           <DoubleHalf
-          bpmFactor={this.props.bpmFactor}
-          setBpmFactor={this.props.setBpmFactor}
+            bpmFactor={this.props.bpmFactor}
+            setBpmFactor={this.props.setBpmFactor}
           />
         </div>
 
@@ -305,16 +185,11 @@ class Controls extends Component {
     )
   }
 
-  //////////
-
-  playPause = () => {
-    if (this.props.playing) {
-      return 'Pause'
-    }
-    else {
-      return 'Play'
-    }
+  componentDidMount() {
+    // addKeyboardShortcutsControls.bind(this)()
   }
+
+  //////////
 }
 export default Controls;
 

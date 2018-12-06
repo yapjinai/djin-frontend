@@ -3,16 +3,18 @@ import React from 'react';
 const Info = () => {
   return (
     <div className='Info hidden'>
-      <label>Shortcuts:</label>
+      <h3>Shortcuts:</h3>
       <ul>
         <li>
           Space: play/pause master
         </li>
         <li>
-          ←, →: crossfade left/right
+          ←, →: crossfade left/right<br />
+          (with Shift: hard crossfade)
         </li>
         <li>
-          ↑, ↓: BPM up/down
+          ↑, ↓: BPM up/down<br />
+          (with Shift: faster up/down)
         </li>
 
         <br />
@@ -25,7 +27,11 @@ const Info = () => {
         </li>
 
         <br />
-        
+        <label>Nudge loops</label>
+        <br />
+        (with Shift: nudge faster)
+
+
         <li>
           E, U: nudge loop start backwards left/right
         </li>
@@ -56,7 +62,7 @@ const Info = () => {
 
       <hr />
 
-      <label>DJin</label>
+      <h3>DJin</h3>
       <p>
         was created by <a href='https://github.com/yapjinai'>Jin Ai Yap</a>.
       </p>

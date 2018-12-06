@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Info from '../presentational/Info';
+import addKeyboardShortcutsHelp from '../KeyboardShortcutsHelp';
 
 class Help extends Component {
   state = {
@@ -49,6 +50,8 @@ class Help extends Component {
         })
       }
     })
+
+    addKeyboardShortcutsHelp.bind(this)()
   }
 
   ///////////////////
@@ -69,7 +72,9 @@ class Help extends Component {
     }
   }
   handleClick = (e) => {
-    e.preventDefault()
+    if (e) {
+      e.preventDefault()
+    }
     if (this.state.shown) {
       this.setState({
         shown: false

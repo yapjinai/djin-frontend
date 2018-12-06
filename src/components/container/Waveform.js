@@ -68,8 +68,8 @@ class Waveform extends Component {
   // WAVEFORM METHODS
 
   handlePosChange = (e) => {
-    // const newPos = e.originalArgs[0]
-    // this.props.setPos(newPos)
+    const newPos = e.originalArgs[0]
+    this.props.setPos(newPos)
   }
 
   handleFinish = () => {
