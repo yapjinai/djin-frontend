@@ -34,8 +34,33 @@
       background: #eeccdd;
       color: #666;
 
+      h3 {
+        text-align: center;
+      }
+
+      label {
+        text-align: center;
+      }
+
+      hr {
+        border: none;
+        border-bottom: 1px dashed;
+      }
+
       ul {
         list-style: square;
+        display: flex;
+
+        span {
+          border: none;
+          margin: 11px;
+          padding: 0;
+          background: none;
+        }
+      }
+
+      strong {
+        color: #ff1ebb;
       }
     }
     .hidden {

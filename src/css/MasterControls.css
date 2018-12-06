@@ -29,8 +29,28 @@
   background: #eeccdd;
   color: #666;
 }
+.MasterControls .Help .Info h3 {
+  text-align: center;
+}
+.MasterControls .Help .Info label {
+  text-align: center;
+}
+.MasterControls .Help .Info hr {
+  border: none;
+  border-bottom: 1px dashed;
+}
 .MasterControls .Help .Info ul {
   list-style: square;
+  display: flex;
+}
+.MasterControls .Help .Info ul span {
+  border: none;
+  margin: 11px;
+  padding: 0;
+  background: none;
+}
+.MasterControls .Help .Info strong {
+  color: #ff1ebb;
 }
 .MasterControls .Help .hidden {
   display: none;
