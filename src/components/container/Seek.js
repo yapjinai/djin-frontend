@@ -58,14 +58,28 @@ class Seek extends Component {
 
   fastBack = () => {
     const pos = this.props.waveform.pos
-    const newPos = pos - 0.9
+    let newPos = pos - 0.9
+
+    if (this.props.currentSong) {
+      const bpm = this.props.currentSong.bpm
+      const beat = 60/bpm
+      newPos = pos - beat + 0.1
+    }
+
     if (newPos > 0) {
       this.props.setPos(newPos)
     }
   }
   fastForwards = () => {
     const pos = this.props.waveform.pos
-    const newPos = pos + 0.9
+    let newPos = pos + 0.9
+
+    if (this.props.currentSong) {
+      const bpm = this.props.currentSong.bpm
+      const beat = 60/bpm
+      newPos = pos + beat - 0.1
+    }
+
     this.props.setPos(newPos)
   }
 

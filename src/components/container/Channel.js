@@ -49,6 +49,7 @@ class Channel extends Component {
 
           <Controls
             side={this.props.side}
+            currentSong={this.props.channel.currentSong}
 
             playing={this.props.channel.playing}
             togglePlaying={this.togglePlaying}

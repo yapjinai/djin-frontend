@@ -143,6 +143,7 @@ class Controls extends Component {
           <div className='top'>
             <div className='buttons'>
               <Seek
+                currentSong={this.props.currentSong}
                 side={this.props.side}
                 playing={this.props.playing}
                 togglePlaying={this.props.togglePlaying}
