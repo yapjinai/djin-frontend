@@ -20,7 +20,11 @@
 }
 .Controls .toggles .top .buttons {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+.Controls .toggles .top .buttons .Seek {
+  display: flex;
 }
 .Controls .toggles .top .buttons .play-pause {
   font-size: x-large;

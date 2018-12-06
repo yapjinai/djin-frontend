@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Info from '../presentational/Info';
+import addKeyboardShortcutsHelp from '../KeyboardShortcutsHelp';
 
 class Help extends Component {
   state = {
@@ -50,39 +51,7 @@ class Help extends Component {
       }
     })
 
-
-    document.addEventListener('keydown', (firstEvent) => {
-      if (firstEvent.target.type !== 'text' && firstEvent.target.type !== 'number') {
-        firstEvent.preventDefault()
-        let shiftPressed = false
-
-        // SETUP FOR DOUBLE KEY SHORTCUTS - SHIFT
-        if (!shiftPressed) {
-          if (firstEvent.key === 'Shift') {
-            shiftPressed = true
-            document.addEventListener('keyup', (secondEvent) => {
-              if (secondEvent.key === 'Shift') {
-                shiftPressed = false
-              }
-            })
-            document.addEventListener('keydown', (secondEvent) => {
-              secondEvent.preventDefault()
-              if (shiftPressed) {
-                switch (secondEvent.key) {
-                  // HELP
-                  case '?':
-                    this.handleClick()
-                  break;
-                  default:
-
-                }
-              }
-            })
-          }
-        }
-
-      } // end prevent shortcuts when input is focused
-    }) // end event listener
+    addKeyboardShortcutsHelp.bind(this)()
   }
 
   ///////////////////

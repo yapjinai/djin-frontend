@@ -202,6 +202,9 @@ export default function addKeyboardShortcuts() {
           const rightEnd = this.props.waveforms['right'].regions.loop.end
           const rightLength = rightEnd - rightStart
 
+          // const posLeft = this.props.waveforms['left'].pos
+          // const posRight = this.props.waveforms['right'].pos
+
         switch (firstEvent.key) {
           case ' ':
             if (this.props.channels.left.playing || this.props.channels.right.playing) { // master playing
@@ -287,7 +290,23 @@ export default function addKeyboardShortcuts() {
             const newLoopRight = !this.props.waveforms.right.regions.loop.loop
             this.props.setRegionsState('right', 'loop', newLoopRight)
             this.props.setChannelState('right', 'loop', newLoopRight)
-            break;
+          break;
+          //
+          // // SEEK BACKWARDS
+          // case '1':
+          //   const posBackLeft = this.props.waveforms['left'].pos - 0.1
+          //   if (posBackLeft > 0) {
+          //     this.props.setPos('left', posBackLeft)
+          //   }
+          // break;
+          // case '9':
+          // break;
+          //
+          // // SEEK FORWARDS
+          // case '2':
+          // break;
+          // case '0':
+          // break;
 
           // MOVE LOOP START
           // E, U: nudge loop start backwards left/right

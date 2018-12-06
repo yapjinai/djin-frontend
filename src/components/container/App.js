@@ -3,6 +3,7 @@ import '../../css/App.css';
 
 import { connect } from 'react-redux'
 import {
+  setPos,
   setBpm,
   setCrossfade,
 
@@ -60,6 +61,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   // App state setters
+  setPos: (side, pos) => dispatch(setPos(side, pos)),
   setBpm: (bpm) => dispatch(setBpm(bpm)),
   setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
 

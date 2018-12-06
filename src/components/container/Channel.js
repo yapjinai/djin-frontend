@@ -12,7 +12,7 @@ import {
   setPlaying,
 
   shiftFromQueue,
-  // setPos
+  setPos
 } from '../../actions'
 
 import '../../css/Channel.css';
@@ -48,8 +48,12 @@ class Channel extends Component {
           />
 
           <Controls
+            side={this.props.side}
+
             playing={this.props.channel.playing}
             togglePlaying={this.togglePlaying}
+
+            setPos={this.props.setPos}
 
             volume={this.props.channel.volume}
             setVolume={this.setVolume}
@@ -224,7 +228,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   shiftFromQueue: () => dispatch(shiftFromQueue(ownProps.side)),
 
   // Waveform state setters
-  // setPos: (pos) => dispatch(setPos(ownProps.side, pos))
+  setPos: (pos) => dispatch(setPos(ownProps.side, pos))
 })
 
 const connectedChannel = connect(

@@ -3,7 +3,7 @@ import React from 'react';
 const Info = () => {
   return (
     <div className='Info hidden'>
-      <label>Shortcuts:</label>
+      <h3>Shortcuts:</h3>
       <ul>
         <li>
           Space: play/pause master
@@ -27,25 +27,25 @@ const Info = () => {
         </li>
 
         <br />
+        <label>Nudge loops</label>
+        <br />
+        (with Shift: nudge faster)
+
 
         <li>
-          E, U: nudge loop start backwards left/right<br />
-          (with Shift: nudge faster)
+          E, U: nudge loop start backwards left/right
         </li>
         <li>
-          R, I: nudge loop start forwards left/right<br />
-          (with Shift: nudge faster)
+          R, I: nudge loop start forwards left/right
         </li>
 
         <br />
 
         <li>
-          C, N: nudge loop end backwards left/right<br />
-          (with Shift: nudge faster)
+          C, N: nudge loop end backwards left/right
         </li>
         <li>
           V, M: nudge loop end forwards left/right
-          (with Shift: nudge faster)
         </li>
 
         <br />
@@ -62,7 +62,7 @@ const Info = () => {
 
       <hr />
 
-      <label>DJin</label>
+      <h3>DJin</h3>
       <p>
         was created by <a href='https://github.com/yapjinai'>Jin Ai Yap</a>.
       </p>
