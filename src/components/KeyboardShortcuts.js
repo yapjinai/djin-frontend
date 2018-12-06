@@ -1,6 +1,7 @@
 // called in App.js
 
 export default function addKeyboardShortcuts() {
+
   document.addEventListener('keydown', (firstEvent) => {
     if (firstEvent.target.type !== 'text' && firstEvent.target.type !== 'number') {
       //////////////// DO NOT CHANGE ABOVE
@@ -24,23 +25,29 @@ export default function addKeyboardShortcuts() {
 
           // DOUBLE KEY SHORTCUTS - CMD
           document.addEventListener('keydown', (secondEvent) => {
+            secondEvent.preventDefault()
+
+            const leftStart = this.props.waveforms['left'].regions.loop.start
+            const leftEnd = this.props.waveforms['left'].regions.loop.end
+            const leftLength = leftEnd - leftStart
+            const rightStart = this.props.waveforms['right'].regions.loop.start
+            const rightEnd = this.props.waveforms['right'].regions.loop.end
+            const rightLength = rightEnd - rightStart
+
             if (commandPressed) {
               console.log(commandPressed);
               switch (secondEvent.key) {
-                case 'ArrowUp':
-                  const incrBpm = this.props.masterBpm + 9
-                  if (incrBpm <= 300) {
-                    this.props.setBpm(incrBpm)
-                  }
-                break;
-                case 'ArrowDown':
-                  const decrBpm = this.props.masterBpm - 9
-                  if (decrBpm > 0) {
-                    this.props.setBpm(decrBpm)
-                  }
-                break;
-                default:
 
+
+                // CROSSFADE IN MIDDLE
+                case 'ArrowDown':
+                  secondEvent.preventDefault()
+                  this.props.setCrossfade(0)
+                break;
+
+
+
+                default:
               }
             }
           })
@@ -61,6 +68,16 @@ export default function addKeyboardShortcuts() {
 
           // DOUBLE KEY SHORTCUTS - SHIFT
           document.addEventListener('keydown', (secondEvent) => {
+            secondEvent.preventDefault()
+
+            const leftStart = this.props.waveforms['left'].regions.loop.start
+            const leftEnd = this.props.waveforms['left'].regions.loop.end
+            const leftLength = leftEnd - leftStart
+            const rightStart = this.props.waveforms['right'].regions.loop.start
+            const rightEnd = this.props.waveforms['right'].regions.loop.end
+            const rightLength = rightEnd - rightStart
+
+
             if (shiftPressed) {
               switch (secondEvent.key) {
                 case 'ArrowLeft':
@@ -71,10 +88,86 @@ export default function addKeyboardShortcuts() {
                   secondEvent.preventDefault()
                   this.props.setCrossfade(1)
                 break;
-                case 'ArrowDown':
-                  secondEvent.preventDefault()
-                  this.props.setCrossfade(0)
+
+                // FASTER BPM SHIFT
+                case 'ArrowUp':
+                  const incrBpm = this.props.masterBpm + 9
+                  if (incrBpm <= 300) {
+                    this.props.setBpm(incrBpm)
+                  }
                 break;
+                case 'ArrowDown':
+                  const decrBpm = this.props.masterBpm - 9
+                  if (decrBpm > 0) {
+                    this.props.setBpm(decrBpm)
+                  }
+                break;
+
+
+
+
+                // FASTER MOVE LOOP START
+                // E, U: nudge loop start backwards left/right
+                case 'E':
+                  const startBackLeft = leftStart - 0.95
+                  if (startBackLeft >= 0) {
+                    this.props.setRegionsState('left', 'start', startBackLeft)
+                  }
+                break;
+                case 'U':
+                  const startBackRight = rightStart - 0.95
+                  if (startBackRight >= 0) {
+                    this.props.setRegionsState('right', 'start', startBackRight)
+                  }
+                break;
+
+                // R, I: nudge loop start forwards left/right
+                case 'R':
+                  const startForwardsLeft = leftStart + 0.95
+                  if (startForwardsLeft <= leftEnd) {
+                    this.props.setRegionsState('left', 'start', startForwardsLeft)
+                  }
+                break;
+                case 'I':
+                  const startForwardsRight = rightStart + 0.95
+                  if (startForwardsRight <= rightEnd) {
+                    this.props.setRegionsState('right', 'start', startForwardsRight)
+                  }
+                break;
+
+                // FASTER MOVE LOOP END
+                // C, N: nudge loop end backwards left/right
+                case 'C':
+                  const endBackLeft = leftEnd - 0.95
+                  if (endBackLeft >= leftStart) {
+                    this.props.setRegionsState('left', 'end', endBackLeft)
+                  }
+                break;
+                case 'N':
+                  secondEvent.preventDefault()
+                  const endBackRight = rightEnd - 0.95
+                  if (endBackRight >= rightStart) {
+                    this.props.setRegionsState('right', 'end', endBackRight)
+                  }
+                break;
+                // V, M: nudge loop end forwards left/right
+                case 'V':
+                  const endForwardsLeft = leftEnd + 0.95
+                  // if (endForwardsLeft <= ?????) { // HOW TO FIND END OF FILE?
+                    this.props.setRegionsState('left', 'end', endForwardsLeft)
+                  // }
+                break;
+                case 'M':
+                  const endForwardsRight = rightEnd + 0.95
+                  // if (endForwardsRight <= ?????) { // HOW TO FIND END OF FILE?
+                    this.props.setRegionsState('right', 'end', endForwardsRight)
+                  // }
+                break;
+
+
+
+
+
                 default:
 
               }
@@ -96,12 +189,13 @@ export default function addKeyboardShortcuts() {
       // if (!commandPressed && !shiftPressed) {
       else { // unfortunately these events fire even if cmd and shift are pressed. work around this
 
-        const leftStart = this.props.waveforms['left'].regions.loop.start
-        const leftEnd = this.props.waveforms['left'].regions.loop.end
-        const leftLength = leftEnd - leftStart
-        const rightStart = this.props.waveforms['right'].regions.loop.start
-        const rightEnd = this.props.waveforms['right'].regions.loop.end
-        const rightLength = rightEnd - rightStart
+          const leftStart = this.props.waveforms['left'].regions.loop.start
+          const leftEnd = this.props.waveforms['left'].regions.loop.end
+          const leftLength = leftEnd - leftStart
+          const rightStart = this.props.waveforms['right'].regions.loop.start
+          const rightEnd = this.props.waveforms['right'].regions.loop.end
+          const rightLength = rightEnd - rightStart
+
         switch (firstEvent.key) {
           case ' ':
             if (this.props.channels.left.playing || this.props.channels.right.playing) { // master playing
@@ -191,7 +285,7 @@ export default function addKeyboardShortcuts() {
 
           // MOVE LOOP START
           // E, U: nudge loop start backwards left/right
-          case 'firstEvent':
+          case 'e':
             const startBackLeft = leftStart - 0.05
             if (startBackLeft >= 0) {
               this.props.setRegionsState('left', 'start', startBackLeft)
