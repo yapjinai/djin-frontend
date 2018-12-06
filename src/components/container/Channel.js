@@ -30,7 +30,7 @@ class Channel extends Component {
     return (
       <div className={`Channel ${this.props.side}`}>
         <div className='controls'>
-          <h2>{this.props.channel.currentSong ? `${this.props.channel.currentSong.title} (${this.props.channel.currentSong.bpm} bpm)` : 'No song playing'}</h2>
+          <h2>{this.props.channel.currentSong ? `${this.props.channel.currentSong.title} (${parseInt(this.props.channel.currentSong.bpm)} bpm)` : 'No song playing'}</h2>
 
           <Waveform
             side={this.props.side}
