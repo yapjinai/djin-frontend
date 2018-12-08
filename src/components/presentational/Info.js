@@ -7,6 +7,11 @@ const Info = () => {
       <ul>
 
         <span>
+          <li>
+            <strong>?</strong>: open help menu
+          </li>
+          <br />
+
           <label>Master controls</label>
           <br />
 
@@ -89,7 +94,7 @@ const Info = () => {
           <li>
             <strong>F</strong>, <strong>K</strong>: double loop
           </li>
-          
+
           <br />
 
           <li>

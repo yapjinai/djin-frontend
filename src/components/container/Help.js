@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Info from '../presentational/Info';
-import addKeyboardShortcutsHelp from '../KeyboardShortcutsHelp';
+// import addKeyboardShortcutsHelp from '../KeyboardShortcutsHelp';
+import {keyboardShortcutsFunction} from '../keyboardShortcutsFunction'
 
 class Help extends Component {
   state = {
@@ -26,32 +27,12 @@ class Help extends Component {
   }
 
   componentDidMount() {
-    const button = document.querySelector('.help')
-    const info = document.querySelector('.Info')
+    this.clearHelpOnClick()
 
-    document.addEventListener('click', (e) => {
-      if (this.state.shown &&
-        e.target !== info &&
-        e.target !== button &&
-        e.target.parentElement !== info &&
-        e.target.parentElement !== button &&
-        e.target.parentElement.parentElement !== info &&
-        e.target.parentElement.parentElement !== button
-      ) {
-        this.setState({
-          shown: false
-        })
-      }
-    })
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== ' ') {
-        this.setState({
-          shown: false
-        })
-      }
-    })
 
-    addKeyboardShortcutsHelp.bind(this)()
+    // addKeyboardShortcutsHelp.bind(this)()
+    keyboardShortcutsFunction.bind(this)('help')
+
   }
 
   ///////////////////
@@ -71,6 +52,7 @@ class Help extends Component {
       }
     }
   }
+
   handleClick = (e) => {
     if (e) {
       e.preventDefault()
@@ -86,6 +68,37 @@ class Help extends Component {
       })
     }
   }
+
+  clearHelpOnClick = () =>  {
+    const button = document.querySelector('.help')
+    const info = document.querySelector('.Info')
+
+    document.addEventListener('click', (e) => {
+      if (this.state.shown &&
+        // there has to be a better way...........
+        e.target !== info &&
+        e.target !== button &&
+        e.target.parentElement !== info &&
+        e.target.parentElement !== button &&
+        e.target.parentElement.parentElement !== info &&
+        e.target.parentElement.parentElement !== button &&
+        e.target.parentElement.parentElement.parentElement !== info &&
+        e.target.parentElement.parentElement.parentElement !== button
+      ) {
+        this.setState({
+          shown: false
+        })
+      }
+    })
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== ' ') {
+        this.setState({
+          shown: false
+        })
+      }
+    })
+  }
+
 }
 
 export default Help;
