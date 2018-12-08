@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-// import addKeyboardShortcutsSeek from '../KeyboardShortcutsSeek';
-import {singleEventListener, doubleEventListener} from '../keyboardShortcutsFunction'
+import {keyboardShortcutsFunction} from '../keyboardShortcutsFunction'
 
 class Seek extends Component {
-
   render() {
     return (
       <div className="Seek">
@@ -30,10 +28,7 @@ class Seek extends Component {
   }
 
   componentDidMount() {
-    // addKeyboardShortcutsSeek.bind(this)()
-
-    singleEventListener.bind(this)('seek')
-    doubleEventListener.bind(this)('seek')
+    keyboardShortcutsFunction.bind(this)('seek')
   }
 
   ////////////////////

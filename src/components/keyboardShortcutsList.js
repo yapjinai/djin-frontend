@@ -6,7 +6,8 @@ export const keyboardShortcuts = {
         '?': function () {
           this.handleClick()
         }
-      }
+      },
+      meta: {}
     }
   },
   seek: {
