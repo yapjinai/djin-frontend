@@ -29,12 +29,12 @@ export default function addKeyboardShortcuts() {
 
               secondEvent.preventDefault()
 
-              const leftStart = this.props.waveforms['left'].regions.loop.start
-              const leftEnd = this.props.waveforms['left'].regions.loop.end
-              const leftLength = leftEnd - leftStart
-              const rightStart = this.props.waveforms['right'].regions.loop.start
-              const rightEnd = this.props.waveforms['right'].regions.loop.end
-              const rightLength = rightEnd - rightStart
+              // const leftStart = this.props.waveforms['left'].regions.loop.start
+              // const leftEnd = this.props.waveforms['left'].regions.loop.end
+              // const leftLength = leftEnd - leftStart
+              // const rightStart = this.props.waveforms['right'].regions.loop.start
+              // const rightEnd = this.props.waveforms['right'].regions.loop.end
+              // const rightLength = rightEnd - rightStart
 
               if (commandPressed) {
                 switch (secondEvent.key) {
@@ -81,8 +81,8 @@ export default function addKeyboardShortcuts() {
               const rightLength = rightEnd - rightStart
 
 
-              const leftPos = this.props.waveforms['left'].pos
-              const rightPos = this.props.waveforms['right'].pos
+              // const leftPos = this.props.waveforms['left'].pos
+              // const rightPos = this.props.waveforms['right'].pos
               let leftBeat = 0.95
               let rightBeat = 0.95
               if (this.props.channels['left'].currentSong) {
