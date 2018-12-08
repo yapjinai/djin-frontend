@@ -1,6 +1,6 @@
-import keyboardShortcuts from './keyboardShortcutsList'
+import {keyboardShortcuts} from './keyboardShortcutsList'
 
-function SingleEventListener(type) {
+export function singleEventListener(type) {
   const shortcuts = keyboardShortcuts[type].single
   const shortcutKeys = Object.keys(shortcuts)
 
@@ -9,15 +9,12 @@ function SingleEventListener(type) {
       e.preventDefault()
 
       shortcutKeys.forEach(k => {
-
+        if (e.key === k) {
+          const fn = shortcuts[k]
+          const boundFn = fn.bind(this)
+          boundFn()
+        }
       })
-
-      //
-      // switch (e.key) {
-      //   case '':
-      //   break;
-      //   default:
-      // } // end switch
     } // end prevent shortcuts when input is focused
   }) // end event listener
 } // end single-key shortcut function
