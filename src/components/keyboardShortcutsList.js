@@ -13,22 +13,22 @@ export const keyboardShortcuts = {
     single: {
       '1': function () {
         if (this.props.side === 'left') {
-          this.back()
+          this.fastBack()
         }
       },
       '2': function () {
         if (this.props.side === 'left') {
-          this.forwards()
+          this.fastForwards()
         }
       },
       '9': function () {
         if (this.props.side === 'right') {
-          this.back()
+          this.fastBack()
         }
       },
       '0': function () {
         if (this.props.side === 'right') {
-          this.forwards()
+          this.fastForwards()
         }
       },
     },
@@ -36,25 +36,26 @@ export const keyboardShortcuts = {
       shift: {
         '!': function () {
           if (this.props.side === 'left') {
-            this.fastBack()
+            this.back()
           }
         },
         '@': function () {
           if (this.props.side === 'left') {
-            this.fastForwards()
+            this.forwards()
           }
         },
         '(': function () {
           if (this.props.side === 'right') {
-            this.fastBack()
+            this.back()
           }
         },
         ')': function () {
           if (this.props.side === 'right') {
-            this.fastForwards()
+            this.forwards()
           }
         },
-      }
+      },
+      meta: {}
     }
   },
 
