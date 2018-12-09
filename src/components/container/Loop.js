@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {keyboardShortcutsFunction} from '../keyboardShortcutsFunction'
 
 class Loop extends Component {
 
@@ -19,19 +20,23 @@ class Loop extends Component {
     );
   }
 
-  ////////////////////
-
-  handleChange = (e) => {
-    const container = e.target.parentElement
-    const loopSettings = container.querySelector('.loopSettings')
-    if (this.props.loop) {
-      loopSettings.classList.add('hidden')
-    }
-    else {
-      loopSettings.classList.remove('hidden')
-    }
-    this.props.toggleLoop()
+  componentDidMount() {
+    keyboardShortcutsFunction.bind(this)('loop')
   }
+
+  ////////////////////
+  // 
+  // handleChange = (e) => {
+  //   const container = e.target.parentElement
+  //   const loopSettings = container.querySelector('.loopSettings')
+  //   if (this.props.loop) {
+  //     loopSettings.classList.add('hidden')
+  //   }
+  //   else {
+  //     loopSettings.classList.remove('hidden')
+  //   }
+  //   this.props.toggleLoop()
+  // }
 
 
   startBack = () => {

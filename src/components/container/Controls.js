@@ -87,54 +87,6 @@ const DoubleHalf = (props) => {
 //     </div>
 //   );
 // }
-// const Seek = ({playing, togglePlaying, setPos, waveform}) => {
-//   addKeyboardShortcutsControls.bind(this)()
-//
-//   const playPause = () => {
-//     if (playing) {
-//       return 'Pause'
-//     }
-//     else {
-//       return 'Play'
-//     }
-//   }
-//
-//   const pos = waveform.pos
-//   const back = () => {
-//     const newPos = pos - 0.1
-//     if (newPos > 0) {
-//       setPos(newPos)
-//     }
-//   }
-//   const forwards = () => {
-//     const newPos = pos + 0.1
-//     setPos(newPos)
-//   }
-//
-//   return (
-//     <div className="Seek">
-//       <button
-//         onClick={back}
-//       >
-//         {'<<'}
-//       </button>
-//
-//       <button
-//         onClick={togglePlaying}
-//         className='play-pause'
-//       >
-//         {playPause()}
-//       </button>
-//
-//       <button
-//         onClick={forwards}
-//       >
-//         {'>>'}
-//       </button>
-//     </div>
-//   );
-// }
-
 class Controls extends Component {
   render() {
     return (
@@ -161,8 +113,12 @@ class Controls extends Component {
             <div className='checkboxes'>
 
               <Loop
+                side={this.props.side}
+
                 loop={this.props.loop}
                 toggleLoop={this.props.toggleLoop}
+
+                setPos={this.props.setPos}
 
                 waveform={this.props.waveform}
                 setRegionsState={this.props.setRegionsState}
@@ -187,7 +143,6 @@ class Controls extends Component {
   }
 
   componentDidMount() {
-    // addKeyboardShortcutsControls.bind(this)()
   }
 
   //////////

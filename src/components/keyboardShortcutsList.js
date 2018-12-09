@@ -12,6 +12,7 @@ export const keyboardShortcuts = {
   },
   seek: {
     single: {
+      // SEEK
       '1': function () {
         if (this.props.side === 'left') {
           this.fastBack()
@@ -30,6 +31,18 @@ export const keyboardShortcuts = {
       '0': function () {
         if (this.props.side === 'right') {
           this.fastForwards()
+        }
+      },
+
+      // PLAY PAUSE
+      'q': function () {
+        if (this.props.side === 'left') {
+          this.props.togglePlaying()
+        }
+      },
+      'p': function () {
+        if (this.props.side === 'right') {
+          this.props.togglePlaying()
         }
       },
     },
@@ -61,6 +74,11 @@ export const keyboardShortcuts = {
   },
   masterControls: {
     single: {
+      // TOGGLE PLAY/PAUSE
+      ' ': function () {
+        this.togglePlaying()
+      },
+
       // CROSSFADE
       'ArrowLeft': function () {
         const decrCrossfade = this.props.crossfade - .1
@@ -119,30 +137,121 @@ export const keyboardShortcuts = {
         }
       }
     }
-  }
+  },
+  loop: {
+    single: {
+      // TOGGLE LOOP
+      's': function () {
+        if (this.props.side === 'left') {
+          this.props.toggleLoop()
+        }
+      },
+      'l': function () {
+        if (this.props.side === 'right') {
+          this.props.toggleLoop()
+        }
+      },
 
+      // NUDGE LOOP START
+      // nudge backwards
+      'e': function () {
+        if (this.props.side === 'left') {
+          this.startBack()
+        }
+      },
+      'u': function () {
+        if (this.props.side === 'right') {
+          this.startBack()
+        }
+      },
+      // nudge forwards
+      'r': function () {
+        if (this.props.side === 'left') {
+          this.startForwards()
+        }
+      },
+      'i': function () {
+        if (this.props.side === 'right') {
+          this.startForwards()
+        }
+      },
+
+      // NUDGE LOOP END
+      // nudge backwards
+      'c': function () {
+        if (this.props.side === 'left') {
+          this.endBack()
+        }
+      },
+      'n': function () {
+        if (this.props.side === 'right') {
+          this.endBack()
+        }
+      },
+      // nudge forwards
+      'v': function () {
+        if (this.props.side === 'left') {
+          this.endForwards()
+        }
+      },
+      'm': function () {
+        if (this.props.side === 'right') {
+          this.endForwards()
+        }
+      },
+
+      // HALVE/DOUBLE LOOP
+      // halve
+      'd': function () {
+        if (this.props.side === 'left') {
+          this.loopHalf()
+        }
+      },
+      'j': function () {
+        if (this.props.side === 'right') {
+          this.loopHalf()
+        }
+      },
+      // double
+      'f': function () {
+        if (this.props.side === 'left') {
+          this.loopDouble()
+        }
+      },
+      'k': function () {
+        if (this.props.side === 'right') {
+          this.loopDouble()
+        }
+      },
+    },
+    double: {
+      shift: {
+// REFACTOR COMPONENTS
+
+        // // JUMP TO LOOP START
+        // 'S': function () {
+        //   if (this.props.side === 'left') {
+        //     const loopStartLeft = this.props.waveform.regions.loop.start
+        //     if (this.props.waveform.pos !== loopStartLeft) {
+        //       this.props.setPos('left', loopStartLeft)
+        //     }
+        //   }
+        // },
+        // 'L': function () {
+        //   if (this.props.side === 'right') {
+        //     const loopStartRight = this.props.waveform.regions.loop.start
+        //     this.props.setPos('right', loopStartRight)
+        //   }
+        // },
+      },
+      meta: {}
+    }
+  },
 }
 
-// Master controls
-// Space: play/pause master
-//
-// Q, P: play/pause left/right
-// S, L: toggle looping left/right
-
-
-
 // Loop controls
-// (with Shift: nudge faster)
+// (with Shift: nudge slower)
 // Shift + S, Shift + L: jump to loop start
-//
-// E, U: nudge loop start backwards
-// R, I: nudge loop start forwards
-//
-// C, N: nudge loop end backwards
-// V, M: nudge loop end forwards
-//
-// D, J: halve loop
-// F, K: double loop
-//
+
 // Shift + D, Shift + J: halve loop from end
 // Shift + F, Shift + K: double loop from end
