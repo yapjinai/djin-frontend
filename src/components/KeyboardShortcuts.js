@@ -41,10 +41,10 @@ export default function addKeyboardShortcuts() {
 
 
                   // CROSSFADE IN MIDDLE
-                  case 'ArrowDown':
-                    secondEvent.preventDefault()
-                    this.props.setCrossfade(0)
-                  break;
+                  // case 'ArrowDown':
+                  //   secondEvent.preventDefault()
+                  //   this.props.setCrossfade(0)
+                  // break;
 
 
 
@@ -97,34 +97,30 @@ export default function addKeyboardShortcuts() {
 
               if (shiftPressed) {
                 switch (secondEvent.key) {
-                  // HELP
-                  case '?':
 
-                  break;
-
-                  // HARD CROSSFADE
-                  case 'ArrowLeft':
-                    secondEvent.preventDefault()
-                    this.props.setCrossfade(-1)
-                  break;
-                  case 'ArrowRight':
-                    secondEvent.preventDefault()
-                    this.props.setCrossfade(1)
-                  break;
-
-                  // FASTER BPM INCR/DECREASE
-                  case 'ArrowUp':
-                    const incrBpm = this.props.masterBpm + 9
-                    if (incrBpm <= 300) {
-                      this.props.setBpm(incrBpm)
-                    }
-                  break;
-                  case 'ArrowDown':
-                    const decrBpm = this.props.masterBpm - 9
-                    if (decrBpm > 0) {
-                      this.props.setBpm(decrBpm)
-                    }
-                  break;
+                  // // HARD CROSSFADE
+                  // case 'ArrowLeft':
+                  //   secondEvent.preventDefault()
+                  //   this.props.setCrossfade(-1)
+                  // break;
+                  // case 'ArrowRight':
+                  //   secondEvent.preventDefault()
+                  //   this.props.setCrossfade(1)
+                  // break;
+                  //
+                  // // FASTER BPM INCR/DECREASE
+                  // case 'ArrowUp':
+                  //   const incrBpm = this.props.masterBpm + 9
+                  //   if (incrBpm <= 300) {
+                  //     this.props.setBpm(incrBpm)
+                  //   }
+                  // break;
+                  // case 'ArrowDown':
+                  //   const decrBpm = this.props.masterBpm - 9
+                  //   if (decrBpm > 0) {
+                  //     this.props.setBpm(decrBpm)
+                  //   }
+                  // break;
 
 
 
@@ -282,30 +278,30 @@ export default function addKeyboardShortcuts() {
           break;
 
           // global
-          case 'ArrowLeft':
-            const decrCrossfade = this.props.crossfade - .1
-            if (decrCrossfade >= -1) {
-              this.props.setCrossfade(decrCrossfade)
-            }
-          break;
-          case 'ArrowRight':
-            const incrCrossfade = this.props.crossfade + .1
-            if (incrCrossfade <= 1) {
-              this.props.setCrossfade(incrCrossfade)
-            }
-          break;
-          case 'ArrowUp':
-            const incrBpm = this.props.masterBpm + 1
-            if (incrBpm <= 300) {
-              this.props.setBpm(incrBpm)
-            }
-          break;
-          case 'ArrowDown':
-            const decrBpm = this.props.masterBpm - 1
-            if (decrBpm > 0) {
-              this.props.setBpm(decrBpm)
-            }
-          break;
+          // case 'ArrowLeft':
+          //   const decrCrossfade = this.props.crossfade - .1
+          //   if (decrCrossfade >= -1) {
+          //     this.props.setCrossfade(decrCrossfade)
+          //   }
+          // break;
+          // case 'ArrowRight':
+          //   const incrCrossfade = this.props.crossfade + .1
+          //   if (incrCrossfade <= 1) {
+          //     this.props.setCrossfade(incrCrossfade)
+          //   }
+          // break;
+          // case 'ArrowUp':
+          //   const incrBpm = this.props.masterBpm + 1
+          //   if (incrBpm <= 300) {
+          //     this.props.setBpm(incrBpm)
+          //   }
+          // break;
+          // case 'ArrowDown':
+          //   const decrBpm = this.props.masterBpm - 1
+          //   if (decrBpm > 0) {
+          //     this.props.setBpm(decrBpm)
+          //   }
+          // break;
 
           // channel
 

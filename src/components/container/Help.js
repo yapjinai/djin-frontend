@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Info from '../presentational/Info';
-// import addKeyboardShortcutsHelp from '../KeyboardShortcutsHelp';
 import {keyboardShortcutsFunction} from '../keyboardShortcutsFunction'
 
 class Help extends Component {
@@ -28,11 +27,7 @@ class Help extends Component {
 
   componentDidMount() {
     this.clearHelpOnClick()
-
-
-    // addKeyboardShortcutsHelp.bind(this)()
     keyboardShortcutsFunction.bind(this)('help')
-
   }
 
   ///////////////////
@@ -75,7 +70,6 @@ class Help extends Component {
 
     document.addEventListener('click', (e) => {
       if (this.state.shown &&
-        // there has to be a better way...........
         e.target !== info &&
         e.target !== button &&
         e.target.parentElement !== info &&
@@ -84,6 +78,7 @@ class Help extends Component {
         e.target.parentElement.parentElement !== button &&
         e.target.parentElement.parentElement.parentElement !== info &&
         e.target.parentElement.parentElement.parentElement !== button
+        // there is a better way i just dont know what it is yet...........
       ) {
         this.setState({
           shown: false

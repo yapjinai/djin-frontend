@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {keyboardShortcutsFunction} from '../keyboardShortcutsFunction'
 
 import { connect } from 'react-redux'
 import {
@@ -47,6 +48,10 @@ class MasterControls extends Component {
       </span>
     );
   }
+
+  componentDidMount() {
+    keyboardShortcutsFunction.bind(this)('masterControls')
+  }
 }
 
 
@@ -58,7 +63,6 @@ const mapStateToProps = (state, ownProps) => ({
 
   // Channel state
   channels: state.channels,
-
   queues: state.queues
 })
 
