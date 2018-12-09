@@ -26,15 +26,8 @@ class MasterControls extends Component {
        style={{display: 'flex'}}
       >
         <MasterPlayPause
-          leftPlaying={this.props.leftPlaying}
-          rightPlaying={this.props.rightPlaying}
-          setPlaying={this.props.setPlaying}
-
-          channels={this.props.channels}
-          queues={this.props.queues}
-
-          setChannelState={this.props.setChannelState}
-          shiftFromQueue={this.props.shiftFromQueue}
+          togglePlaying={this.togglePlaying}
+          masterPlaying={this.masterPlaying}
         />
         <Crossfader
           crossfade={this.props.crossfade}
@@ -51,6 +44,33 @@ class MasterControls extends Component {
 
   componentDidMount() {
     keyboardShortcutsFunction.bind(this)('masterControls')
+  }
+
+  ////////////////////////
+
+  masterPlaying = () => {
+    return this.props.leftPlaying || this.props.rightPlaying
+  }
+
+  togglePlaying = () => {
+    if (this.masterPlaying()) {
+      this.props.setPlaying('left', false)
+      this.props.setPlaying('right', false)
+    }
+    else {
+      ['left', 'right'].forEach(s => {
+        if (this.props.channels[s].currentSong) {
+          this.props.setPlaying(s, true)
+        }
+        else if (this.props.queues[s][0]) {
+          this.props.setChannelState(s, 'playing', true)
+          const currentSong = this.props.queues[s][0]
+          this.props.shiftFromQueue(s)
+          this.props.setChannelState(s, 'currentSong', currentSong)
+        }
+      })
+    }
+
   }
 }
 
