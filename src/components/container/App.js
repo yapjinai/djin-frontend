@@ -16,7 +16,7 @@ import '../../css/App.css';
 
 import Channel from './Channel';
 import Master from './Master';
-import addKeyboardShortcuts from '../KeyboardShortcuts';
+// import addKeyboardShortcuts from '../KeyboardShortcuts';
 
 class App extends Component {
   // constructor() {
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    addKeyboardShortcuts.bind(this)()
+    // addKeyboardShortcuts.bind(this)()
   }
 }
 

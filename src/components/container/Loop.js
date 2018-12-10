@@ -10,8 +10,8 @@ class Loop extends Component {
 
       <input
       type="checkbox"
-      checked={this.props.loop}
-      onChange={this.props.toggleLoop}
+      checked={this.props.channel.loop}
+      onChange={this.toggleLoop}
       />
 
       {this.renderLoopSettings()}
@@ -23,14 +23,21 @@ class Loop extends Component {
   componentDidMount() {
     keyboardShortcutsFunction.bind(this)('loop')
   }
-  // 
+  //
   // let beat = 0.95
   // // if (this.props.channels['left'].currentSong) {
   //   const leftBpm = this.props.channels['left'].currentSong.bpm
   //   beat = 60/leftBpm
   // // }
 
+  /////////////////
+  // TOGGLE LOOP
+  toggleLoop = () => {
+    this.props.setChannelState('loop', !this.props.channel.loop)
+  }
 
+  /////////////////
+  // MOVE LOOP
   startBack = () => {
     const start = this.props.waveform.regions.loop.start
     const newStart = start - 0.05

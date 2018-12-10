@@ -68,6 +68,20 @@ export const keyboardShortcuts = {
             this.forwards()
           }
         },
+
+        // JUMP TO LOOP START
+        'S': function () {
+          if (this.props.side === 'left') {
+            const loopStart = this.props.waveform.regions.loop.start
+            this.props.setPos(loopStart)
+          }
+        },
+        'L': function () {
+          if (this.props.side === 'right') {
+            const loopStart = this.props.waveform.regions.loop.start
+            this.props.setPos(loopStart)
+          }
+        }
       },
       // meta: {}
     }
@@ -143,12 +157,12 @@ export const keyboardShortcuts = {
       // TOGGLE LOOP
       's': function () {
         if (this.props.side === 'left') {
-          this.props.toggleLoop()
+          this.toggleLoop()
         }
       },
       'l': function () {
         if (this.props.side === 'right') {
-          this.props.toggleLoop()
+          this.toggleLoop()
         }
       },
 
@@ -227,22 +241,24 @@ export const keyboardShortcuts = {
     double: {
       shift: {
       // REFACTOR COMPONENTS
-
-        // JUMP TO LOOP START
-        'S': function () {
-          if (this.props.side === 'left') {
-            const loopStartLeft = this.props.waveform.regions.loop.start
-            if (this.props.waveform.pos !== loopStartLeft) {
-              this.props.setPos('left', loopStartLeft)
-            }
-          }
-        },
-        'L': function () {
-          if (this.props.side === 'right') {
-            const loopStartRight = this.props.waveform.regions.loop.start
-            this.props.setPos('right', loopStartRight)
-          }
-        },
+        //
+        // // JUMP TO LOOP START
+        // 'S': function () {
+        //   if (this.props.side === 'left') {
+        //     const loopStartLeft = this.props.waveform.regions.loop.start
+        //     if (this.props.waveform.pos !== loopStartLeft) {
+        //     //   this.props.setPos('left', loopStartLeft)
+        //     // }
+        //     console.log(this.props.waveform.pos);
+        //     console.log(loopStartLeft);
+        //   }
+        // },
+        // 'L': function () {
+        //   if (this.props.side === 'right') {
+        //     const loopStartRight = this.props.waveform.regions.loop.start
+        //     this.props.setPos('right', loopStartRight)
+        //   }
+        // },
       },
       meta: {}
     }

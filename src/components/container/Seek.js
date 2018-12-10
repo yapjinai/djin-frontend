@@ -32,15 +32,19 @@ class Seek extends Component {
   }
 
   ////////////////////
+  // PLAYING CONTROLS
 
   playPause = () => {
-    if (this.props.playing) {
+    if (this.props.channel.playing) {
       return 'Pause'
     }
     else {
       return 'Play'
     }
   }
+
+  ///////////////////////////////////
+  //// SEEK CONTROLS
 
   back = () => {
     const pos = this.props.waveform.pos
@@ -59,8 +63,8 @@ class Seek extends Component {
     const pos = this.props.waveform.pos
     let newPos = pos - 1
 
-    if (this.props.currentSong) {
-      const bpm = this.props.currentSong.bpm
+    if (this.props.channel.currentSong) {
+      const bpm = this.props.channel.currentSong.bpm
       const beat = 60/bpm
       newPos = pos - beat
     }
@@ -73,14 +77,16 @@ class Seek extends Component {
     const pos = this.props.waveform.pos
     let newPos = pos + 1
 
-    if (this.props.currentSong) {
-      const bpm = this.props.currentSong.bpm
+    if (this.props.channel.currentSong) {
+      const bpm = this.props.channel.currentSong.bpm
       const beat = 60/bpm
       newPos = pos + beat
     }
 
     this.props.setPos(newPos)
   }
+
+  /////////////////////////
 
 }
 
