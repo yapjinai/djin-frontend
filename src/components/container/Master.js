@@ -3,7 +3,7 @@ import '../../css/Master.css';
 
 import MasterControls from './MasterControls';
 import Browser from './Browser';
-import Upload from './Upload';
+// import Upload from './Upload';
 
 class Master extends Component {
   render() {
@@ -17,11 +17,12 @@ class Master extends Component {
           // methods to change App state
           pushToQueue={this.props.pushToQueue}
         />
-        <Upload
-        />
       </div>
     );
   }
 }
 
 export default Master;
+
+// <Upload
+// />
