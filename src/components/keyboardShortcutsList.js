@@ -226,23 +226,23 @@ export const keyboardShortcuts = {
     },
     double: {
       shift: {
-// REFACTOR COMPONENTS
+      // REFACTOR COMPONENTS
 
-        // // JUMP TO LOOP START
-        // 'S': function () {
-        //   if (this.props.side === 'left') {
-        //     const loopStartLeft = this.props.waveform.regions.loop.start
-        //     if (this.props.waveform.pos !== loopStartLeft) {
-        //       this.props.setPos('left', loopStartLeft)
-        //     }
-        //   }
-        // },
-        // 'L': function () {
-        //   if (this.props.side === 'right') {
-        //     const loopStartRight = this.props.waveform.regions.loop.start
-        //     this.props.setPos('right', loopStartRight)
-        //   }
-        // },
+        // JUMP TO LOOP START
+        'S': function () {
+          if (this.props.side === 'left') {
+            const loopStartLeft = this.props.waveform.regions.loop.start
+            if (this.props.waveform.pos !== loopStartLeft) {
+              this.props.setPos('left', loopStartLeft)
+            }
+          }
+        },
+        'L': function () {
+          if (this.props.side === 'right') {
+            const loopStartRight = this.props.waveform.regions.loop.start
+            this.props.setPos('right', loopStartRight)
+          }
+        },
       },
       meta: {}
     }

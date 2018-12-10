@@ -23,20 +23,12 @@ class Loop extends Component {
   componentDidMount() {
     keyboardShortcutsFunction.bind(this)('loop')
   }
-
-  ////////////////////
   // 
-  // handleChange = (e) => {
-  //   const container = e.target.parentElement
-  //   const loopSettings = container.querySelector('.loopSettings')
-  //   if (this.props.loop) {
-  //     loopSettings.classList.add('hidden')
-  //   }
-  //   else {
-  //     loopSettings.classList.remove('hidden')
-  //   }
-  //   this.props.toggleLoop()
-  // }
+  // let beat = 0.95
+  // // if (this.props.channels['left'].currentSong) {
+  //   const leftBpm = this.props.channels['left'].currentSong.bpm
+  //   beat = 60/leftBpm
+  // // }
 
 
   startBack = () => {
@@ -70,6 +62,7 @@ class Loop extends Component {
       this.props.setRegionsState('end', newEnd)
     // }
   }
+
   loopHalf = () => {
     const start = this.props.waveform.regions.loop.start
     const end = this.props.waveform.regions.loop.end

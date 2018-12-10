@@ -74,19 +74,7 @@ const DoubleHalf = (props) => {
     </div>
   );
 }
-// const PitchShift = (props) => {
-//   return (
-//     <div className="PitchShift">
-//       <label>Pitch shift</label>
-//       <br />
-//       <input
-//         type="checkbox"
-//         checked={props.loop}
-//         onChange={props.togglePitchShift}
-//       />
-//     </div>
-//   );
-// }
+
 class Controls extends Component {
   render() {
     return (
@@ -96,7 +84,7 @@ class Controls extends Component {
             <div className='buttons'>
               <Seek
                 currentSong={this.props.currentSong}
-                side={this.props.side}
+                // side={this.props.side}
                 playing={this.props.playing}
                 togglePlaying={this.props.togglePlaying}
                 setPos={this.props.setPos}
