@@ -17,7 +17,7 @@ import BrowserSong from '../presentational/BrowserSong';
 
 const uuid = require('uuid/v4');
 // const apiUrl = 'http://localhost:3000'
-const apiUrl = 'http://djin-api.herokuapp.com'
+const apiUrl = 'https://djin-api.herokuapp.com'
 
 class Browser extends Component {
   constructor() {
