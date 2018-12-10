@@ -38,36 +38,82 @@ class Loop extends Component {
 
   /////////////////
   // MOVE LOOP
-  startBack = () => {
-    const start = this.props.waveform.regions.loop.start
-    const newStart = start - 0.05
-    if (newStart >= 0) {
-      this.props.setRegionsState('start', newStart)
-    }
-  }
-  startForwards = () => {
+
+  moveLoop = ({moveStart, forwards, coarse}) => {
     const start = this.props.waveform.regions.loop.start
     const end = this.props.waveform.regions.loop.end
-    const newStart = start + 0.05
-    if (newStart <= end) {
-      this.props.setRegionsState('start', newStart)
+
+    let pos
+    if (moveStart) {
+      pos = start
+    }
+    else {
+      pos = end
+    }
+
+    let amount
+    if (coarse) {
+      amount = 1
+      if (this.props.channel.currentSong) {
+        const bpm = this.props.channel.currentSong.bpm
+        amount = 60/bpm
+      }
+    }
+    else {
+      amount = 0.1
+    }
+
+    let newPos
+    if (forwards) {
+      newPos = pos + amount
+    }
+    else {
+      newPos = pos - amount
+    }
+
+    if (moveStart) {
+      if (
+        newPos >= 0 &&
+        newPos < end
+      ) {
+        this.props.setRegionsState('start', newPos)
+      }
+    }
+    else {
+      if (
+        newPos > start
+      ) {
+        this.props.setRegionsState('end', newPos)
+      }
     }
   }
 
-  endBack = () => {
+  resizeLoop = ({double, fromStart}) => {
+    console.log('resizing', double, fromStart);
     const start = this.props.waveform.regions.loop.start
     const end = this.props.waveform.regions.loop.end
-    const newEnd = end - 0.05
-    if (newEnd >= start) {
-      this.props.setRegionsState('end', newEnd)
+    const length = end - start
+    let newLength
+    if (double) {
+      newLength = length * 2
     }
-  }
-  endForwards = () => {
-    const end = this.props.waveform.regions.loop.end
-    const newEnd = end + 0.05
-    // if (newEnd <= ?????) { // HOW TO FIND END OF FILE?
-      this.props.setRegionsState('end', newEnd)
-    // }
+    else {
+      newLength = length / 2
+    }
+
+    if (fromStart) {
+      if (newLength > .01) {
+        this.props.setRegionsState('end', start + newLength)
+      }
+    }
+    else {
+      if (
+        newLength > .01 &&
+        end - newLength >= 0
+      ) {
+        this.props.setRegionsState('start', end - newLength)
+      }
+    }
   }
 
   loopHalf = () => {

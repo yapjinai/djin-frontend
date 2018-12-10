@@ -174,23 +174,39 @@ export const keyboardShortcuts = {
       // nudge backwards
       'e': function () {
         if (this.props.side === 'left') {
-          this.startBack()
+          this.moveLoop({
+            moveStart: true,
+            forwards: false,
+            coarse: true
+          })
         }
       },
       'u': function () {
         if (this.props.side === 'right') {
-          this.startBack()
+          this.moveLoop({
+            moveStart: true,
+            forwards: false,
+            coarse: true
+          })
         }
       },
       // nudge forwards
       'r': function () {
         if (this.props.side === 'left') {
-          this.startForwards()
+          this.moveLoop({
+            moveStart: true,
+            forwards: true,
+            coarse: true
+          })
         }
       },
       'i': function () {
         if (this.props.side === 'right') {
-          this.startForwards()
+          this.moveLoop({
+            moveStart: true,
+            forwards: true,
+            coarse: true
+          })
         }
       },
 
@@ -198,23 +214,39 @@ export const keyboardShortcuts = {
       // nudge backwards
       'c': function () {
         if (this.props.side === 'left') {
-          this.endBack()
+          this.moveLoop({
+            moveStart: false,
+            forwards: false,
+            coarse: true
+          })
         }
       },
       'n': function () {
         if (this.props.side === 'right') {
-          this.endBack()
+          this.moveLoop({
+            moveStart: false,
+            forwards: false,
+            coarse: true
+          })
         }
       },
       // nudge forwards
       'v': function () {
         if (this.props.side === 'left') {
-          this.endForwards()
+          this.moveLoop({
+            moveStart: false,
+            forwards: true,
+            coarse: true
+          })
         }
       },
       'm': function () {
         if (this.props.side === 'right') {
-          this.endForwards()
+          this.moveLoop({
+            moveStart: false,
+            forwards: true,
+            coarse: true
+          })
         }
       },
 
@@ -222,56 +254,165 @@ export const keyboardShortcuts = {
       // halve
       'd': function () {
         if (this.props.side === 'left') {
-          this.loopHalf()
+          this.resizeLoop({
+            double: false,
+            fromStart: true
+          })
+          // this.loopHalf()
         }
       },
       'j': function () {
         if (this.props.side === 'right') {
-          this.loopHalf()
+          this.resizeLoop({
+            double: false,
+            fromStart: true
+          })
+          // this.loopHalf()
         }
       },
       // double
       'f': function () {
         if (this.props.side === 'left') {
-          this.loopDouble()
+          this.resizeLoop({
+            double: true,
+            fromStart: true
+          })
+          // this.loopDouble()
         }
       },
       'k': function () {
         if (this.props.side === 'right') {
-          this.loopDouble()
+          this.resizeLoop({
+            double: true,
+            fromStart: true
+          })
+          // this.loopDouble()
         }
       },
     },
     double: {
       shift: {
-      // REFACTOR COMPONENTS
-        //
-        // // JUMP TO LOOP START
-        // 'S': function () {
-        //   if (this.props.side === 'left') {
-        //     const loopStartLeft = this.props.waveform.regions.loop.start
-        //     if (this.props.waveform.pos !== loopStartLeft) {
-        //     //   this.props.setPos('left', loopStartLeft)
-        //     // }
-        //     console.log(this.props.waveform.pos);
-        //     console.log(loopStartLeft);
-        //   }
-        // },
-        // 'L': function () {
-        //   if (this.props.side === 'right') {
-        //     const loopStartRight = this.props.waveform.regions.loop.start
-        //     this.props.setPos('right', loopStartRight)
-        //   }
-        // },
+        // NUDGE LOOP START
+        // nudge backwards
+        'E': function () {
+          if (this.props.side === 'left') {
+            this.moveLoop({
+              moveStart: true,
+              forwards: false,
+              coarse: false
+            })
+          }
+        },
+        'U': function () {
+          if (this.props.side === 'right') {
+            this.moveLoop({
+              moveStart: true,
+              forwards: false,
+              coarse: false
+            })
+          }
+        },
+        // nudge forwards
+        'R': function () {
+          if (this.props.side === 'left') {
+            this.moveLoop({
+              moveStart: true,
+              forwards: true,
+              coarse: false
+            })
+          }
+        },
+        'I': function () {
+          if (this.props.side === 'right') {
+            this.moveLoop({
+              moveStart: true,
+              forwards: true,
+              coarse: false
+            })
+          }
+        },
+
+        // NUDGE LOOP END
+        // nudge backwards
+        'C': function () {
+          if (this.props.side === 'left') {
+            this.moveLoop({
+              moveStart: false,
+              forwards: false,
+              coarse: false
+            })
+          }
+        },
+        'N': function () {
+          if (this.props.side === 'right') {
+            this.moveLoop({
+              moveStart: false,
+              forwards: false,
+              coarse: false
+            })
+          }
+        },
+        // nudge forwards
+        'V': function () {
+          if (this.props.side === 'left') {
+            this.moveLoop({
+              moveStart: false,
+              forwards: true,
+              coarse: false
+            })
+          }
+        },
+        'M': function () {
+          if (this.props.side === 'right') {
+            this.moveLoop({
+              moveStart: false,
+              forwards: true,
+              coarse: false
+            })
+          }
+        },
+
+        // HALVE/DOUBLE LOOP
+        // halve
+        'D': function () {
+          if (this.props.side === 'left') {
+            this.resizeLoop({
+              double: false,
+              fromStart: false
+            })
+            // this.loopHalf()
+          }
+        },
+        'J': function () {
+          if (this.props.side === 'right') {
+            this.resizeLoop({
+              double: false,
+              fromStart: false
+            })
+            // this.loopHalf()
+          }
+        },
+        // double
+        'F': function () {
+          if (this.props.side === 'left') {
+            this.resizeLoop({
+              double: true,
+              fromStart: false
+            })
+            // this.loopDouble()
+          }
+        },
+        'K': function () {
+          if (this.props.side === 'right') {
+            this.resizeLoop({
+              double: true,
+              fromStart: false
+            })
+            // this.loopDouble()
+          }
+        },
       },
       meta: {}
     }
   },
 }
-
-// Loop controls
-// (with Shift: nudge slower)
-// Shift + S, Shift + L: jump to loop start
-
-// Shift + D, Shift + J: halve loop from end
-// Shift + F, Shift + K: double loop from end

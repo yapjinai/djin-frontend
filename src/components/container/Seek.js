@@ -48,33 +48,25 @@ class Seek extends Component {
 
   seek = ({forwards, coarse}) => {
     const pos = this.props.waveform.pos
-    let newPos
 
+    let amount
     if (coarse) {
-      if (forwards) {
-        newPos = pos + 1
-        if (this.props.channel.currentSong) {
-          const bpm = this.props.channel.currentSong.bpm
-          const beat = 60/bpm
-          newPos = pos + beat
-        }
-      }
-      else {
-        newPos = pos - 1
-        if (this.props.channel.currentSong) {
-          const bpm = this.props.channel.currentSong.bpm
-          const beat = 60/bpm
-          newPos = pos - beat
-        }
+      amount = 1
+      if (this.props.channel.currentSong) {
+        const bpm = this.props.channel.currentSong.bpm
+        amount = 60/bpm
       }
     }
     else {
-      if (forwards) {
-        newPos = pos + 0.1
-      }
-      else {
-        newPos = pos - 0.1
-      }
+      amount = 0.1
+    }
+
+    let newPos
+    if (forwards) {
+      newPos = pos + amount
+    }
+    else {
+      newPos = pos - amount
     }
 
     if (newPos > 0) {
@@ -84,7 +76,7 @@ class Seek extends Component {
       this.props.setPos(0)
     }
   }
-  
+
   /////////////////////////
 
 }
