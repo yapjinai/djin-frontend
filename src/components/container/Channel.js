@@ -34,44 +34,12 @@ class Channel extends Component {
 
           <Waveform
             side={this.props.side}
-
-            currentSong={this.props.channel.currentSong}
-            playing={this.props.channel.playing}
-
-            volume={this.props.channel.calculatedVolume}
-            audioRate={this.props.channel.calculatedAudioRate}
-            pitchShift={this.props.channel.pitchShift}
-            loop={this.props.channel.loop}
-
             playNextFromQueue={this.playNextFromQueue}
-            // setPlaying={this.props.setPlaying}
           />
 
           <Controls
             side={this.props.side}
-            // currentSong={this.props.channel.currentSong}
-            //
-            // playing={this.props.channel.playing}
             togglePlaying={this.togglePlaying}
-            //
-            // setPos={this.props.setPos}
-            //
-            // volume={this.props.channel.volume}
-            // setVolume={this.setVolume}
-            //
-            // syncBpm={this.syncBpm}
-            //
-            // bpmFactor={this.props.channel.bpmFactor}
-            // setBpmFactor={this.setBpmFactor}
-            //
-            // pitchShift={this.props.channel.pitchShift}
-            // togglePitchShift={this.togglePitchShift}
-            //
-            // loop={this.props.channel.loop}
-            // toggleLoop={this.toggleLoop}
-            //
-            // waveform={this.props.waveform}
-            // setRegionsState={this.props.setRegionsState}
           />
         </div>
         <Queue

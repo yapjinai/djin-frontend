@@ -16,12 +16,12 @@ import MyRegions from '../MyRegions';
 class Waveform extends Component {
   render() {
     this.setAudioRate()
-    this.setBackend()
+    // this.setBackend()
     this.setLoop()
 
     return (
       <div className="Waveform">
-        {this.props.currentSong ? this.renderWaveform() : null}
+        {this.props.channel.currentSong ? this.renderWaveform() : null}
       </div>
     );
   }
@@ -29,7 +29,7 @@ class Waveform extends Component {
   ////////////////////
 
   setAudioRate = () => {
-    const givenAudioRate = this.props.audioRate
+    const givenAudioRate = this.props.channel.calculatedAudioRate
     const actualAudioRate = this.props.waveform.waveformOptions.audioRate
 
     if (actualAudioRate !== givenAudioRate) {
@@ -38,20 +38,20 @@ class Waveform extends Component {
   }
 
 // todo: the redux and state work, but pitch shift toggle not working
-  setBackend = () => {
-    const pitchShift = this.props.pitchShift
-    const backend = this.props.waveform.waveformOptions.backend
-
-    if (pitchShift && (backend === 'MediaElement')) {
-      this.props.setWaveformState('backend', 'WebAudio')
-    }
-    else if (!pitchShift && (backend === 'WebAudio')) {
-      this.props.setWaveformState('backend', 'MediaElement')
-    }
-  }
+  // setBackend = () => {
+  //   const pitchShift = this.props.channel.pitchShift
+  //   const backend = this.props.waveform.waveformOptions.backend
+  //
+  //   if (pitchShift && (backend === 'MediaElement')) {
+  //     this.props.setWaveformState('backend', 'WebAudio')
+  //   }
+  //   else if (!pitchShift && (backend === 'WebAudio')) {
+  //     this.props.setWaveformState('backend', 'MediaElement')
+  //   }
+  // }
 
   setLoop = () => {
-    const givenLoop = this.props.loop
+    const givenLoop = this.props.channel.loop
     const actualLoop = this.props.waveform.regions.loop.loop
 
     if (actualLoop !== givenLoop) {
@@ -92,9 +92,9 @@ class Waveform extends Component {
       <MyWavesurfer
         side={this.props.side}
 
-        audioFile={this.props.currentSong.url}
-        playing={this.props.playing}
-        volume={this.props.volume}
+        audioFile={this.props.channel.currentSong.url}
+        playing={this.props.channel.playing}
+        volume={this.props.channel.calculatedVolume}
 
         options={this.props.waveform.waveformOptions}
         pos={this.props.waveform.pos}
@@ -118,6 +118,7 @@ class Waveform extends Component {
 ///////////////////////
 
 const mapStateToProps = (state, ownProps) => ({
+  channel: state.channels[ownProps.side],
   waveform: state.waveforms[ownProps.side]
 })
 
