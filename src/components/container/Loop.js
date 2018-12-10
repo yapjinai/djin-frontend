@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {keyboardShortcutsFunction} from '../keyboardShortcutsFunction'
 
 class Loop extends Component {
 
@@ -9,8 +10,8 @@ class Loop extends Component {
 
       <input
       type="checkbox"
-      checked={this.props.loop}
-      onChange={this.props.toggleLoop}
+      checked={this.props.channel.loop}
+      onChange={this.toggleLoop}
       />
 
       {this.renderLoopSettings()}
@@ -19,52 +20,102 @@ class Loop extends Component {
     );
   }
 
-  ////////////////////
+  componentDidMount() {
+    keyboardShortcutsFunction.bind(this)('loop')
+  }
+  //
+  // let beat = 0.95
+  // // if (this.props.channels['left'].currentSong) {
+  //   const leftBpm = this.props.channels['left'].currentSong.bpm
+  //   beat = 60/leftBpm
+  // // }
 
-  handleChange = (e) => {
-    const container = e.target.parentElement
-    const loopSettings = container.querySelector('.loopSettings')
-    if (this.props.loop) {
-      loopSettings.classList.add('hidden')
+  /////////////////
+  // TOGGLE LOOP
+  toggleLoop = () => {
+    this.props.setChannelState('loop', !this.props.channel.loop)
+  }
+
+  /////////////////
+  // MOVE LOOP
+
+  moveLoop = ({moveStart, forwards, coarse}) => {
+    const start = this.props.waveform.regions.loop.start
+    const end = this.props.waveform.regions.loop.end
+
+    let pos
+    if (moveStart) {
+      pos = start
     }
     else {
-      loopSettings.classList.remove('hidden')
+      pos = end
     }
-    this.props.toggleLoop()
+
+    let amount
+    if (coarse) {
+      amount = 1
+      if (this.props.channel.currentSong) {
+        const bpm = this.props.channel.currentSong.bpm
+        amount = 60/bpm
+      }
+    }
+    else {
+      amount = 0.1
+    }
+
+    let newPos
+    if (forwards) {
+      newPos = pos + amount
+    }
+    else {
+      newPos = pos - amount
+    }
+
+    if (moveStart) {
+      if (
+        newPos >= 0 &&
+        newPos < end
+      ) {
+        this.props.setRegionsState('start', newPos)
+      }
+    }
+    else {
+      if (
+        newPos > start
+      ) {
+        this.props.setRegionsState('end', newPos)
+      }
+    }
   }
 
+  resizeLoop = ({double, fromStart}) => {
+    console.log('resizing', double, fromStart);
+    const start = this.props.waveform.regions.loop.start
+    const end = this.props.waveform.regions.loop.end
+    const length = end - start
+    let newLength
+    if (double) {
+      newLength = length * 2
+    }
+    else {
+      newLength = length / 2
+    }
 
-  startBack = () => {
-    const start = this.props.waveform.regions.loop.start
-    const newStart = start - 0.05
-    if (newStart >= 0) {
-      this.props.setRegionsState('start', newStart)
+    if (fromStart) {
+      if (newLength > .01) {
+        this.props.setRegionsState('end', start + newLength)
+      }
     }
-  }
-  startForwards = () => {
-    const start = this.props.waveform.regions.loop.start
-    const end = this.props.waveform.regions.loop.end
-    const newStart = start + 0.05
-    if (newStart <= end) {
-      this.props.setRegionsState('start', newStart)
+    else {
+      if (
+        newLength > .01 &&
+        end - newLength >= 0
+      ) {
+        this.props.setRegionsState('start', end - newLength)
+      }
     }
   }
 
-  endBack = () => {
-    const start = this.props.waveform.regions.loop.start
-    const end = this.props.waveform.regions.loop.end
-    const newEnd = end - 0.05
-    if (newEnd >= start) {
-      this.props.setRegionsState('end', newEnd)
-    }
-  }
-  endForwards = () => {
-    const end = this.props.waveform.regions.loop.end
-    const newEnd = end + 0.05
-    // if (newEnd <= ?????) { // HOW TO FIND END OF FILE?
-      this.props.setRegionsState('end', newEnd)
-    // }
-  }
   loopHalf = () => {
     const start = this.props.waveform.regions.loop.start
     const end = this.props.waveform.regions.loop.end

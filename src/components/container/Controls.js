@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import '../../css/Controls.css';
 
+import { connect } from 'react-redux'
+import {
+  // setBpm,
+  // setCrossfade,
+  //
+  // revertToDefault,
+  setChannelState,
+  setRegionsState,
+  //
+  // setPlaying,
+  //
+  // shiftFromQueue,
+  setPos
+} from '../../actions'
+
 import Loop from './Loop';
 import Seek from './Seek';
 
@@ -74,66 +89,6 @@ const DoubleHalf = (props) => {
     </div>
   );
 }
-// const PitchShift = (props) => {
-//   return (
-//     <div className="PitchShift">
-//       <label>Pitch shift</label>
-//       <br />
-//       <input
-//         type="checkbox"
-//         checked={props.loop}
-//         onChange={props.togglePitchShift}
-//       />
-//     </div>
-//   );
-// }
-// const Seek = ({playing, togglePlaying, setPos, waveform}) => {
-//   addKeyboardShortcutsControls.bind(this)()
-//
-//   const playPause = () => {
-//     if (playing) {
-//       return 'Pause'
-//     }
-//     else {
-//       return 'Play'
-//     }
-//   }
-//
-//   const pos = waveform.pos
-//   const back = () => {
-//     const newPos = pos - 0.1
-//     if (newPos > 0) {
-//       setPos(newPos)
-//     }
-//   }
-//   const forwards = () => {
-//     const newPos = pos + 0.1
-//     setPos(newPos)
-//   }
-//
-//   return (
-//     <div className="Seek">
-//       <button
-//         onClick={back}
-//       >
-//         {'<<'}
-//       </button>
-//
-//       <button
-//         onClick={togglePlaying}
-//         className='play-pause'
-//       >
-//         {playPause()}
-//       </button>
-//
-//       <button
-//         onClick={forwards}
-//       >
-//         {'>>'}
-//       </button>
-//     </div>
-//   );
-// }
 
 class Controls extends Component {
   render() {
@@ -143,12 +98,14 @@ class Controls extends Component {
           <div className='top'>
             <div className='buttons'>
               <Seek
-                currentSong={this.props.currentSong}
                 side={this.props.side}
-                playing={this.props.playing}
-                togglePlaying={this.props.togglePlaying}
-                setPos={this.props.setPos}
+                channel={this.props.channel}
                 waveform={this.props.waveform}
+
+                togglePlaying={this.props.togglePlaying}
+
+                setPos={this.props.setPos}
+                setRegionsState={this.props.setRegionsState}
               />
 
               <button
@@ -161,10 +118,11 @@ class Controls extends Component {
             <div className='checkboxes'>
 
               <Loop
-                loop={this.props.loop}
-                toggleLoop={this.props.toggleLoop}
-
+                side={this.props.side}
+                channel={this.props.channel}
                 waveform={this.props.waveform}
+
+                setChannelState={this.props.setChannelState}
                 setRegionsState={this.props.setRegionsState}
               />
             </div>
@@ -186,15 +144,49 @@ class Controls extends Component {
     )
   }
 
-  componentDidMount() {
-    // addKeyboardShortcutsControls.bind(this)()
-  }
-
   //////////
 }
-export default Controls;
+// export default Controls;
 
 // <PitchShift
 // pitchShift={this.props.pitchShift}
 // togglePitchShift={this.props.togglePitchShift}
 // />
+
+
+///////////////////////
+// redux
+///////////////////////
+
+const mapStateToProps = (state, ownProps) => ({
+  // Channel state
+  channel: state.channels[ownProps.side],
+  waveform: state.waveforms[ownProps.side],
+  // queue: state.queues[ownProps.side]
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  // // App state setters
+  // setBpm: (bpm) => dispatch(setBpm(bpm)),
+  // setCrossfade: (crossfade) => dispatch(setCrossfade(crossfade)),
+  //
+  // // Channel state setters
+  setChannelState: (key, newValue) => dispatch(setChannelState(ownProps.side, key, newValue)),
+  // revertToDefault: () => dispatch(revertToDefault()),
+  //
+  // setPlaying: (playing) => dispatch(setPlaying(ownProps.side, playing)),
+  //
+  // shiftFromQueue: () => dispatch(shiftFromQueue(ownProps.side)),
+  //
+  // Waveform state setters
+  setPos: (pos) => dispatch(setPos(ownProps.side, pos)),
+  setRegionsState: (key, newValue) => dispatch(setRegionsState(ownProps.side, key, newValue)),
+})
+
+const connectedControls = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Controls)
+
+
+export default connectedControls;

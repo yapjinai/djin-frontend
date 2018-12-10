@@ -23,7 +23,7 @@ const Info = () => {
 
           <li>
             <strong>←</strong>, <strong>→</strong>: crossfade left/right<br />
-            <em>(with <strong>Shift</strong>: hard crossfade)</em>
+            <em>(with <strong>Shift</strong>: fine crossfade)</em>
           </li>
           <li>
             <strong>Cmd</strong> + <strong>↓</strong>: crossfade to center
@@ -33,7 +33,7 @@ const Info = () => {
 
           <li>
           <strong>↑</strong>, <strong>↓</strong>: BPM up/down<br />
-            <em>(with <strong>Shift</strong>: faster up/down)</em>
+            <em>(with <strong>Shift</strong>: fine adjust</em>
           </li>
 
           <br />
@@ -48,7 +48,7 @@ const Info = () => {
           <br />
           <label>Seek forwards/backwards</label>
           <br />
-          <em>(with <strong>Shift</strong>: seek faster)</em>
+          <em>(with <strong>Shift</strong>: fine adjust)</em>
 
 
           <li>
@@ -62,7 +62,7 @@ const Info = () => {
         <span>
           <label>Loop controls</label>
           <br />
-          <em>(with <strong>Shift</strong>: nudge faster)</em>
+          <em>(with <strong>Shift</strong>: fine adjust)</em>
 
           <li>
             <strong>Shift</strong> + <strong>S</strong>, <strong>Shift</strong> + <strong>L</strong>: jump to loop start

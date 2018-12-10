@@ -49,29 +49,29 @@ class Channel extends Component {
 
           <Controls
             side={this.props.side}
-            currentSong={this.props.channel.currentSong}
-
-            playing={this.props.channel.playing}
+            // currentSong={this.props.channel.currentSong}
+            //
+            // playing={this.props.channel.playing}
             togglePlaying={this.togglePlaying}
-
-            setPos={this.props.setPos}
-
-            volume={this.props.channel.volume}
-            setVolume={this.setVolume}
-
-            syncBpm={this.syncBpm}
-
-            bpmFactor={this.props.channel.bpmFactor}
-            setBpmFactor={this.setBpmFactor}
-
-            pitchShift={this.props.channel.pitchShift}
-            togglePitchShift={this.togglePitchShift}
-
-            loop={this.props.channel.loop}
-            toggleLoop={this.toggleLoop}
-
-            waveform={this.props.waveform}
-            setRegionsState={this.props.setRegionsState}
+            //
+            // setPos={this.props.setPos}
+            //
+            // volume={this.props.channel.volume}
+            // setVolume={this.setVolume}
+            //
+            // syncBpm={this.syncBpm}
+            //
+            // bpmFactor={this.props.channel.bpmFactor}
+            // setBpmFactor={this.setBpmFactor}
+            //
+            // pitchShift={this.props.channel.pitchShift}
+            // togglePitchShift={this.togglePitchShift}
+            //
+            // loop={this.props.channel.loop}
+            // toggleLoop={this.toggleLoop}
+            //
+            // waveform={this.props.waveform}
+            // setRegionsState={this.props.setRegionsState}
           />
         </div>
         <Queue
@@ -129,9 +129,9 @@ class Channel extends Component {
     this.props.setChannelState('pitchShift', !this.props.channel.pitchShift)
   }
 
-  toggleLoop = () => {
-    this.props.setChannelState('loop', !this.props.channel.loop)
-  }
+  // toggleLoop = () => {
+  //   this.props.setChannelState('loop', !this.props.channel.loop)
+  // }
   ///////////////////////
 
   playNextFromQueue = () => {

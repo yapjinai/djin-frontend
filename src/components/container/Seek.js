@@ -32,9 +32,10 @@ class Seek extends Component {
   }
 
   ////////////////////
+  // PLAYING CONTROLS
 
   playPause = () => {
-    if (this.props.playing) {
+    if (this.props.channel.playing) {
       return 'Pause'
     }
     else {
@@ -42,45 +43,41 @@ class Seek extends Component {
     }
   }
 
-  back = () => {
+  ///////////////////////////////////
+  //// SEEK CONTROLS
+
+  seek = ({forwards, coarse}) => {
     const pos = this.props.waveform.pos
-    const newPos = pos - 0.1
+
+    let amount
+    if (coarse) {
+      amount = 1
+      if (this.props.channel.currentSong) {
+        const bpm = this.props.channel.currentSong.bpm
+        amount = 60/bpm
+      }
+    }
+    else {
+      amount = 0.1
+    }
+
+    let newPos
+    if (forwards) {
+      newPos = pos + amount
+    }
+    else {
+      newPos = pos - amount
+    }
+
     if (newPos > 0) {
       this.props.setPos(newPos)
     }
-  }
-  forwards = () => {
-    const pos = this.props.waveform.pos
-    const newPos = pos + 0.1
-    this.props.setPos(newPos)
-  }
-
-  fastBack = () => {
-    const pos = this.props.waveform.pos
-    let newPos = pos - 0.9
-
-    if (this.props.currentSong) {
-      const bpm = this.props.currentSong.bpm
-      const beat = 60/bpm
-      newPos = pos - beat + 0.1
-    }
-
-    if (newPos > 0) {
-      this.props.setPos(newPos)
+    else {
+      this.props.setPos(0)
     }
   }
-  fastForwards = () => {
-    const pos = this.props.waveform.pos
-    let newPos = pos + 0.9
 
-    if (this.props.currentSong) {
-      const bpm = this.props.currentSong.bpm
-      const beat = 60/bpm
-      newPos = pos + beat - 0.1
-    }
-
-    this.props.setPos(newPos)
-  }
+  /////////////////////////
 
 }
 
