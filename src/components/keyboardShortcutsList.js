@@ -16,25 +16,21 @@ export const keyboardShortcuts = {
       '1': function () {
         if (this.props.side === 'left') {
           this.seek({forwards: false, coarse: true})
-          // this.back()
         }
       },
       '2': function () {
         if (this.props.side === 'left') {
           this.seek({forwards: true, coarse: true})
-          // this.forwards()
         }
       },
       '9': function () {
         if (this.props.side === 'right') {
           this.seek({forwards: false, coarse: true})
-          // this.back()
         }
       },
       '0': function () {
         if (this.props.side === 'right') {
           this.seek({forwards: true, coarse: true})
-          // this.forwards()
         }
       },
 
@@ -258,7 +254,6 @@ export const keyboardShortcuts = {
             double: false,
             fromStart: true
           })
-          // this.loopHalf()
         }
       },
       'j': function () {
@@ -267,7 +262,6 @@ export const keyboardShortcuts = {
             double: false,
             fromStart: true
           })
-          // this.loopHalf()
         }
       },
       // double
@@ -277,7 +271,6 @@ export const keyboardShortcuts = {
             double: true,
             fromStart: true
           })
-          // this.loopDouble()
         }
       },
       'k': function () {
@@ -286,7 +279,6 @@ export const keyboardShortcuts = {
             double: true,
             fromStart: true
           })
-          // this.loopDouble()
         }
       },
     },
@@ -380,7 +372,6 @@ export const keyboardShortcuts = {
               double: false,
               fromStart: false
             })
-            // this.loopHalf()
           }
         },
         'J': function () {
@@ -389,7 +380,6 @@ export const keyboardShortcuts = {
               double: false,
               fromStart: false
             })
-            // this.loopHalf()
           }
         },
         // double
@@ -399,7 +389,6 @@ export const keyboardShortcuts = {
               double: true,
               fromStart: false
             })
-            // this.loopDouble()
           }
         },
         'K': function () {
@@ -408,7 +397,6 @@ export const keyboardShortcuts = {
               double: true,
               fromStart: false
             })
-            // this.loopDouble()
           }
         },
       },
