@@ -15,22 +15,26 @@ export const keyboardShortcuts = {
       // SEEK
       '1': function () {
         if (this.props.side === 'left') {
-          this.fastBack()
+          this.seek({forwards: false, coarse: true})
+          // this.back()
         }
       },
       '2': function () {
         if (this.props.side === 'left') {
-          this.fastForwards()
+          this.seek({forwards: true, coarse: true})
+          // this.forwards()
         }
       },
       '9': function () {
         if (this.props.side === 'right') {
-          this.fastBack()
+          this.seek({forwards: false, coarse: true})
+          // this.back()
         }
       },
       '0': function () {
         if (this.props.side === 'right') {
-          this.fastForwards()
+          this.seek({forwards: true, coarse: true})
+          // this.forwards()
         }
       },
 
@@ -50,22 +54,22 @@ export const keyboardShortcuts = {
       shift: {
         '!': function () {
           if (this.props.side === 'left') {
-            this.back()
+            this.seek({forwards: false, coarse: false})
           }
         },
         '@': function () {
           if (this.props.side === 'left') {
-            this.forwards()
+            this.seek({forwards: true, coarse: false})
           }
         },
         '(': function () {
           if (this.props.side === 'right') {
-            this.back()
+            this.seek({forwards: false, coarse: false})
           }
         },
         ')': function () {
           if (this.props.side === 'right') {
-            this.forwards()
+            this.seek({forwards: true, coarse: false})
           }
         },
 
