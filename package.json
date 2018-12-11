@@ -77,7 +77,8 @@
   ],
   "devDependencies": {
     "css-loader": "^1.0.1",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "webpack-cli": "^3.1.2"
   },
   "jest": {
     "collectCoverageFrom": [
