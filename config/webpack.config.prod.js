@@ -236,9 +236,6 @@ module.exports = {
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
     ],
-    alias: {
-      wavesurfer: require.resolve('wavesurfer.js')
-    },
   },
   resolveLoader: {
     plugins: [
@@ -530,6 +527,11 @@ module.exports = {
         formatter: typescriptFormatter,
       }),
   ].filter(Boolean),
+  resolve: {
+    alias: {
+      wavesurfer: require.resolve('wavesurfer.js')
+    },
+  },
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
