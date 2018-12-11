@@ -526,7 +526,7 @@ module.exports = {
         silent: true,
         formatter: typescriptFormatter,
       }),
-  ],//.filter(Boolean),
+  ].filter(Boolean),
   resolve: {
     alias: {
       wavesurfer: require.resolve('wavesurfer.js')
