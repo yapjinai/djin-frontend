@@ -8,6 +8,12 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers'
 
+// NOTE: These must come after your imports.
+require('wavesurfer.js');
+require('wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js');
+require('wavesurfer.js/dist/plugin/wavesurfer.regions.min.js');
+require('wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js');
+
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
